@@ -4,9 +4,10 @@
 :root{
     --purple : #9D4AFC;
     --hover-purple: #7b0ff7;
-
     --backgorund: #f5f5f5;
     --input: #FFFFFF;
+    --label-color:hsla(0, 0%, 30%, 0.349);
+    --center-button:white;
 }
 
 
@@ -32,8 +33,9 @@ body{
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content:space-around; 
+    justify-content:space-evenly; 
 }
+
 
 #Pages-title{
     font-size: 24px;
@@ -51,12 +53,12 @@ body{
 }
 
 .label_form{
-    color: hsla(0, 0%, 30%, 0.349);
+    color: var(--label-color);
     font-size: 10px;
 }
 
 .login-form {
-    height: 100vh;
+    height: 25vh;
     width: 100vh;
     display: flex;
     flex-direction: column;
@@ -77,10 +79,10 @@ body{
 .login-form button {
     width: 340px;
     height: 55px;
-    margin-top: 20px;
+    margin-top: 10px;
     padding: 10px 20px;
     background-color: var(--purple);
-    color: white;
+    color: var(--center-button);
     border: none;
     border-radius: 5px;
     font-size: 18px;
@@ -97,7 +99,7 @@ body{
 .record-people{
     display: flex;
     flex-direction: column;
-    gap: 2%;
+    gap: 6%;
 
 }
 .record-people button {
@@ -106,7 +108,7 @@ body{
     margin-top: 20px;
     padding: 10px 20px;
     background-color: var(--purple);
-    color: white;
+    color: var(--center-button);
     border: none;
     border-radius: 5px;
     font-size: 18px;
