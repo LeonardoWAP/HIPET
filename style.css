@@ -56,9 +56,12 @@ body{
 }
 
 .login-form {
+    height: 100vh;
+    width: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     gap: 15px;
 }
 
@@ -68,7 +71,6 @@ body{
     border-radius: 8px;
      border: none;
     font-size: 18px;
-    text-align: center;
     text-align: start;
 }
 
@@ -92,7 +94,12 @@ body{
 
 /* login fim */
 /* registro */
+.record-people{
+    display: flex;
+    flex-direction: column;
+    gap: 2%;
 
+}
 .record-people button {
     width: 340px;
     height: 55px;
@@ -117,3 +124,26 @@ body{
     background-color: var(--hover-purple)  
 }
 
+.title_and_sub{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 50%;
+    gap: 20px;
+    margin-top: 12%;
+    }
+
+    #eu_sou{
+        font-weight: 600;
+        font-size: 20px;
+    }
+    #registre-se{
+        font-size: 26px;
+    }
+    /*
+    registro fim
+    */ 
+
+    
