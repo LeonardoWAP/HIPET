@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style_Login.css">
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../reset.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,22 +13,26 @@
 
 
     <div class="container">
-		<form class="form">
-            <img src="img/pata-de-animal.png" alt="Figura de uma pata de animal">
-            <h1>Welcome to HIPET</h1>
-			<label for="Email">Email:</label>
-			<input type="text" id="Email" name="Email" placeholder="any_name@mail.com.br">
+        <img src="../src/pata-de-animal.png" alt="Figura de uma pata de animal">
+        <h1 id="Pages-title">Welcome to HIPET</h1>
 
-			<label for="senha">Senha:</label>
-			<input type="password" id="senha" name="senha" placeholder=".......................">
+		<form class="login-form">
 
-            
+            <div class="login-input">
+                <label for="Email" class="label_form">Email:</label>
+			    <input type="text" id="Email" name="Email" placeholder="any_name@mail.com.br">
+            </div>
 
+            <div class="login-input">
+                <label for="senha" class="label_form">Senha:</label>
+			    <input type="password" id="senha" name="senha" placeholder=".......................">
+            </div>
+			
 			<button type="submit">Entrar</button>
-
-
-            <p>Não tem uma conta? <a href="https://www.example.com" target="_blank">Registre-se!</a> </p>
 		</form>
+
+        <p>Não tem uma conta? <a href="http://127.0.0.1:5500/Cadastro_First_Step/Cadastro_first_step.html?" target="_blank">Registre-se!</a> </p>
+
 	</div>
     
 </body>

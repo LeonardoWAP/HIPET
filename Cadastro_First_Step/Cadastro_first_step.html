@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <link rel="stylesheet" href="style_Cadastro_first_step.css">
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../reset.css">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,19 +10,21 @@
 </head>
 <body>
     <div class="container">
-		<form class="form">
-            <h1>Welcome to HIPET</h1>
-			<label for="login">Login:</label>
-			<input type="text" id="login" name="login" placeholder="any_name@mail.com.br">
-
-			<label for="senha">Senha:</label>
-			<input type="password" id="senha" name="senha" placeholder=".......................">
-
-			<button type="submit">Entrar</button>
+        <div>
+            <h1 id="Pages-title">HIPET</h1>
+            <h2><strong>Registre-se</strong></h2>
+            <p>Eu sou ...</p>
+        </div>
+		<form class="login-form">
 
 
-            <p>Não tem uma conta? <a href="https://www.example.com" target="_blank">Registre-se!</a> </p>
+            <div class="record-people">
+                <button type="submit">Pessoa física</button>
+                <button type="submit">ONG</button>
+            </div>
 		</form>
+
+        <p>Já tem uma conta? Entrar! <a href="https://www.example.com" target="_blank">Registre-se!</a> </p>
 	</div>
 </body>
 </html>
