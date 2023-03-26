@@ -1,0 +1,242 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@100;300;400;700;900&display=swap');
+
+:root{
+    --purple : #9D4AFC;
+    --hover-purple: #7b0ff7;
+    --backgorund: #f5f5f5;
+    --white: #FFFFFF;
+    --label-color:hsla(0, 0%, 30%, 0.349);
+    --center-button:white;
+
+    --text-color: #292A37;
+    --text-input: #AFADB7;
+}
+
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    font-family: 'Lato', sans-serif;
+    background-color: var(--backgorund);
+}
+
+/************************** COMOON ************************/
+
+.title{
+    font-size: 1.5rem;
+    color : var(--text-color)
+}
+
+.subtitle{
+    font-size: 1rem;
+    color : var(--text-color)
+
+}
+
+.button-purple {
+    width: 82%;
+    height: 55px;
+    background-color: var(--purple);
+    color: var(--center-button);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.5s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.button-purple a {
+   text-decoration: none;
+   color : var(--white);
+}
+
+.button-purple:hover {
+    background-color: var(--hover-purple)  ;
+}
+
+.footer-register{
+    font-weight: 600;
+}
+.footer-register a{
+    text-decoration: none;
+    color: var(--purple);
+}
+
+
+/************************** Login **************************/
+
+.container {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.login-form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+}
+
+.login-form-input{
+    background-color: var(--white);
+    display: flex;
+    flex-direction: column;
+    padding: 4% 6%;
+    border-radius: 5px;
+    font-size: 14px;
+    width: 70%;
+}
+
+.login-form-input input {
+    margin: 0;
+    width: auto;
+    border-radius: 8px;
+    border: none;
+    text-align: start;
+}
+
+.login-form-input label{
+    color: var(--purple);
+    font-size: 0.8rem;
+}
+
+
+/*************************** end login ********************************/
+
+/*************************** register ********************************/
+
+.register-header{
+    display: flex;
+    align-items: start;
+    flex-direction: column;
+    justify-content: center;
+
+    width: 80%;
+    gap: 20px;
+
+}
+
+
+.register-options{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 45px;
+    width: 100%;
+
+}
+
+.register-options .subtitle{
+    font-weight: 600;
+    width: 80%;
+}
+/********************** end register ************************/
+
+
+/********************** register PF ************************/
+
+.register-form{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 2%;
+}
+
+.register-form-input{
+    display: flex;
+    flex-direction: column;
+    width: 42%;
+    margin-bottom: 5%;
+    
+}
+
+.register-form-input input{
+    height: 35px;
+    border: none;
+    text-decoration: none;
+    width: calc(100% - 12%);
+    border-radius: 5px;
+    padding: 0 6%;
+    font-size: 0.8rem;
+    color: var(--text-input);
+}
+
+.register-form-input .title{
+    font-size: 0.9rem;
+    font-weight: 900;
+}
+
+.input-large{
+    width: 85%;
+}
+
+/********************** end register PF ************************/
+
+
+/**********************  register ONG ************************/
+.register-form-vakinha {
+    width: 85%;
+}
+
+.register-form-vakinha label{
+    font-size: 0.9rem;
+}
+
+.label-subtitle{
+    font-size: 0.7rem;
+    color: var(--text-input);
+}
+/********************** end register ONG ************************/
+
+
+
+
+
+/********************** register created ***********************/
+
+.register-ok-circle{
+    width: 90%;
+    height: 43%;
+    background-color: var(--white);
+    border-radius: 50%;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.register-ok-circle .title{
+    color: var(--purple);
+    font-weight: 900;
+}
+
+.register-ok-circle .subtitle{
+    font-weight: 600;
+}
+/********************** end register created ***********************/
+
+
+@media (min-width: 500px){
+
+    .container{
+        width: 550px;
+    }
+}
+ 
+ 
