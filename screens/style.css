@@ -141,6 +141,7 @@ body{
 /*************************** register ********************************/
 
 .register-header{
+    margin-top: 50px;
     display: flex;
     align-items: start;
     flex-direction: column;
