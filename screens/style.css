@@ -431,8 +431,8 @@ body{
     cursor: pointer;
 }
 
-/*********************** end feed **********************************/
 
+/*********************** end feed **********************************/
 
 /************************ post datails *****************************/
 .post-details{
@@ -615,6 +615,19 @@ body{
 
 
 /************************ end post datails ***********************/
+
+
+/********************* edit info ******************************/
+.edit_header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+}
+
+/********************* end edit info ******************************/
+
 
 @media (min-width: 500px){
 
