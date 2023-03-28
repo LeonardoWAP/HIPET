@@ -433,6 +433,50 @@ main{
     gap: 14px;
 }
 
+/***************************************** Create Post *********************************************/
+.Checkbox-info{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+}
+
+.Checkbox-info p{
+    display: flex;
+    
+}
+.create-edit-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+}
+
+.create-edit-header h1{
+    width: 58%;
+}
+
+.register-form #animal-info{
+    font-weight: 900;
+    width: 85%;
+}
+
+.register-form #info-health{
+    font-weight: 900;
+    width: 85%;
+}
+
+.register-form #more-info{
+    font-weight: 900;
+    width: 85%;
+}
+
+
+
+
 
 
 /*********************** end feed **********************************/

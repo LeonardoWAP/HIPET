@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../reset.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+</head>
+<body>
+    <section class="container">
+		<header class="create-edit-header">
+			<h1 class="title">Nova publicação</h1>
+            <img src="../../src/close.svg" alt="botão de voltar">
+            
+		</header>
+        
+        <div class="register-form-input input-large"> 
+            
+            <label  class="title" for="enviar imagem">enviar imagem</label>
+            <input type="text" id="enviar imagem" name="enviar imagem" required required placeholder="Selecione a imagem">
+        </div>	
+
+		<form class="register-form">
+            <p id="animal-info">Informações sobre o animalzinho</p>
+			<div class="register-form-input input-large"> 
+				<label  class="title" for="nome">Nome</label>
+				<input type="text" id="nome" name="nome" required required placeholder="Sultão">
+
+			</div>	
+			
+			<div class="register-form-input input-large">
+				<label  class="title" for="idade">idade</label>
+				<input type="idade" name="idade" required  placeholder="4 anos">
+			</div>
+			
+			<div class="register-form-input input-large">
+				<label  class="title" for="Qual cor mais se aparenta?">Qual cor mais se aparenta?</label>
+				<input type="text"  name="Qual cor mais se aparenta?"  required placeholder="caramelo">
+			</div>
+
+            <p id="info-health">Informações de saúde</p>
+
+            <article class="Checkbox-info">
+              
+                <div>
+                    <div>
+                        <input type="checkbox" id="castrado" name="castrado" class="check-input">
+                        <label for="castrado" >Castrado</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" id="cuidado-especial" name="cuidado-especial" class="check-input">
+                        <label for="cuidado-especial">Requer algum cuidado especial?</label>
+                    </div>
+                </div>
+                <div>
+                    <input type="checkbox" id="vacinado" name="vacinado" class="check-input">
+                    <label for="vacinado" >Vacinado</label>
+                </div>
+            </article>
+               <p id="more-info">Mais informações</p>
+               <div class="register-form-input input-large" >
+				<label  class="title" for="sobre o animalzinho">Fale um pouco sobre o animalzinho</label>
+				<input id="upper-size-text" type="text"  name="sobre o animalzinho"  required placeholder="o animal é extremamente docil e adora crianças">
+			</div>
+
+            <div class="register-form-input input-large">
+				<label  class="title" for="Qual a localização?">Qual a localização?</label>
+				<input type="text"  name="Qual a localização?"  required placeholder="São Paulo">
+			</div>
+
+			<button class="button-purple" type="submit">Criar publicação</button>
+		</form>
+	</section>
+    
+</body>
+</html>
