@@ -33,9 +33,86 @@ body{
     
     font-family: 'Lato', sans-serif;
     background-color: var(--backgorund);
+
 }
 
 /************************** COMOON ************************/
+
+
+.container {
+    height: 100%;
+    width: 100%;
+    max-width: 450px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+
+}
+
+
+.card-animal{
+    width: 180px;
+    height: 240px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card-animal-img{
+    width: 100%;
+    height: 70%;
+    background-size: cover;
+    background-position: center;
+}
+
+.card-animal:nth-child(odd) .card-animal-img {
+    background-image: url('../src/dog-luke.png');
+}
+
+.card-animal:nth-child(even) .card-animal-img {
+    background-image: url('../src/cat-leia.png');
+}
+
+.card-animal-info{
+    gap: 16%;
+    background-color: var(--white);
+    width: calc(100% - 10%);
+    height: calc(40% - 10%); 
+    padding: 5%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+.card-animal-info .title{
+    margin: 0;
+    font-size: 1rem;
+}
+
+.card-animal-info .thin-subtitle{
+    margin: 0;
+    font-size: 0.6rem;
+}
+
+.card-animal-info-animal{
+    width: 66%;
+    height: 26%;
+    background-color: var(--background-purple);
+    color: var(--purple);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+.card-animal-info-animal .title{
+    font-size: 0.8em;
+    color: var(--purple);
+}
 
 .title{
     font-size: 1.5rem;
@@ -89,19 +166,30 @@ body{
     color: var(--purple);
 }
 
+.footer-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+
+    height: 100%;
+    width: 100%;
+    max-width: 450px;
+
+    background-color: var(--white);
+    width: 100%;
+    height: 50px;
+
+    position: fixed;
+    bottom: 0;
+    box-shadow: 0px -5px 16px -9px rgba(0,0,0,0.1);
+
+}
+
 
 
 /************************** Login **************************/
 
-.container {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 50px;
-}
 
 .login-form {
     width: 100%;
@@ -207,6 +295,9 @@ body{
     width: 85%;
 }
 
+.input-high input{
+    height:  68px;
+}
 /********************** end register PF ************************/
 
 
@@ -255,30 +346,31 @@ body{
 
 
 /*********************** feed **************************************/
-.feed-main{
-    width: 100%;
+.card-container{
+    width: 92%;
+    max-width: 415px;
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    justify-content: center;
+    gap: 15px;
     align-items: center;
     margin-bottom: 50px;
+    justify-content: center
 }
 
-.feed{
-    display: flex;
-    flex-direction: column;
 
-}
 .feed-header {
     width: 100%;
-    height: 20%;
+    height: 139px;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: inherit;
     align-items: center;
+}
+
+.feed-header p{
+    padding: 25px;
 }
 
 
@@ -346,70 +438,6 @@ body{
     background-color: var(--background-blue);
 }
 
-.feed-card{
-    width: 145px;
-    height: 185px;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.feed-card-img{
-    width: 100%;
-    height: 60%;
-    background-size: cover;
-    background-position: center;
-}
-
-.feed-card:nth-child(odd) .feed-card-img {
-    background-image: url('../src/dog-luke.png');
-    background-color: blue;
-}
-
-.feed-card:nth-child(even) .feed-card-img {
-    background-image: url('../src/cat-leia.png');
-    background-color: blue;
-}
-
-
-.feed-card-info{
-    gap: 16%;
-    background-color: var(--white);
-    width: calc(100% - 10%);
-    height: calc(40% - 10%); 
-    padding: 5%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-}
-
-.feed-card-info .title{
-    margin: 0;
-    font-size: 1rem;
-}
-
-.feed-card-info .thin-subtitle{
-    margin: 0;
-    font-size: 0.6rem;
-}
-
-.feed-card-info-animal{
-    width: 66%;
-    height: 26%;
-    background-color: var(--background-purple);
-    color: var(--purple);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    font-size: 0.8rem;
-}
-
-.feed-card-info-animal .title{
-    font-size: 0.8em;
-    color: var(--purple);
-}
-
 
 .feed-footer{
     width: 100%;
@@ -430,9 +458,8 @@ body{
 .feed-footer img{
     cursor: pointer;
 }
-
-
 /*********************** end feed **********************************/
+
 
 /************************ post datails *****************************/
 .post-details{
@@ -512,16 +539,16 @@ body{
     width: 80%;
     margin: 2% 0%;
 }
+
 .post-details-card-info-tags{
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 0 25px;
-    height: 100px;
-    padding: 25px;
+    gap: 5px 25px;
+    height: 132px;
+    padding: 10px 25px 0px 25px;
     padding-bottom: 0;
 }
-
 
 .animal-tag{
     display: flex;
@@ -578,21 +605,7 @@ body{
     color: var(--text-information-color);
 }
 
-.post-details-footer{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
 
-    background-color: var(--white);
-    width: 100%;
-    height: 50px;
-
-    position: fixed;
-    bottom: 0;
-    box-shadow: 0px -5px 16px -9px rgba(0,0,0,0.1);
-
-}
 
 .post-details-footer-user-information{
     display: flex;
@@ -632,30 +645,34 @@ body{
     gap: 14px;
 }
 
-/***************************************** Create Post *********************************************/
-.Checkbox-info{
+/************************* Create Post *********************************************/
+#create-post .container{
+    gap: 0;
+    justify-content: center;
+}
+
+.checkbox-info{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    gap: 30px;
+    gap: 10px;
+    width: 85%;
+    flex-wrap: wrap;
 }
 
-.Checkbox-info p{
-    display: flex;
-    
-}
 .create-edit-header{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 14px;
-    width: 100%;
+
+    width: 85%;
+    height: 98px
 }
 
 .create-edit-header h1{
-    width: 58%;
+    width: 90%;
 }
 
 .register-form #animal-info{
@@ -671,18 +688,38 @@ body{
 .register-form #more-info{
     font-weight: 900;
     width: 85%;
+    margin-top: 41px;
 }
 
 
-/************************ user pf **************************** **/
+/************************ perfil pf **************************** **/
+
+#perfil main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#perfil .container{
+    gap: 0;
+}
+.perfil-title{
+    padding: 20px;
+    font-size: 1.2rem;
+    width: 90%;
+}
+
 .user-header{
-    background-color:var(--white);
+    background-color: var(--white);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 100%;
-    height: 150px;
+    width: calc(100% - 46px);
+    height: auto;
     gap: 2%;
+    box-shadow: 0px 4px 16px -9px rgba(0,0,0,0.1);
+    padding: 0px 23px;
 }
 .user-header-title{
     display: flex;
@@ -698,12 +735,13 @@ body{
     display: flex;
     padding: 0 2%;
     gap: 3%;
+    margin-bottom: 11px;
 }
 .user-header-buttons-button{
     background-color: var(--background-purple);
     border: 0;
     width: 50%;
-    height: 100%;
+    height: 35px;
     gap: 3%;
     display: flex;
     justify-content: center;
@@ -712,11 +750,7 @@ body{
 
 }
 
-.publicacao{
-    display: flex;
-    align-items: flex-start;
-    align-content: flex-start;
-}
+/********************** end perfil pf ******************/
 
 /************************** user ONG *********************/
 
@@ -753,25 +787,66 @@ body{
 /****************************** box alterações salvas ************/
 
 
-@media (min-width: 500px){
+
+
+@media (min-width: 420px){
+
+
+   #perfil .container{
+
+     height: 100vh; 
+    justify-content: stretch; 
+   }
 
     .container{
-        width: 550px;
+        box-shadow: 0px 0px 14px 5px rgba(0,0,0,0.14);
+        /* height: 100vh; */
+        /* justify-content: stretch; */
+    }
+
+    .post-details-header{
+        width:calc(420px - 40px);
+    }
+
+    .card-animal {
+        width: 174px;
+        height: 214px;
+        border-radius: 12px;
+        overflow: hidden;
     }
 }
- 
 
-.quadrado {
-    background-color: #316C1D;
-    color: #292A37;
-    width: 262px;
-    height: 67px;
-    position: fixed;
-    bottom: 2%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    text-align: center;
-    line-height: 200px;
-    font-size: 1.2em;
-  }
+ 
+@media (max-width: 296px){
+
+    .container{
+        gap:50px;
+
+    }
+
+    .post-details-header{
+        width:calc(420px - 40px);
+    }
+
+    .card-animal {
+        width: 210px;
+        height: 277px;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .feed-header-filters {
+        flex-wrap: wrap;
+        gap: 25% 5%;
+    }
+
+    .feed-header-filters-search{
+        width: 80%;
+    }
+
+    .feed-header-filters-button{
+        width: 29%;
+    }
+
+}
  
