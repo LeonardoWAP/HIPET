@@ -753,8 +753,6 @@ body{
 /****************************** box alterações salvas ************/
 
 
-
-
 @media (min-width: 500px){
 
     .container{
@@ -762,4 +760,18 @@ body{
     }
 }
  
+
+.quadrado {
+    background-color: #316C1D;
+    color: #292A37;
+    width: 262px;
+    height: 67px;
+    position: fixed;
+    bottom: 2%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    line-height: 200px;
+    font-size: 1.2em;
+  }
  
