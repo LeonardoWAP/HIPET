@@ -33,9 +33,27 @@ body{
     
     font-family: 'Lato', sans-serif;
     background-color: var(--backgorund);
+
+    min-height: 100vh;
 }
 
 /************************** COMOON ************************/
+
+
+.container {
+    height: 100%;
+    min-height: 100vh;
+    width: 100%;
+    max-width: 450px;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 25px;
+
+    box-shadow: 0px 0px 14px 5px rgba(0,0,0,0.14);
+}
 
 .title{
     font-size: 1.5rem;
@@ -89,19 +107,30 @@ body{
     color: var(--purple);
 }
 
+.footer-container{
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-direction: row;
+
+    height: 100%;
+    width: 100%;
+    max-width: 450px;
+
+    background-color: var(--white);
+    width: 100%;
+    height: 50px;
+
+    position: fixed;
+    bottom: 0;
+    box-shadow: 0px -5px 16px -9px rgba(0,0,0,0.1);
+
+}
+
 
 
 /************************** Login **************************/
 
-.container {
-    height: 100%;
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
-    gap: 50px;
-}
 
 .login-form {
     width: 100%;
@@ -207,6 +236,9 @@ body{
     width: 85%;
 }
 
+.input-high input{
+    height:  68px;
+}
 /********************** end register PF ************************/
 
 
@@ -257,6 +289,8 @@ body{
 /*********************** feed **************************************/
 .feed-main{
     width: 100%;
+    max-width: 415px;
+
     height: 100%;
     display: flex;
     flex-wrap: wrap;
@@ -273,11 +307,11 @@ body{
 }
 .feed-header {
     width: 100%;
-    height: 20%;
+    height: 139px;
 
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: inherit;
     align-items: center;
 }
 
@@ -362,14 +396,11 @@ body{
 
 .feed-card:nth-child(odd) .feed-card-img {
     background-image: url('../src/dog-luke.png');
-    background-color: blue;
 }
 
 .feed-card:nth-child(even) .feed-card-img {
     background-image: url('../src/cat-leia.png');
-    background-color: blue;
 }
-
 
 .feed-card-info{
     gap: 16%;
@@ -430,9 +461,8 @@ body{
 .feed-footer img{
     cursor: pointer;
 }
-
-
 /*********************** end feed **********************************/
+
 
 /************************ post datails *****************************/
 .post-details{
@@ -516,9 +546,9 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 0 25px;
-    height: 100px;
-    padding: 25px;
+    gap: 5px 25px;
+    height: 132px;
+    padding: 10px 25px 0px 25px;
     padding-bottom: 0;
 }
 
@@ -578,21 +608,7 @@ body{
     color: var(--text-information-color);
 }
 
-.post-details-footer{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    flex-direction: row;
 
-    background-color: var(--white);
-    width: 100%;
-    height: 50px;
-
-    position: fixed;
-    bottom: 0;
-    box-shadow: 0px -5px 16px -9px rgba(0,0,0,0.1);
-
-}
 
 .post-details-footer-user-information{
     display: flex;
@@ -633,29 +649,33 @@ body{
 }
 
 /***************************************** Create Post *********************************************/
-.Checkbox-info{
+#create-post .container{
+    gap: 0;
+    justify-content: center;
+}
+
+.checkbox-info{
     display: flex;
     flex-direction: row;
     align-items: center;
-    justify-content: center;
-    gap: 30px;
+    gap: 10px;
+    width: 85%;
+    flex-wrap: wrap;
 }
 
-.Checkbox-info p{
-    display: flex;
-    
-}
 .create-edit-header{
     display: flex;
     flex-direction: row;
     align-items: center;
     justify-content: center;
     gap: 14px;
-    width: 100%;
+
+    width: 85%;
+    height: 98px
 }
 
 .create-edit-header h1{
-    width: 58%;
+    width: 90%;
 }
 
 .register-form #animal-info{
@@ -671,6 +691,7 @@ body{
 .register-form #more-info{
     font-weight: 900;
     width: 85%;
+    margin-top: 41px;
 }
 
 
@@ -731,11 +752,58 @@ body{
 /*********************** end feed **********************************/
 
 
-@media (min-width: 500px){
+@media (min-width: 420px){
 
-    .container{
-        width: 550px;
+
+    .post-details-header{
+        width:calc(420px - 40px);
     }
+
+    .feed-main{
+
+        gap: 6px 12px;
+
+    }
+
+    .feed-card {
+        width: 174px;
+        height: 214px;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
 }
  
+@media (max-width: 296px){
+
+    .container{
+        gap:50px;
+
+    }
+
+    .post-details-header{
+        width:calc(420px - 40px);
+    }
+
+    .feed-card {
+        width: 210px;
+        height: 277px;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .feed-header-filters {
+        flex-wrap: wrap;
+        gap: 25% 5%;
+    }
+
+    .feed-header-filters-search{
+        width: 80%;
+    }
+
+    .feed-header-filters-button{
+        width: 29%;
+    }
+
+}
  
