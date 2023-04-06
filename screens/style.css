@@ -34,7 +34,6 @@ body{
     font-family: 'Lato', sans-serif;
     background-color: var(--backgorund);
 
-    min-height: 100vh;
 }
 
 /************************** COMOON ************************/
@@ -42,17 +41,77 @@ body{
 
 .container {
     height: 100%;
-    min-height: 100vh;
     width: 100%;
     max-width: 450px;
 
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: space-evenly;
+    justify-content: center;
     gap: 25px;
 
-    box-shadow: 0px 0px 14px 5px rgba(0,0,0,0.14);
+}
+
+
+.card-animal{
+    width: 180px;
+    height: 240px;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.card-animal-img{
+    width: 100%;
+    height: 70%;
+    background-size: cover;
+    background-position: center;
+}
+
+.card-animal:nth-child(odd) .card-animal-img {
+    background-image: url('../src/dog-luke.png');
+}
+
+.card-animal:nth-child(even) .card-animal-img {
+    background-image: url('../src/cat-leia.png');
+}
+
+.card-animal-info{
+    gap: 16%;
+    background-color: var(--white);
+    width: calc(100% - 10%);
+    height: calc(40% - 10%); 
+    padding: 5%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: stretch;
+}
+
+.card-animal-info .title{
+    margin: 0;
+    font-size: 1rem;
+}
+
+.card-animal-info .thin-subtitle{
+    margin: 0;
+    font-size: 0.6rem;
+}
+
+.card-animal-info-animal{
+    width: 66%;
+    height: 26%;
+    background-color: var(--background-purple);
+    color: var(--purple);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
+    font-size: 0.8rem;
+}
+
+.card-animal-info-animal .title{
+    font-size: 0.8em;
+    color: var(--purple);
 }
 
 .title{
@@ -287,24 +346,19 @@ body{
 
 
 /*********************** feed **************************************/
-.feed-main{
-    width: 100%;
+.card-container{
+    width: 92%;
     max-width: 415px;
-
     height: 100%;
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    justify-content: center;
+    gap: 15px;
     align-items: center;
     margin-bottom: 50px;
+    justify-content: center
 }
 
-.feed{
-    display: flex;
-    flex-direction: column;
 
-}
 .feed-header {
     width: 100%;
     height: 139px;
@@ -313,6 +367,10 @@ body{
     flex-direction: column;
     justify-content: inherit;
     align-items: center;
+}
+
+.feed-header p{
+    padding: 25px;
 }
 
 
@@ -378,67 +436,6 @@ body{
 .cat{
     color:var(--text-blue);
     background-color: var(--background-blue);
-}
-
-.feed-card{
-    width: 145px;
-    height: 185px;
-    border-radius: 12px;
-    overflow: hidden;
-}
-
-.feed-card-img{
-    width: 100%;
-    height: 60%;
-    background-size: cover;
-    background-position: center;
-}
-
-.feed-card:nth-child(odd) .feed-card-img {
-    background-image: url('../src/dog-luke.png');
-}
-
-.feed-card:nth-child(even) .feed-card-img {
-    background-image: url('../src/cat-leia.png');
-}
-
-.feed-card-info{
-    gap: 16%;
-    background-color: var(--white);
-    width: calc(100% - 10%);
-    height: calc(40% - 10%); 
-    padding: 5%;
-
-    display: flex;
-    flex-direction: column;
-    justify-content: stretch;
-}
-
-.feed-card-info .title{
-    margin: 0;
-    font-size: 1rem;
-}
-
-.feed-card-info .thin-subtitle{
-    margin: 0;
-    font-size: 0.6rem;
-}
-
-.feed-card-info-animal{
-    width: 66%;
-    height: 26%;
-    background-color: var(--background-purple);
-    color: var(--purple);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    border-radius: 5px;
-    font-size: 0.8rem;
-}
-
-.feed-card-info-animal .title{
-    font-size: 0.8em;
-    color: var(--purple);
 }
 
 
@@ -542,6 +539,7 @@ body{
     width: 80%;
     margin: 2% 0%;
 }
+
 .post-details-card-info-tags{
     display: flex;
     flex-wrap: wrap;
@@ -551,7 +549,6 @@ body{
     padding: 10px 25px 0px 25px;
     padding-bottom: 0;
 }
-
 
 .animal-tag{
     display: flex;
@@ -648,7 +645,7 @@ body{
     gap: 14px;
 }
 
-/***************************************** Create Post *********************************************/
+/************************* Create Post *********************************************/
 #create-post .container{
     gap: 0;
     justify-content: center;
@@ -695,15 +692,34 @@ body{
 }
 
 
-/************************ user pf **************************** **/
+/************************ perfil pf **************************** **/
+
+#perfil main{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#perfil .container{
+    gap: 0;
+}
+.perfil-title{
+    padding: 20px;
+    font-size: 1.2rem;
+    width: 90%;
+}
+
 .user-header{
-    background-color:var(--white);
+    background-color: var(--white);
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: 100%;
-    height: 150px;
+    width: calc(100% - 46px);
+    height: auto;
     gap: 2%;
+    box-shadow: 0px 4px 16px -9px rgba(0,0,0,0.1);
+    padding: 0px 23px;
 }
 .user-header-title{
     display: flex;
@@ -719,12 +735,13 @@ body{
     display: flex;
     padding: 0 2%;
     gap: 3%;
+    margin-bottom: 11px;
 }
 .user-header-buttons-button{
     background-color: var(--background-purple);
     border: 0;
     width: 50%;
-    height: 100%;
+    height: 35px;
     gap: 3%;
     display: flex;
     justify-content: center;
@@ -733,11 +750,7 @@ body{
 
 }
 
-.publicacao{
-    display: flex;
-    align-items: flex-start;
-    align-content: flex-start;
-}
+/********************** end perfil pf ******************/
 
 /************************** user ONG *********************/
 
@@ -779,24 +792,30 @@ body{
 @media (min-width: 420px){
 
 
+   #perfil .container{
+
+     height: 100vh; 
+    justify-content: stretch; 
+   }
+
+    .container{
+        box-shadow: 0px 0px 14px 5px rgba(0,0,0,0.14);
+        /* height: 100vh; */
+        /* justify-content: stretch; */
+    }
+
     .post-details-header{
         width:calc(420px - 40px);
     }
 
-    .feed-main{
-
-        gap: 6px 12px;
-
-    }
-
-    .feed-card {
+    .card-animal {
         width: 174px;
         height: 214px;
         border-radius: 12px;
         overflow: hidden;
     }
-
 }
+
  
 @media (max-width: 296px){
 
@@ -809,7 +828,7 @@ body{
         width:calc(420px - 40px);
     }
 
-    .feed-card {
+    .card-animal {
         width: 210px;
         height: 277px;
         border-radius: 12px;
