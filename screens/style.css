@@ -679,14 +679,16 @@ body{
     background-color:var(--white);
     display: flex;
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
     width: 100%;
-    height: 190px;
+    height: 150px;
     gap: 2%;
 }
 .user-header-title{
     display: flex;
     align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 .user-header-buttons{
@@ -694,7 +696,6 @@ body{
     height: 20%;
     border-radius: 8px;
     display: flex;
-    align-items: center;
     padding: 0 2%;
     gap: 3%;
 }
@@ -703,12 +704,18 @@ body{
     border: 0;
     width: 50%;
     height: 100%;
-
+    gap: 3%;
     display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
 
+}
+
+.publicacao{
+    display: flex;
+    align-items: flex-start;
+    align-content: flex-start;
 }
 
 /************************** user ONG *********************/
@@ -726,8 +733,26 @@ body{
     background-color:var(--background-green);
 }
 
+/******************** user Pf Empty *************/
+
+.no-publicacao{
+    display: flex;
+    flex-direction: column;
+
+    border-radius: 10px;
+
+}
+
+.no-publicacao img{
+    height: 50px;
+}
+
 
 /*********************** end feed **********************************/
+
+/****************************** box alterações salvas ************/
+
+
 
 
 @media (min-width: 500px){
