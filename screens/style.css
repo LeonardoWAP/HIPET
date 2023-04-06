@@ -602,6 +602,12 @@ body{
 
 }
 
+.icon-user{
+    object-fit: contain;
+    width: 35%;
+    aspect-ratio: 3/2;
+}
+
 .post-details-footer-user-actions{
     display: flex;
     gap: 5px;
