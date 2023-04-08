@@ -9,7 +9,7 @@
     <title>HIPET</title>
 </head>
 <body id="feed">
-    <section class="container">
+    <section class="mobile-container">
 
         <header class="feed-header">
             <p class="title">Olá, Laide Daini!</p>
@@ -134,6 +134,22 @@
 
 
     </footer>
+
+
+
+  <!--redireciona para o login se não tiver logado -->
+  <script>
+
+    if (window.localStorage.getItem('deslogado') == "sim"){
+        window.location.href = "../login/login.html";
+    }else{
+        createCards()
+        setUserName()
+    }
+    
+    </script>
+
+
     
 </body>
 </html>
