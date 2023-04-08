@@ -39,8 +39,8 @@ body{
 /************************** COMOON ************************/
 
 
-.container {
-    height: 100%;
+.mobile-container {
+    height: 100vh;
     width: 100%;
     max-width: 450px;
 
@@ -49,6 +49,8 @@ body{
     align-items: center;
     justify-content: center;
     gap: 25px;
+
+    background-color: var(--backgorund);
 
 }
 
@@ -132,6 +134,29 @@ body{
     font-weight: 400;
     color: var(--text-input);
 }
+.modal-footer a {
+    text-decoration: none;
+    width: 50%;
+
+}
+
+.modal-button-purple{
+    width: 102%;
+    height: 38px;
+    background-color: var(--purple);
+    color: var(--center-button);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.5s;
+
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
 
 .button-purple {
     width: 82%;
@@ -183,13 +208,18 @@ body{
     position: fixed;
     bottom: 0;
     box-shadow: 0px -5px 16px -9px rgba(0,0,0,0.1);
-
 }
 
+.modal{
+    top: 30%;
+}
 
 
 /************************** Login **************************/
 
+#login .mobile-container{
+    height: 100vh;
+}
 
 .login-form {
     width: 100%;
@@ -204,10 +234,16 @@ body{
     background-color: var(--white);
     display: flex;
     flex-direction: column;
-    padding: 4% 6%;
+    padding: 3% 6%;
     border-radius: 5px;
     font-size: 14px;
-    width: 70%;
+    width: 82%;
+}
+
+.login-form-input input:focus {
+
+    box-shadow: 0 0 0 0;
+    outline: 0;
 }
 
 .login-form-input input {
@@ -346,16 +382,24 @@ body{
 
 
 /*********************** feed **************************************/
+
+#feed .mobile-container{
+    height: 100%;
+}
 .card-container{
     width: 92%;
     max-width: 415px;
     height: 100%;
+
     display: flex;
     flex-wrap: wrap;
     gap: 15px;
     align-items: center;
+    justify-content: center;
+
+    margin-left: auto;
+    margin-right: auto;
     margin-bottom: 50px;
-    justify-content: center
 }
 
 
@@ -646,7 +690,7 @@ body{
 }
 
 /************************* Create Post *********************************************/
-#create-post .container{
+#create-post .mobile-container{
     gap: 0;
     justify-content: center;
 }
@@ -701,7 +745,7 @@ body{
     align-items: center;
 }
 
-#perfil .container{
+#perfil .mobile-container{
     gap: 0;
 }
 .perfil-title{
@@ -792,13 +836,13 @@ body{
 @media (min-width: 420px){
 
 
-   #perfil .container{
+   #perfil .mobile-container{
 
      height: 100vh; 
     justify-content: stretch; 
    }
 
-    .container{
+    .mobile-container{
         box-shadow: 0px 0px 14px 5px rgba(0,0,0,0.14);
         /* height: 100vh; */
         /* justify-content: stretch; */
@@ -819,7 +863,7 @@ body{
  
 @media (max-width: 296px){
 
-    .container{
+    .mobile-container{
         gap:50px;
 
     }
