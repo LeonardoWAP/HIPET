@@ -15,9 +15,9 @@ export function set_nickname(){
             
 }
 
+
 export function render_animal_cards(){
 
-    console.log("tes")
     let card_container = document.getElementById("card-container")
 
     let data = listPosts()
@@ -35,18 +35,18 @@ export function render_animal_cards(){
                 let name = posts[i].animal.name
                 let race = posts[i].animal.race
                 let sex = posts[i].animal.sex
-                let age = posts[i].animal.age                
+                //let age = posts[i].animal.age                
             
                 let card = ` 
                 <article class="card-animal">
                     <div class="card-animal-img">
-                        <img src=${ulrPicture}> 
+                        <img src='../../src/sultao.jpg'> 
                     </div>
                     
                     <div class="card-animal-info">
                         <p class="title">${name} <span class="thin-subtitle">(${race})</span></p>
                         <div class="card-animal-info-animal"> 
-                            <p class="title">${sex}, ${age} anos</p> 
+                            <p class="title">${sex}, ${sex} anos</p> 
                         </div>
                     </div>
 
@@ -78,6 +78,7 @@ export function filter_by_animal_type(animal_type){
             for (let  i = 0; i < posts.length; i++){
     
                 let type = posts[i].animal.type
+                console.log(type)
 
                 if (type == animal_type.toString()){
                     
