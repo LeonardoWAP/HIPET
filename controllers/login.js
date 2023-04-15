@@ -1,6 +1,5 @@
 import { loginUser} from '../diplomatic/https_client.js'
 
-
 document.querySelector("#loginButton").addEventListener('click', login)
 
 function login(){
@@ -21,12 +20,13 @@ function login(){
 
             localStorage.setItem('deslogado', 'nao');
             localStorage.setItem('email', data['user']['email']);
+            localStorage.setItem('nickname', data['user']['nickname']);
+            localStorage.setItem('user_type', data['user']['type']);
+
             
             window.location.href = "../post/feed.html";
         
-        }else{
-            console.log( "email e senha errada")
-            
+        }else{            
             var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
             popoverTriggerList.map(function (popoverTriggerEl) {
                 return new bootstrap.Popover(popoverTriggerEl)
