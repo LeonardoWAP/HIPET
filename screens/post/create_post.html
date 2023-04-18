@@ -4,76 +4,201 @@
     <link href='http://fonts.googleapis.com/css?family=Lato:400,700' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../reset.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 <body id="create-post">
-    <section class="container ">
+    <section class=" mobile-container ">
 		<header class="create-edit-header">
 			<h1 class="title">Nova publicação</h1>
             <img src="../../src/close.svg" alt="botão de voltar">
             
 		</header>
         
-        <div class="register-form-input input-large"> 
+        <div class="input-animal-img">
+            <label for="formFileSm" class="form-label title">Adicione uma imagem do animal </label>
+            <input class="form-control form-control-sm" id="formFileSm" type="file">              
+        </div>
+
+		<form class="create-post-form">
             
-            <label  class="title" for="enviar imagem">Adicione uma imagem do animal</label>
-            <input type="text" id="enviar imagem" name="enviar imagem" required required placeholder="Selecione a imagem">
-        </div>	
+            <p class="title">Informações sobre o animalzinho</p>
 
-		<form class="register-form">
-            <p id="animal-info">Informações sobre o animalzinho</p>
-			<div class="register-form-input input-large"> 
-				<label  class="title" for="nome">Nome</label>
-				<input type="text" id="nome" name="nome" required required placeholder="Sultão">
+            <div class="form-check animalCheck" id="checkAnimalTypeCat">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                    Gato
+                </label>
+            </div>
 
-			</div>	
-			
-			<div class="register-form-input input-large">
-				<label  class="title" for="idade">Idade</label>
-				<input type="idade" name="idade" required  placeholder="4 anos">
-			</div>
-			
-			<div class="register-form-input input-large">
-				<label  class="title" for="Qual cor mais se aparenta?">Qual cor mais se aparenta?</label>
-				<input type="text"  name="Qual cor mais se aparenta?"  required placeholder="caramelo">
-			</div>
-
-            <p id="info-health">Informações de saúde</p>
-
-            <article class="checkbox-info">
-                <div>
-                    <input type="checkbox" id="castrado" name="castrado" class="check-input">
-                    <label for="castrado" >Castrado?</label>
-                </div>
-
-                <div>
-                    <input type="checkbox" id="vacinado" name="vacinado" class="check-input">
-                    <label for="vacinado" >Vacinado?</label>
-                </div>
-                <div>
-                    <input type="checkbox" id="cuidado-especial" name="cuidado-especial" class="check-input">
-                    <label for="cuidado-especial">Requer algum cuidado especial?</label>
-                </div>
+            <div class="form-check animalCheck" id="checkAnimalTypeDog">
+                <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Cachorro
+                </label>
+            </div>
             
+
+            <p class="title">Qual o sexo do animalzinho?</p>
+
+            <div class="form-check animalCheck" id="checkAnimalSexMacho">
+                <input class="form-check-input" type="radio" name="flexRadioDefaultSex" id="flexRadioDefaultSex2" checked>
+                <label class="form-check-label" for="flexRadioDefaultSex2">
+                    Macho
+                </label>
+            </div>
+
+            <div class="form-check animalCheck" id="checkAnimalSexFemea">
+                <input class="form-check-input" type="radio" name="flexRadioDefaultSex" id="flexRadioDefaultSex1">
+                <label class="form-check-label" for="flexRadioDefaultSex1">
+                  Fêmea
+                </label>
+            </div>
+            
+    
+            <div class="create-post-form-input form-floating" id="animalName">
+                <input type="text" class="form-control" id="floatingInputGroup1 " placeholder="AnimalName">
+                <label for="floatingInputGroup1">Nome do animal</label>
+            </div>
+    
+            <div class="form-floating create-post-form-input " id="animalAge">
+                <input type="number" class="form-control" id="floatingInputGroup1 AnimalAge" placeholder="AnimalAge">
+                <label for="floatingInputGroup1">Idade do animal ( em meses )</label>
+			</div>
+
+        
+            <div class="create-post-form-input form-floating" id="animalColor">
+                <select class="form-select" id="floatingSelectGrid">
+                    <option selected>Escolha uma cor</option>
+                    <option value="PRETO">Preto</option>
+                    <option value="BRANCO">Branco</option>
+                    <option value="CARAMELO">Caramelo</option>
+                    <option value="MANCHAD0">Manchado</option>
+                    <option value="CINZA">Cinza</option>
+                    <option value="RAJADO">Rajado</option>
+                    <option value="MARROM">Marrom</option>
+                    <option value="PINTADO">Pintado</option>
+                </select>
+                <label for="floatingSelectGrid">Qual cor predomina mais?</label>
+            </div>
+
+            <div class="create-post-form-input form-floating" id="animalSize">
+                <select class="form-select" id="floatingSelectGrid">
+                    <option selected>Escolha um tamanho</option>
+                    <option value="GRANDE">Grande</option>
+                    <option value="PEQUENO">Pequeno</option>
+                    <option value="MEDIO">Medio</option>
+                </select>
+                <label for="floatingSelectGrid">Qual cor predomina mais?</label>
+            </div>
+             
+            <p class="title">Informações de saúde</p>
+
+            <article class="checkbox-info checkbox-health-info">
+            
+                <div class="form-check form-switch" id="checkbox-info-castreated">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault castrado">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">É castrado?</label>
+                </div>
+
+                <div class="form-check form-switch" id="checkbox-info-vacinnated">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault castrado">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">É vacinado?</label>
+                </div>
+
+                <div class="form-check form-switch" id="checkbox-info-spacial-care">
+                    <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault castrado">
+                    <label class="form-check-label" for="flexSwitchCheckDefault">Necessita de cuidados especiais?</label>
+                </div>
+        
             </article>
 
-            <p id="more-info">Mais informações</p>
+            <p class="title">Mais informações</p>
 
-            <div class="register-form-input input-large input-high" >
-                <label  class="title" for="sobre o animalzinho">Fale um pouco sobre o animalzinho</label>
-                <input id="upper-size-text" type="text"  name="sobre o animalzinho"  required placeholder="o animal é extremamente docil e adora crianças">
-			</div>
+            <div class="create-post-form-about input-high form-floating" id="aboutAnimal">
+                <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2" style="height: 100px"></textarea>
+                <label for="floatingTextarea2">Fale um pouco sobre o animalzinho</label>
+            </div>
 
-            <div class="register-form-input input-large">
-				<label  class="title" for="Qual a localização?">Qual a localização?</label>
-				<input type="text"  name="Qual a localização?"  required placeholder="São Paulo">
-			</div>
+              <p class="title">Qual estado ele esta?</p>
 
-			<button class="button-purple" type="submit">Criar publicação</button>
+            <div class=" create-post-form-input f orm-floating" id="state">
+                <select class="form-select" size="5" aria-label="size 3 select example">
+                    <option value="AC">AC</option>
+                    <option value="AL">AL</option>
+                    <option value="AP">AP</option>
+                    <option value="AM">AM</option>
+                    <option value="BA">BA</option>
+                    <option value="CE">CE</option>
+                    <option value="DF">DF</option>
+                    <option value="ES">ES</option>
+                    <option value="GO">GO</option>
+                    <option value="MA">MA</option>
+                    <option value="MT">MT</option>
+                    <option value="MS">MS</option>
+                    <option value="MG">MG</option>
+                    <option value="PA">PA</option>
+                    <option value="PB">PB</option>
+                    <option value="PR">PR</option>
+                    <option value="PE">PE</option>
+                    <option value="PI">PI</option>
+                    <option value="RJ">RJ</option>
+                    <option value="RN">RN</option>
+                    <option value="RS">RS</option>
+                    <option value="RO">RO</option>
+                    <option value="RR">RR</option>
+                    <option value="SC">SC</option>
+                    <option value="SP">SP</option>
+                    <option value="SE">SE</option>
+                    <option value="TO">TO</option>
+
+                </select>
+            </div>
+
+			
 		</form>
+
+
+        <button class="button-purple" 
+                id="buttonCreatePost"
+                data-bs-target="#popUpRegister"
+                data-bs-toggle="modal" >Criar publicação</button>
 	</section>
-    
+
+    <div class="modal fade"
+			id="popUpRegister" 
+			tabindex="-1" 
+			aria-labelledby="popUpRegisterLabel" 
+			aria-hidden="true">
+			<div class="modal-dialog modal-dialog-centered" >
+				<div class="modal-content">
+				</div>
+			</div>
+    </div>
+
+    <footer class="feed-footer footer-container">
+
+        <a  href="../post/feed.html"> <img src="../../src/icon-home.svg"> </a>
+        <a href="../user/user_perfil.html"> <img src="../../src/icon-user.svg"> </a>
+
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+
+    <script type="module">
+        import {createNewPost } from "../../controllers/post.js"
+
+        import {verify_login, } from "../../controllers/login.js"
+
+		verify_login()
+        
+     document.querySelector("#buttonCreatePost").addEventListener('click',createNewPost )
+
+
+    </script>
+
 </body>
 </html>

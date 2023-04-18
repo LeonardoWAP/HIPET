@@ -15,11 +15,12 @@ export function register_new_pf(){
         "email": user_email,
         "password": user_password,
         "name": user_name,
-        "phoneNumber": user_phoneNumber,
+        "phone_number": user_phoneNumber,
         "document": user_document,
-        "nickName": user_nickName
+        "nickname": user_nickName,
+        "type": "PERSON"
     }
-
+    
     let data = createUser(_userRequest);
 
     data.then(data =>{
@@ -30,6 +31,7 @@ export function register_new_pf(){
   
         }else{
            // tratativa de erro
+           console.log(data)
             let divPopUp = document.querySelector('.modal-content')
             divPopUp.innerHTML = modalRegisteFailed
         }
@@ -37,7 +39,6 @@ export function register_new_pf(){
 }
 
 export function register_new_ong(){
-    console.log("ok")
     let user_name = document.getElementById("inputName").value;
     let user_nickName = document.getElementById("inputNickName").value;
     let user_email = document.getElementById("inputEmail").value;
@@ -46,12 +47,13 @@ export function register_new_ong(){
     let user_url_vakinha = document.getElementById("inputUrlVakinha").value;
 
     let _userRequest = {
+        "type": "ONG", 
         "name": user_name,
-        "nickName": user_nickName,
+        "nickname": user_nickName,
         "email": user_email,
-        "phoneNumber": user_phoneNumber,
+        "phone_number": user_phoneNumber,
         "password": user_password,
-        "url_vakinha": user_url_vakinha
+        "donation_link": user_url_vakinha
     }
 
     let data = createUser(_userRequest);

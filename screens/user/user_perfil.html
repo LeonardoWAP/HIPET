@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="../style.css">
+    <link rel="stylesheet" href="../reset.css">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>HIPET</title>
+</head>
+<body id="user-perfil" class="feed">
+    <section class="mobile-container">
+
+        <header class="user-header">
+            <div class="user-header-title">
+                <img class="icon-user" src="../../src/user.svg">
+                <p class="title">Laide Daini</p>
+            </div>
+
+            <div class="user-header-buttons">
+                <button class="user-header-buttons-button user-header-buttons-edit"> 
+                    <img src="../../src/edit-perfil.svg"> 
+                    <p class="subtitle">Editar perfil</p>
+                </button>
+                <button  class="user-header-buttons-button user-header-buttons-share">
+                    <img src="../../src/share-perfil.svg"> 
+                    <p class="subtitle">Compartilhar perfil</p>
+                </button>
+            </div>
+            
+        </header>
+        <h2 class="user-edit-posts-title title">Publicações</h2>   
+        
+        <main id="card-container"></main>
+    </section>
+
+
+
+    <footer class="feed-footer footer-container">
+
+        <a  href="../post/feed.html"> <img src="../../src/icon-home.svg"> </a>
+        <a href="../post/create_post.html"> <img src="../../src/icon-new-post.svg"> </a>
+        <a href="../user/user_perfil.html"> <img src="../../src/icon-user.svg"> </a>
+
+    </footer>
+
+
+    <script type="module">
+        import {verify_login} from "../../controllers/login.js"
+        import {getUserPosts} from "../../controllers/user_perfil.js"
+
+
+		verify_login()
+        getUserPosts()
+    
+    </script>
+    
+</body>
+</html>

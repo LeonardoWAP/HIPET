@@ -1,9 +1,13 @@
-import { loginUser} from '../diplomatic/https_client.js'
+import { loginUser } from '../diplomatic/https_client.js'
 
+export function verify_login(){
 
-document.querySelector("#loginButton").addEventListener('click', login)
+    if (localStorage.getItem('deslogado') == "sim"){
+       window.location.href = "../login/login.html";
+    }
+}
 
-function login(){
+export function login(){
     let email = document.getElementById("loginFormEmail").value;
     let password = document.getElementById("loginFormSenha").value;
 
@@ -17,16 +21,16 @@ function login(){
     data.then(data =>{
 
         if(data['status'] == "SUCCESS"){
-            console.log('sucesso')
 
             localStorage.setItem('deslogado', 'nao');
             localStorage.setItem('email', data['user']['email']);
-            
+            localStorage.setItem('user-id', data['user']['id']);
+            localStorage.setItem('nickname', data['user']['nickname']);
+            localStorage.setItem('user_type', data['user']['type']);
+
             window.location.href = "../post/feed.html";
         
-        }else{
-            console.log( "email e senha errada")
-            
+        }else{            
             var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
             popoverTriggerList.map(function (popoverTriggerEl) {
                 return new bootstrap.Popover(popoverTriggerEl)

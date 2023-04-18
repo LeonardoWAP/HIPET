@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" href="../style.css">
     <link rel="stylesheet" href="../reset.css">
+    
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,46 +12,27 @@
 <body class="post-details">
     <section class="container">
         <header class="post-details-header"> 
-            <img src="../../src/left-arrow.svg">
-            <img src="../../src/share.svg">
+           <a href="feed.html">  <img src="../../src/left-arrow.svg"> </a>
+           <a href="feed.html">  <img src="../../src/share.svg">  </a>
         </header>
 
         <main class="post-details-card">
-            <div class="post-details-card-img"></div>
+            <div class="post-details-card-img">
+                <img src="../../src/cat-leia.png"> 
+            </div>
         
             <article class="post-details-card-info">
-                <div class="post-details-card-info-header">
-                    <h1 class="title"> Luke Skywalker</h1>
-                    <p class="subtitle"> Macho, 10 meses </p>
-                    <img src="../../src/maps-and-flags.svg">
-                    <p class="subtitle"> SP </p>
-                </div>
+                <div id="post-details-card-info-header"></div>
 
-                <div class="post-details-card-info-tags">
+                <div id="post-details-card-info-tags"></div>
 
-                    <div class="animal-tag animal-color"> <img src="../../src/icon-color.svg"> <p>Manchado</p></div>
-                    <div class="animal-tag animal-vaccine"> <img src="../../src/icon-vaccine.svg"> <p>Vacinado</p></div>
-                    <div class="animal-tag animal-health"> <img src="../../src/icon-health.svg"> <p>Requer cuiodados especiais</p></div>
-                    <div class="animal-tag animal-castrated"> <img src="../../src/icon-castrated.svg"> <p>Castrado</p></div>
-                    <div class="animal-tag animal-size"> <img src="../../src/icon-size.svg"> <p>Pequeno</p></div>
-
-            
-
-                </div>
-
-                <div class="post-details-card-info-resume">
-                    <h2 class="title">  Resumo </h2>
-
-                    <p class="subtitle">Lorem ipsum dolor sit amet, consectetur adipiscing
-                        elit. Integer sodales sit amet mi non aliquam. Proin
-                        eu turpis posuere metus bibendum mollis sit amet
-                        quis libero. Phasellus auctor eu enim nec porta.
-                        Maecenas consectetur egestas dolor eu ultrices.</p>
+                <div id="post-details-card-info-resume">
+                    <h2 class="title"> Resumo </h2>
                 </div>
             </article>
 
-
         </main>
+
         <footer class="post-details-footer footer-container">
         
                 <div class="post-details-footer-user-information">
@@ -68,6 +50,21 @@
 
         
 	</section>
+
+    <script type="module">
+        import { getPostDetails } from "../../controllers/post.js"
+
+        import { verify_login } from "../../controllers/login.js"
+
+		verify_login()
+
+        getPostDetails()
+   
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 
+            integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" 
+            crossorigin="anonymous"></script>
     
 </body>
 </html>
