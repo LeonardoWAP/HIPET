@@ -54,6 +54,9 @@ body{
 
 }
 
+.card-animal-link{
+    text-decoration: none;
+}
 
 .card-animal{
     width: 180px;
@@ -506,7 +509,7 @@ body{
 
 /************************ post datails *****************************/
 .post-details{
-    height: 100vh;
+    height: auto;
 }
 
 .post-details-header{
@@ -522,8 +525,13 @@ body{
     top: 20px;
 }
 
+.post-details-header a{
+    width: 28px;
+    height: 35px;
+}
+
 .post-details-header img{
-    width: 8%;
+    width: 100%;
 }
 
 .post-details-card  {
@@ -536,7 +544,18 @@ body{
     background-size: cover;
     background-position: center;
     width: 100%;
-    height: 50%;
+    height: 35vh ;
+    object-fit: contain;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
+
+.post-details-card-img img{
+    width: 100%;    
+    z-index: -1;
 }
 
 
@@ -551,7 +570,7 @@ body{
    
 }
 
-.post-details-card-info-header{
+#post-details-card-info-header{
     width: calc(100%  - 50px);
     display: flex;
     flex-wrap: wrap;
@@ -560,11 +579,11 @@ body{
     padding-bottom: 0;
 }
 
-.post-details-card-info-header .title{
+#post-details-card-info-header .title{
     width: 100%;
 }
 
-.post-details-card-info-header :nth-child(4){
+#post-details-card-info-header :nth-child(4){
     color: var(--text-input);
     font-weight: 600;
     font-size: 1.2rem;
@@ -572,7 +591,7 @@ body{
     margin: 2% 0%;
 }
 
-.post-details-card-info-header :nth-child(2){
+#post-details-card-info-header :nth-child(2){
     width: 10%;
     color: var(--text-input);
     font-weight: 600;
@@ -581,12 +600,12 @@ body{
     margin: 2% 0%;
 }
 
-.post-details-card-info-tags{
+#post-details-card-info-tags{
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    gap: 5px 25px;
-    height: 132px;
+    gap: 5px 7px;
+    height: auto;
     padding: 10px 25px 0px 25px;
     padding-bottom: 0;
 }
@@ -601,7 +620,7 @@ body{
 
     border-radius: 5px;
     background-color: red;
-    height: 10%;
+    height: 10px;
     padding: 3% 4%;
     
 
@@ -632,17 +651,17 @@ body{
     color: var(--text-red);
 }
 
-.post-details-card-info-resume{
+#post-details-card-info-resume{
     padding: 25px;
     padding-bottom: 0;
     margin-bottom: 50px;
 }
 
-.post-details-card-info-resume .title{
+#post-details-card-info-resume .title{
     font-size: 1.2rem;
 }
 
-.post-details-card-info-resume .subtitle{
+#post-details-card-info-resume .subtitle{
     color: var(--text-information-color);
 }
 
@@ -687,18 +706,16 @@ body{
 }
 
 /************************* Create Post *********************************************/
+
+#create-post {
+    font-weight: 700;
+}
+
 #create-post .mobile-container{
     gap: 0;
     justify-content: center;
-}
-
-.checkbox-info{
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    gap: 10px;
-    width: 85%;
-    flex-wrap: wrap;
+    margin-bottom: px;
+    height: auto;
 }
 
 .create-edit-header{
@@ -714,35 +731,71 @@ body{
 
 .create-edit-header h1{
     width: 90%;
+    font-weight: 700;
 }
 
-.register-form #animal-info{
-    font-weight: 900;
+.input-animal-img{
     width: 85%;
 }
 
-.register-form #info-health{
-    font-weight: 900;
+.input-animal-img label{
+    font-size: 1rem;
+    font-weight: 700;
+}
+
+.animalCheck, .checkAnimalSex{
+    font-weight: 500;
+}
+
+.create-post-form{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
     width: 85%;
 }
 
-.register-form #more-info{
-    font-weight: 900;
-    width: 85%;
-    margin-top: 41px;
+.create-post-form-input >label{
+    font-size: 0.9rem;
+}
+
+.create-post-form .title{
+    font-size: 1rem;
+    margin-top: 25px;
+    font-weight: 700;
+}
+
+.checkbox-health-info div label{
+    font-weight: 500;
+}
+
+.create-post-form-about textarea{
+    resize: none;
+
+}
+.create-post-form-about label{
+    font-weight: 500;
+}
+
+#create-post .button-purple{
+    margin-top: 20px;
+    margin-bottom: 60px;
 }
 
 
-/************************ perfil pf **************************** **/
 
-#perfil main{
+/************************ user perfil **************************** **/
+#user-perfil .mobile-container {
+    height: auto;
+}
+
+#user-perfil main{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
 }
 
-#perfil .mobile-container{
+#user-perfil .mobile-container{
     gap: 0;
 }
 .perfil-title{
@@ -770,7 +823,7 @@ body{
 }
 
 .user-header-buttons{
-    width: 80%;
+    width: 100%;
     height: 20%;
     border-radius: 8px;
     display: flex;
@@ -788,8 +841,25 @@ body{
     justify-content: center;
     align-items: center;
     border-radius: 10px;
-
 }
+
+.user-header-buttons-button p{
+    color: var(--purple);
+}
+
+.user-header-buttons-edit{
+    width: 35%;
+}
+
+.user-header-buttons-share{
+    width: 55%;
+}
+
+.user-edit-posts-title{
+    margin-top: 15px;
+    width: 85%;
+    font-size: 1.2rem;
+} 
 
 /********************** end perfil pf ******************/
 
@@ -854,7 +924,9 @@ body{
         height: 330px;
         border-radius: 12px;
         overflow: hidden;
+       
     }
+   
 }
 
  

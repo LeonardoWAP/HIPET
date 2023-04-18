@@ -1,8 +1,13 @@
-import { loginUser} from '../diplomatic/https_client.js'
+import { loginUser } from '../diplomatic/https_client.js'
 
-document.querySelector("#loginButton").addEventListener('click', login)
+export function verify_login(){
 
-function login(){
+    if (localStorage.getItem('deslogado') == "sim"){
+       window.location.href = "../login/login.html";
+    }
+}
+
+export function login(){
     let email = document.getElementById("loginFormEmail").value;
     let password = document.getElementById("loginFormSenha").value;
 
@@ -19,6 +24,7 @@ function login(){
 
             localStorage.setItem('deslogado', 'nao');
             localStorage.setItem('email', data['user']['email']);
+            localStorage.setItem('user-id', data['user']['id']);
             localStorage.setItem('nickname', data['user']['nickname']);
             localStorage.setItem('user_type', data['user']['type']);
 

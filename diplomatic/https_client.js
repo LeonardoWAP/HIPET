@@ -22,7 +22,7 @@ export function loginUser(userRequest){
         let dados = {
           "status": "SUCCESS",
           "user": {
-            "id": "123",
+            "id": "317ea8d5-8d03-4047-9493-8c1330fc30f4",
             "name": "Daiane Pereira",
             "nickname": "Laide Daini",
             "email": "daianehipet@gmail.com",
@@ -51,26 +51,29 @@ export function createUser(userRequest){
       }
   }) 
   .then(json => {return json})
-  .catch(err => {return err})
-
-  // return new Promise(function(resolve, reject) {
-  //   let dados = {
-  //     "status": "SUCCESS",
-  //     "user": {
-  //       "id": "123",
-  //       "name": "Daiane da Silva Urias",
-  //       "nickname": "Laide Daini",
-  //       "email": "daianedasilva@example.com",
-  //       "type": "PF"
-  //     }
-  //   };
-
-  //   setTimeout(function() {
-  //       resolve(dados);
-  //     }, 1000);
-  //   });  
-      
+  .catch(err => {return err}) 
+  
+  
 }
+
+export function createPost(postRequest){
+    
+  return fetch(baseUrl+'post/create',{
+       method: "POST",
+       body: JSON.stringify(postRequest),
+       headers: {"Content-type": "application/json; charset=UTF-8"}
+     })
+   .then(response =>{
+       if(response.status === 200){
+           return response.json()
+       }else{
+           throw new Error(response.status)
+       }
+   }) 
+   .then(json => {return json})
+   .catch(err => {return err}) 
+       
+ }
 
 export function listPosts(){
     
@@ -87,7 +90,44 @@ export function listPosts(){
   }) 
   .then(json => {return json})
   .catch(err => {return err})
+}
 
+export function findPostByUserId(userId){
+
+  return fetch(baseUrl+'post/list-by-user/'+userId,{
+    method: "GET",
+    headers: {"Content-type": "application/json; charset=UTF-8"}
+  })
+  .then(response =>{
+      if(response.status === 200){
+          return response.json()
+      }else{
+          throw new Error(response.status)
+      }
+  }) 
+  .then(json => {return json})
+  .catch(err => {return err})    
+}
+
+export function findPostById(postId){
+
+  return fetch(baseUrl+'post/find-by-id/'+postId,{
+    method: "GET",
+    headers: {"Content-type": "application/json; charset=UTF-8"}
+  })
+  .then(response =>{
+      if(response.status === 200){
+          return response.json()
+      }else{
+          throw new Error(response.status)
+      }
+  }) 
+  .then(json => {return json})
+  .catch(err => {return err})    
+}
+
+
+ 
 // return new Promise(function(resolve, reject) {
 //   let dados ={"status": "SUCCESS",
 //   "posts":[ {
@@ -209,6 +249,3 @@ export function listPosts(){
 //                                         "type": "cat",
 //                                         "race": "Não definido"},
 //                               "picture": "../../src/cat-leia.png"}]};
-
-}
-

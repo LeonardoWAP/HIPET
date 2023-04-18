@@ -8,88 +8,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HIPET</title>
 </head>
-<body id="perfil" class="feed">
-    <section class="container">
-        
+<body id="user-perfil" class="feed">
+    <section class="mobile-container">
 
         <header class="user-header">
             <div class="user-header-title">
                 <img class="icon-user" src="../../src/user.svg">
-                <p class="title">Laide Daini!</p>
+                <p class="title">Laide Daini</p>
             </div>
 
             <div class="user-header-buttons">
-                <button class="user-header-buttons-button"> <img src="../../src/edit-perfil.svg"> editar perfil</button>
-                <button  class="user-header-buttons-button"> <img src="../../src/share-perfil.svg"> Compartilhar perfil</button>
+                <button class="user-header-buttons-button user-header-buttons-edit"> 
+                    <img src="../../src/edit-perfil.svg"> 
+                    <p class="subtitle">Editar perfil</p>
+                </button>
+                <button  class="user-header-buttons-button user-header-buttons-share">
+                    <img src="../../src/share-perfil.svg"> 
+                    <p class="subtitle">Compartilhar perfil</p>
+                </button>
             </div>
             
         </header>
-    <p class="publicacao">Publicações</p>   
-    <main class="feed-main">
-        <article class="feed-card">
-            <div class="feed-card-img"></div>
-            
-            <div class="feed-card-info">
-                <p class="title">Leia <span class="thin-subtitle">(Vira Lata)</span></p>
-                <div class="feed-card-info-animal"> 
-                    <p class="title">Fêmea, 12 anos</p> 
-                </div>
-            </div>
-
-        </article>
+        <h2 class="user-edit-posts-title title">Publicações</h2>   
         
-        
-        <article class="feed-card">
-            <div class="feed-card-img"></div>
-            
-            <div class="feed-card-info">
-                <p class="title">Leia <span class="thin-subtitle">(Vira Lata)</span></p>
-                <div class="feed-card-info-animal"> 
-                    <p class="title">Fêmea, 12 anos</p> 
-                </div>
-            </div>
-
-        </article>
-        
-        <article class="feed-card">
-            <div class="feed-card-img"></div>
-            
-            <div class="feed-card-info">
-                <p class="title">Leia <span class="thin-subtitle">(Vira Lata)</span></p>
-                <div class="feed-card-info-animal"> 
-                    <p class="title">Fêmea, 12 anos</p> 
-                </div>
-            </div>
-
-        </article>
-
-        <article class="feed-card">
-            <div class="feed-card-img"></div>
-            
-            <div class="feed-card-info">
-                <p class="title">Leia <span class="thin-subtitle">(Vira Lata)</span></p>
-                <div class="feed-card-info-animal"> 
-                    <p class="title">Fêmea, 12 anos</p> 
-                </div>
-            </div>
-
-        </article>
-
-    </main>
-
-       
-	</section>
+        <main id="card-container"></main>
+    </section>
 
 
 
-    <footer class="feed-footer">
+    <footer class="feed-footer footer-container">
 
-        <img src="../../src/icon-home.svg">
-        <img src="../../src/icon-new-post.svg">
-        <img src="../../src/icon-user.svg">
-
+        <a  href="../post/feed.html"> <img src="../../src/icon-home.svg"> </a>
+        <a href="../post/create_post.html"> <img src="../../src/icon-new-post.svg"> </a>
+        <a href="../user/user_perfil.html"> <img src="../../src/icon-user.svg"> </a>
 
     </footer>
+
+
+    <script type="module">
+        import {verify_login} from "../../controllers/login.js"
+        import {getUserPosts} from "../../controllers/user_perfil.js"
+
+
+		verify_login()
+        getUserPosts()
+    
+    </script>
     
 </body>
 </html>
