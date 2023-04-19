@@ -2,38 +2,39 @@ const baseUrl ='https://hipet-server.onrender.com/api/';
 
 export function loginUser(userRequest){
 
-    // return fetch(baseUrl+'user/login',{
-    //     method: "POST",
-    //     body: JSON.stringify(userRequest),
-    //     headers: {"Content-type": "application/json; charset=UTF-8"}
-    //   })
-    // .then(response =>{
-    //         if(response.status === 200){
-    //             return response.json()
-    //         }else{
-    //             throw new Error(response.status)
-    //         }
+    return fetch(baseUrl+'user/login',{
+        method: "POST",
+        body: JSON.stringify(userRequest),
+        headers: {"Content-type": "application/json; charset=UTF-8"}
+      })
+    .then(response =>{
+            if(response.status === 200){
+                return response.json()
+            }else{
+                throw new Error(response.status)
+            }
 
-    //     }) 
-    // .then(json => {return json})
-    // .catch(err => {return err})
+        }) 
+    .then(json => {return json})
+    .catch(err => {return err})
+   
 
-    return new Promise(function(resolve, reject) {
-        let dados = {
-          "status": "SUCCESS",
-          "user": {
-            "id": "317ea8d5-8d03-4047-9493-8c1330fc30f4",
-            "name": "Daiane Pereira",
-            "nickname": "Laide Daini",
-            "email": "daianehipet@gmail.com",
-            "type": "PF"
-          }
-        };
+    // return new Promise(function(resolve, reject) {
+    //     let dados = {
+    //       "status": "SUCCESS",
+    //       "user": {
+    //         "id": "317ea8d5-8d03-4047-9493-8c1330fc30f4",
+    //         "name": "Daiane Pereira",
+    //         "nickname": "Laide Daini",
+    //         "email": "daianehipet@gmail.com",
+    //         "type": "PF"
+    //       }
+    //     };
 
-        setTimeout(function() {
-            resolve(dados);
-          }, 1000);
-        });  
+//         setTimeout(function() {
+//             resolve(dados);
+//           }, 1000);
+//         });  
 }
 
 export function createUser(userRequest){
