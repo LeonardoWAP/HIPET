@@ -43,11 +43,14 @@
     </footer>
 
     <script type="module">
-        import {set_nickname, 
-                render_animal_cards,
+        import {render_animal_cards,
                 filter_by_animal_type } from "../../controllers/post.js"
+                       
+        import{
+            set_nickname
+        } from "../../controllers/user_info.js"
 
-        import {verify_login, } from "../../controllers/login.js"
+        import {verify_login } from "../../controllers/login.js"
 
 		verify_login()
         set_nickname()

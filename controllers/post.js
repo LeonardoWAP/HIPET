@@ -2,13 +2,6 @@
 import { listPosts, findPostById, createPost } from '../diplomatic/https_client.js'
 import { modalRegisteFailed } from '../utilities/utilities.js'
 
-
-export function set_nickname(){
-    let user_name = document.getElementById("feed-nickname")
-    
-    user_name.innerHTML =  localStorage.getItem('nickname');         
-}
-
 export function render_animal_cards(){
 
     let card_container = document.getElementById("card-container")
