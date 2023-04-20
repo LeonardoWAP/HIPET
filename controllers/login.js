@@ -2,7 +2,7 @@ import { loginUser } from '../diplomatic/https_client.js'
 
 export function verify_login(){
 
-    if (localStorage.getItem('deslogado') == "sim"){
+    if (localStorage.getItem('deslogado') != "nao"){
        window.location.href = "../login/login.html";
     }
 }

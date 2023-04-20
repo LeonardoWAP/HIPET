@@ -2,7 +2,6 @@
 import { listPosts, findPostById, createPost } from '../diplomatic/https_client.js'
 import { modalRegisteFailed } from '../utilities/utilities.js'
 
-
 export function set_nickname(){
     let user_name = document.getElementById("feed-nickname")
     
@@ -26,7 +25,7 @@ export function render_animal_cards(){
                 let ulrPicture = posts[i].picture
                 let name = posts[i].animal.name
                 let sex = posts[i].animal.sex
-                //let age = posts[i].animal.age                
+                let age = posts[i].animal.age                
             
                 let card = ` 
                 <a class="card-animal-link" href="post_details.html?postId=${postId}"> 
@@ -38,7 +37,7 @@ export function render_animal_cards(){
                         <div class="card-animal-info">
                             <p class="title">${name} </p>
                             <div class="card-animal-info-animal"> 
-                                <p class="title">${sex}, ${sex} anos</p> 
+                                <p class="title">${sex}, ${age} anos</p> 
                             </div>
                         </div>
 
