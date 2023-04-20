@@ -15,12 +15,6 @@ export function info_elements(userId){
 
         console.log(formContainer)
 
-        // formName.innerHTML += name
-        // formNickname.innerHTML += nickname
-        // formEmail.innerHTML += email
-        // formPhoneNumber.innerHTML += phoneNumber
-        // formCpf.innerHTML += cpf
-
         let qualquercoisa= ` 
             <div class="create-post-form-input form-floating register-form" id="Name">
                 <input type="text" class="form-control title" id="floatingInputGroup1 " placeholder="Nome" value="${name}" > 
@@ -43,7 +37,7 @@ export function info_elements(userId){
             </div>
 
 			<div class="create-post-form-input form-floating register-form-input" id="Cpf">
-                <input type="text" id="cpf" name="cpf" class="form-control" id="floatingInputGroup1 " placeholder="cpf" readonly>
+                <input type="text" id="cpf" name="cpf" class="form-control" id="floatingInputGroup1 " placeholder="cpf" disabled readonly>
                 <label for="floatingInputGroup1">${cpf}</label>
             </div>
 
@@ -60,10 +54,29 @@ export function info_elements(userId){
 			<button class="button-purple" type="submit">Salvar alterações</button>`
 
             formContainer.innerHTML += qualquercoisa;
-            
-    })
+    }) 
+}
 
+export function editUser(){
 
+  
+    var name = document.getElementById("Name")
+    var nickname = document.getElementById("UserName")
+    var email = document.getElementById("Email")
+    var phoneNumber = document.getElementById("PhoneNumber")
+    var cpf = document.getElementById("Cpf")
 
-    
+    console.log(name)
+    console.log(nickname)
+    console.log(email)
+    console.log(phoneNumber)
+    console.log(cpf)
+
+    let userRequest{
+        "name": name,
+        "email" : email,
+        "nickname" : nickname,
+        "phone_number" :phoneNumber,
+        "document" : cpf
+    }
 }
