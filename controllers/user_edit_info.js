@@ -6,21 +6,14 @@ export function info_elements(userId){
     
     data.then(data => {
         let formContainer = document.getElementById("register-form")
-        let formName = document.getElementById("Name").firstElementChild
-        let formNickname = document.getElementById("UserName")
-        let formEmail = document.getElementById("Email")
-        let formPhoneNumber = document.getElementById("PhoneNumber")
-        let formCpf = document.getElementById("Cpf")
 
-        console.log(formName)
-     
         var name = data.user.name
         var nickname = data.user.nickname
         var email = data.user.email
         var phoneNumber = data.user.phone_number
         var cpf = data.user.document
 
-  
+        console.log(formContainer)
 
         // formName.innerHTML += name
         // formNickname.innerHTML += nickname
@@ -29,15 +22,14 @@ export function info_elements(userId){
         // formCpf.innerHTML += cpf
 
         let qualquercoisa= ` 
-        <form class="register-form">
             <div class="create-post-form-input form-floating register-form" id="Name">
-                <input type="text" class="form-control title" id="floatingInputGroup1 " placeholder="Nome">
-                <label for="floatingInputGroup1">${name}</label>
+                <input type="text" class="form-control title" id="floatingInputGroup1 " placeholder="Nome" value="${name}" > 
+                <label for="floatingInputGroup1">Nome </label>
             </div>
 
 			<div class="create-post-form-input form-floating register-form" id="UserName">
-                <input type="text" class="form-control" id="floatingInputGroup1 " placeholder="Nome de Usuário" readonly>
-                <label for="floatingInputGroup1">${nickname}</label>
+                <input type="text" class="form-control" id="floatingInputGroup1 " placeholder="Nome de Usuário" value="${nickname}" disabled readonly>
+                <label for="floatingInputGroup1">Nickname</label>
             </div>
 
 			<div class="create-post-form-input form-floating register-form-input input-large" id="Email">
@@ -65,10 +57,9 @@ export function info_elements(userId){
                 <label for="floatingInputGroup1">Nova senha</label>
             </div>
 
-			<button class="button-purple" type="submit">Salvar alterações</button>
-        </form>;`
+			<button class="button-purple" type="submit">Salvar alterações</button>`
 
-            formContainer.innerHTML = qualquercoisa;
+            formContainer.innerHTML += qualquercoisa;
             
     })
 
