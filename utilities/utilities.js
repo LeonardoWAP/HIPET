@@ -13,7 +13,6 @@ export const modalRegisteFailed = `
         </div>
         `
 
-
 export const modalPostCreate = `
             <div class="modal-header">
                 <h5 class="modal-title" id="popUpCadastroLabel">Post Criado com Sucesso!</h5>

@@ -34,10 +34,7 @@
         <main id="card-container"></main>
     </section>
 
-
-
     <footer class="feed-footer footer-container">
-
         <a  href="../post/feed.html"> <img src="../../src/icon-home.svg"> </a>
         <a href="../post/create_post.html"> <img src="../../src/icon-new-post.svg"> </a>
         <a href="../user/user_perfil.html"> <img src="../../src/icon-user.svg"> </a>
@@ -47,9 +44,7 @@
 
     <script type="module">
         import {verify_login} from "../../controllers/login.js"
-        import {getUserPosts} from "../../controllers/user_perfil.js"
-
-
+        import {getUserPosts} from "../../controllers/post.js"
 		verify_login()
         getUserPosts()
     

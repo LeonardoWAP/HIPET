@@ -1,5 +1,5 @@
 
-import { listPosts, findPostById, createPost } from '../diplomatic/https_client.js'
+import { listPosts, findPostById, createPost, findPostByUserId } from '../diplomatic/https_client.js'
 import { modalRegisteFailed, buildPost, formatText } from '../utilities/utilities.js'
 
 export function set_nickname(){
@@ -216,7 +216,30 @@ export function createNewPost(){
                 popoverTriggerList.map(function (popoverTriggerEl) {
                     return new bootstrap.Popover(popoverTriggerEl)
                 })}})
+}}
 
-    }}
+export function getUserPosts(){
 
+    let userId = localStorage.getItem('user-id');
 
+    let data = findPostByUserId(userId);
+
+    let card_container = document.getElementById("card-container")
+
+    data.then(data => {
+        if(data['status'] == "SUCCESS"){
+
+            let posts = data['posts'] 
+            
+            for (let  i = 0; i < posts.length; i++){
+       
+                let post = buildPost(posts[i])           
+                card_container.innerHTML += post;
+            }
+            
+        }else{
+            console.log(data)
+        }
+    })
+
+}

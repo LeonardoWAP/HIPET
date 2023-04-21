@@ -697,6 +697,11 @@ body{
     height: 100%;
     border-radius: 15px ;
 }
+
+#post-daitails{
+    z-index: -1;
+}
+
 #post-details-card-img{
     background-size: cover;
     background-position: center;
@@ -711,8 +716,8 @@ body{
 }
 
 #post-details-card-img img{
-    width: 100%;    
-    z-index: -1;
+    width: 100%;  
+    z-index: -1;  
 }
 
 
@@ -723,8 +728,7 @@ body{
 
     background-color: var(--backgorund);
     border-radius: 25px 25px 0 0;
-    margin-top: -25px;
-   
+    margin-top: -25px;   
 }
 
 #post-details-card-info-header{
@@ -1013,7 +1017,13 @@ body{
     margin-top: 15px;
     width: 85%;
     font-size: 1.2rem;
+
+    margin: 0;
 } 
+
+#user-perfil .mobile-container{
+    gap: 15px
+}
 
 /********************** end perfil pf ******************/
 
@@ -1056,7 +1066,7 @@ body{
 
 @media (min-width: 420px){
 
-
+/* 
    #perfil .mobile-container{
 
      height: 100vh; 
@@ -1068,10 +1078,10 @@ body{
         /* height: 100vh; */
         /* justify-content: stretch; */
     }
-
+/*
     .post-details-header{
         width:calc(420px - 40px);
-    }
+    } */
 
     /* .card-animal {
         width: 174px;
@@ -1085,7 +1095,7 @@ body{
 
  
 @media (max-width: 296px){
-
+/* 
     .mobile-container{
         gap:50px;
 
@@ -1101,7 +1111,7 @@ body{
         border-radius: 12px;
         overflow: hidden;
     } */
-
+/*
     .feed-header-filters {
         flex-wrap: wrap;
         gap: 25% 5%;
@@ -1113,7 +1123,7 @@ body{
 
     .feed-header-filters-button{
         width: 29%;
-    }
+    } */
 
 }
  
