@@ -209,8 +209,7 @@ export function createNewPost(){
                                 
                            <a href='post_details.html?postId=${data['post'].id}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Visualizar Post</button>
                            </a>
-                            </div>
-                            `
+                            </div>`
             }else{            
                 var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
                 popoverTriggerList.map(function (popoverTriggerEl) {

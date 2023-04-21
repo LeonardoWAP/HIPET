@@ -7,76 +7,76 @@ export function info_elements(userId){
     data.then(data => {
         let formContainer = document.getElementById("register-form")
 
+        console.log(data)
+
         var name = data.user.name
         var nickname = data.user.nickname
         var email = data.user.email
         var phoneNumber = data.user.phone_number
         var cpf = data.user.document
-
-        console.log(formContainer)
+        var password = data.user.password
 
         let qualquercoisa= ` 
-            <div class="create-post-form-input form-floating register-form" id="Name">
-                <input type="text" class="form-control title" id="floatingInputGroup1 " placeholder="Nome" value="${name}" > 
-                <label for="floatingInputGroup1">Nome </label>
+            <div class="create-post-form-input form-floating register-form">
+                <input type="text" class="form-control title" id="name" placeholder="Nome" value="${name}" > 
+                <label for="name">Nome</label>
             </div>
 
-			<div class="create-post-form-input form-floating register-form" id="UserName">
-                <input type="text" class="form-control" id="floatingInputGroup1 " placeholder="Nome de Usuário" value="${nickname}" disabled readonly>
-                <label for="floatingInputGroup1">Nickname</label>
+			<div class="create-post-form-input form-floating register-form" >
+                <input type="text" class="form-control" id="userName" placeholder="Nome de Usuário" value="${nickname}" disabled readonly>
+                <label for="userName">Nickname</label>
             </div>
 
-			<div class="create-post-form-input form-floating register-form-input input-large" id="Email">
-                <input type="email" class="form-control"  id="floatingInputGroup1 " placeholder="Email" >
-                <label for="floatingInputGroup1">${email}</label>
+			<div class="create-post-form-input form-floating register-form-input input-large" >
+                <input type="email" class="form-control "  id="email" placeholder="Email" value= ${email}>
+                <label for="email">Email</label>
             </div>
 
-			<div class="create-post-form-input form-floating register-form-input" id="PhoneNumber">
-                <input type="text" id="celular" name="celular" class="form-control" id="floatingInputGroup1 " placeholder="telefone">
-                <label for="floatingInputGroup1">${phoneNumber}</label>
+			<div class="create-post-form-input form-floating register-form-input" >
+                <input type="text" name="celular" class="form-control" id="phoneNumber" placeholder="telefone" value= ${phoneNumber}>
+                <label for="phoneNumber">Número de Ceular </label>
             </div>
 
-			<div class="create-post-form-input form-floating register-form-input" id="Cpf">
-                <input type="text" id="cpf" name="cpf" class="form-control" id="floatingInputGroup1 " placeholder="cpf" disabled readonly>
-                <label for="floatingInputGroup1">${cpf}</label>
+			<div class="create-post-form-input form-floating register-form-input" >
+                <input type="text" id="cpf" name="cpf" class="form-control" placeholder="cpf" disabled readonly value= ${cpf}}>
+                <label for="cpf">CPF</label>
             </div>
 
-            <div class="create-post-form-input form-floating register-form-input input-large" id="CurrentPassword">
-                <input type="password" class="form-control"  id="floatingInputGroup1 " placeholder="password" >
-                <label for="floatingInputGroup1">Senha atual</label>
+            <div class="create-post-form-input form-floating register-form-input input-large">
+                <input type="password" class="form-control" id="currentPassword" placeholder="password">
+                <label for="currentPassword">Senha atual</label>
             </div>
 
-			<div class="create-post-form-input form-floating register-form-input input-large" id="NewPassword">
-                <input type="password" class="form-control"  id="floatingInputGroup1 " placeholder="password" >
-                <label for="floatingInputGroup1">Nova senha</label>
+			<div class="create-post-form-input form-floating register-form-input input-large" >
+                <input type="password" class="form-control"  id="newPassword" placeholder="password" >
+                <label for="newPassword">Nova senha</label>
             </div>
-
-			<button class="button-purple" type="submit">Salvar alterações</button>`
-
+            `
             formContainer.innerHTML += qualquercoisa;
     }) 
 }
 
 export function editUser(){
-
   
-    var name = document.getElementById("Name")
-    var nickname = document.getElementById("UserName")
-    var email = document.getElementById("Email")
-    var phoneNumber = document.getElementById("PhoneNumber")
-    var cpf = document.getElementById("Cpf")
+    var name = document.getElementById("name").value
+    var email = document.getElementById("email").value
+    var phoneNumber = document.getElementById("phoneNumber").value
+    var currentPassword = document.getElementById("currentPassword").value
+    var newPassword = document.getElementById("newPassword").value
 
     console.log(name)
-    console.log(nickname)
     console.log(email)
     console.log(phoneNumber)
-    console.log(cpf)
+    console.log(currentPassword)
+    console.log(newPassword)
 
-    let userRequest{
+
+    let userRequest = {
+        "id": localStorage.getItem('user-id'),
         "name": name,
         "email" : email,
-        "nickname" : nickname,
-        "phone_number" :phoneNumber,
-        "document" : cpf
+        "phone_number" :phoneNumber
     }
+
+    console.log(userRequest)
 }
