@@ -13,21 +13,24 @@
     <section class="mobile-container">
 
         <header class="feed-header">
-            <p class="title">Olá, <span id="feed-nickname"></span> </p>
-
-            <div class="feed-header-filters">
-                <div class="feed-header-filters-search"> <img src="../../src/search.svg">  <input placeholder="Pesquisar ...."> </div>
-
-                <button id="filter-by-dog" 
-                        class="feed-header-filters-button subtitle dog "> 
-                    <img src="../../src/icon-dog.svg"> Cão
-                </button>
-
-                <button  id="filter-by-cat" class="feed-header-filters-button subtitle cat"> 
-                    <img src="../../src/icon-cat.svg"> Gato
-                </button>
+            <div class="feed-header-hipet">
+                <img id="logo" src="../../src/pata-de-animal.png">
+                <p class="title">HiPet</p>
             </div>
+            <img class="feed-header-user" src="../../src/user-img.jpg">
+
         </header>
+        <div class="feed-header-filters">
+            <div class="feed-header-filters-search"> <img src="../../src/search.svg">  <input placeholder="Pesquisar ...."> </div>
+
+            <button id="filter-by-dog" class="feed-header-filters-button subtitle dog "> 
+                <img src="../../src/icon-dog.svg"> Cão
+            </button>
+
+            <button  id="filter-by-cat" class="feed-header-filters-button subtitle cat"> 
+                <img src="../../src/icon-cat.svg"> Gato
+            </button>
+        </div>
 
         <main id="card-container">
         </main>
@@ -43,14 +46,16 @@
     </footer>
 
     <script type="module">
-        import {set_nickname, 
-                render_animal_cards,
+        import {render_animal_cards,
                 filter_by_animal_type } from "../../controllers/post.js"
+                       
+        import{
+            set_nickname
+        } from "../../controllers/user_info.js"
 
-        import {verify_login, } from "../../controllers/login.js"
+        import {verify_login } from "../../controllers/login.js"
 
 		verify_login()
-        set_nickname()
         render_animal_cards()
         
      document.querySelector("#filter-by-dog").addEventListener('click', filter_by_animal_type.bind(null, 'CACHORRO'))

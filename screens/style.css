@@ -2,6 +2,7 @@
 
 :root{
     --purple : #9D4AFC;
+    --purple-logo: #341853;
     --hover-purple: #7b0ff7;
     --backgorund: #f5f5f5;
     --white: #FFFFFF;
@@ -22,6 +23,7 @@
     --text-blue: #1D747B;
     --text-orage: #9B5C00;
     --text-green: #316C1D;
+    --text-gray: #9C9AA4;
 }
 
 body{
@@ -48,11 +50,148 @@ body{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 25px;
+    gap: 15px;
 
     background-color: var(--backgorund);
 
 }
+
+.post-animal-link{
+    text-decoration: none;
+}
+.post-animal{
+    width: 100%;
+    height: 430px;
+    border-radius: 12px;
+    overflow: hidden;
+
+    display: grid;
+    grid-template-columns: 100%;
+
+    grid-template-rows: 15% 60% 25%;
+        text-decoration: none;
+
+}
+
+.post-animal-user{
+    width: 100%;
+    background-color: var(--white);
+
+    display: grid;
+
+    grid-template-columns: 12% 72% 7% 8%;
+    align-items: center;
+    padding: 12px;
+
+    grid-column-start: 1;
+    grid-column-end: 1;
+    grid-row-start: 1;
+    grid-row-end: 2;
+}
+
+.post-animal-user-img{
+    width: 100%;
+    border-radius: 50%;
+    grid-column-start: 1;
+    grid-column-end: 1;
+}
+
+.post-animal-user-nickname{
+    color: var(--text-color);
+    font-weight: 700;
+    margin: 0;
+    padding-left: 5px;
+}
+
+.img-animal{
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center;
+    
+}
+
+.post-animal-user-localization{
+    font-weight: 600;
+    color: var(--text-gray);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.post-animal-img{
+    width: 100%;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    grid-column-start: 1;
+    grid-row-start: 2;
+    grid-row-end: 3;
+   
+}
+
+.post-animal-img img{
+    width: 100%;
+    object-fit: cover;
+}
+
+.post-animal-info{
+    grid-column-start: 1;
+    grid-row-start: 3;
+    grid-row-end: 4;
+
+    padding: 5px 15px;
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    
+    border-radius: 0px 0px 12px 12px;
+}
+
+.post-animal-info .title{
+    font-size: 1.2rem;
+    font-weight: 700;
+}
+
+.post-animal-info-animal-tag{
+    display: flex;
+    width: 100%;
+    gap: 5px;
+    font-weight: 600;
+
+}
+
+.post-animal-info-animal-tag .animal-tag{
+    height: 28px;
+}
+
+.sex{
+    color: var(--purple);
+    background-color: var(--background-purple);
+    font-weight: 600;
+}
+
+.age{
+    color: var(--text-orage);
+    background-color: var(--background-orage);
+    font-weight: 600;
+}
+
+
+.post-animal-info-about p{
+    font-size: 0.85rem;
+    color: var(--text-gray);
+    margin: 0;
+    
+}
+
+.post-animal-info-about p::after {
+    content: "...";
+}
+
+
 
 .card-animal-link{
     text-decoration: none;
@@ -412,16 +551,36 @@ body{
 
 .feed-header {
     width: 100%;
-    height: 139px;
-
+    height: 69px;
     display: flex;
-    flex-direction: column;
-    justify-content: inherit;
+    flex-direction:row;
     align-items: center;
+    justify-content: space-between;
+    padding: 6px 22px;
 }
 
-.feed-header p{
-    padding: 25px;
+.feed-header-hipet{
+    display: flex;
+    justify-content: inherit;
+    align-items: center;
+    gap: 10px;
+}
+
+.feed-header-hipet p {
+    margin: 0;
+    padding: 0;
+    font-weight: 700;
+    color: var(--purple-logo);
+}
+
+.feed-header-user{
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+}
+
+#logo{
+    width: 32px;
 }
 
 
@@ -443,7 +602,6 @@ body{
 
 .feed-header-filters-button{
     border: 0;
-    width: 18%;
     height: 100%;
 
     display: flex;
@@ -545,11 +703,15 @@ body{
     border-radius: 15px ;
 }
 
-.post-details-card-img{
+#post-daitails{
+    z-index: -1;
+}
+
+#post-details-card-img{
     background-size: cover;
     background-position: center;
     width: 100%;
-    height: 35vh ;
+    height: 55vh ;
     object-fit: contain;
     overflow: hidden;
     display: flex;
@@ -558,9 +720,9 @@ body{
 
 }
 
-.post-details-card-img img{
-    width: 100%;    
-    z-index: -1;
+#post-details-card-img img{
+    width: 100%;  
+    z-index: -1;  
 }
 
 
@@ -571,8 +733,7 @@ body{
 
     background-color: var(--backgorund);
     border-radius: 25px 25px 0 0;
-    margin-top: -25px;
-   
+    margin-top: -25px;   
 }
 
 #post-details-card-info-header{
@@ -624,11 +785,8 @@ body{
     gap: 10px;
 
     border-radius: 5px;
-    background-color: red;
     height: 10px;
     padding: 3% 4%;
-    
-
 }
 
 .animal-color{
@@ -864,7 +1022,13 @@ body{
     margin-top: 15px;
     width: 85%;
     font-size: 1.2rem;
+
+    margin: 0;
 } 
+
+#user-perfil .mobile-container{
+    gap: 15px
+}
 
 /********************** end perfil pf ******************/
 
@@ -907,7 +1071,7 @@ body{
 
 @media (min-width: 420px){
 
-
+/* 
    #perfil .mobile-container{
 
      height: 100vh; 
@@ -919,24 +1083,24 @@ body{
         /* height: 100vh; */
         /* justify-content: stretch; */
     }
-
+/*
     .post-details-header{
         width:calc(420px - 40px);
-    }
+    } */
 
-    .card-animal {
+    /* .card-animal {
         width: 174px;
         height: 330px;
         border-radius: 12px;
         overflow: hidden;
        
-    }
+    } */
    
 }
 
  
 @media (max-width: 296px){
-
+/* 
     .mobile-container{
         gap:50px;
 
@@ -946,13 +1110,13 @@ body{
         width:calc(420px - 40px);
     }
 
-    .card-animal {
+    /* .card-animal {
         width: 210px;
         height: 330px;
         border-radius: 12px;
         overflow: hidden;
-    }
-
+    } */
+/*
     .feed-header-filters {
         flex-wrap: wrap;
         gap: 25% 5%;
@@ -964,7 +1128,7 @@ body{
 
     .feed-header-filters-button{
         width: 29%;
-    }
+    } */
 
 }
  
