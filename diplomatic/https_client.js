@@ -41,7 +41,7 @@ export function updateUser(userRequest){
 
 export function createUser(userRequest){
     
- return fetch(baseUrl+'user/create',{
+  return fetch(baseUrl+'user/create',{
       method: "POST",
       body: JSON.stringify(userRequest),
       headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -55,8 +55,6 @@ export function createUser(userRequest){
   }) 
   .then(json => {return json})
   .catch(err => {return err}) 
-  
-  
 }
 
 export function createPost(postRequest){
@@ -74,9 +72,8 @@ export function createPost(postRequest){
        }
    }) 
    .then(json => {return json})
-   .catch(err => {return err}) 
-       
- }
+   .catch(err => {return err})    
+}
 
 export function listPosts(){
     

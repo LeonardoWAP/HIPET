@@ -11,31 +11,41 @@ export function register_new_pf(){
     let user_document = document.getElementById("inputDocument").value;
     let user_password = document.getElementById("inputPassword").value;
 
-    let _userRequest = {
-        "email": user_email,
-        "password": user_password,
-        "name": user_name,
-        "phone_number": user_phoneNumber,
-        "document": user_document,
-        "nickname": user_nickName,
-        "type": "PERSON"
-    }
-    
-    let data = createUser(_userRequest);
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
 
-    data.then(data =>{
-
-        if(data['status'] == "SUCCESS"){
-            localStorage.setItem('deslogado', 'sim'); 
-            window.location.href = "../login/register_created.html";
-  
-        }else{
-           // tratativa de erro
-           console.log(data)
-            let divPopUp = document.querySelector('.modal-content')
-            divPopUp.innerHTML = modalRegisteFailed
+    reader.onload = () => {
+        let _userRequest = {
+            "email": user_email,
+            "password": user_password,
+            "name": user_name,
+            "phone_number": user_phoneNumber,
+            "document": user_document,
+            "nickname": user_nickName,
+            "type": "PERSON"
         }
-    })
+
+        console.log(_userRequest)
+
+        let data = createUser(_userRequest);
+
+
+        data.then(data =>{
+
+            if(data['status'] == "SUCCESS"){
+                localStorage.setItem('deslogado', 'sim'); 
+                window.location.href = "../login/register_created.html";
+      
+            }else{
+               // tratativa de erro
+               console.log(data)
+                let divPopUp = document.querySelector('.modal-content')
+                divPopUp.innerHTML = modalRegisteFailed
+            }
+        })
+    }
 }
 
 export function register_new_ong(){
@@ -46,30 +56,38 @@ export function register_new_ong(){
     let user_password = document.getElementById("inputPassword").value;
     let user_url_vakinha = document.getElementById("inputUrlVakinha").value;
 
-    let _userRequest = {
-        "type": "ONG", 
-        "name": user_name,
-        "nickname": user_nickName,
-        "email": user_email,
-        "phone_number": user_phoneNumber,
-        "password": user_password,
-        "donation_link": user_url_vakinha
-    }
 
-    let data = createUser(_userRequest);
+    const fileInput = document.getElementById('fileInput');
+    const file = fileInput.files[0];
+    const reader = new FileReader();
+    reader.readAsDataURL(file);
 
-    data.then(data =>{
-        
-        if(data['status'] == "SUCCESS"){
-
-            localStorage.setItem('deslogado', 'sim'); 
-            window.location.href = "../login/register_created.html";
-  
-        }else{
-           // tratativa de erro
-            let divPopUp = document.querySelector('.modal-content')
-            divPopUp.innerHTML = modalRegisteFailed
+    reader.onload = () => {
+        let _userRequest = {
+            "type": "ONG", 
+            "name": user_name,
+            "nickname": user_nickName,
+            "email": user_email,
+            "phone_number": user_phoneNumber,
+            "password": user_password,
+            "donation_link": user_url_vakinha
         }
-    })
+
+        let data = createUser(_userRequest);
+
+        data.then(data =>{
+            
+            if(data['status'] == "SUCCESS"){
+
+                localStorage.setItem('deslogado', 'sim'); 
+                window.location.href = "../login/register_created.html";
+    
+            }else{
+            // tratativa de erro
+                let divPopUp = document.querySelector('.modal-content')
+                divPopUp.innerHTML = modalRegisteFailed
+            }
+        })
+    }   
 }
 

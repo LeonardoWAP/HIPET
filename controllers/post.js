@@ -1,6 +1,6 @@
 
-import { listPosts, findPostById, createPost, findPostByUserId } from '../diplomatic/https_client.js'
-import { modalRegisteFailed, buildPost, formatText } from '../utilities/utilities.js'
+import { listPosts, findPostById, createPost, findPostByUserId,findUserById } from '../diplomatic/https_client.js'
+import { buildPost, formatText } from '../utilities/utilities.js'
 
 export function set_nickname(){
     let user_name = document.getElementById("feed-nickname")
@@ -138,7 +138,6 @@ export function getPostDetails(){
                                         </div>`
             }
 
-
         }else{
             console.log(data)
         }
@@ -179,9 +178,10 @@ export function createNewPost(){
                 "name": animalName,
                 "color": animalColor,
                 "size": animalSize,
+                "age" : animalAge,
                 "type": (animalTypeDog  ? "CACHORRO" : "GATO"),
                 "sex": (animalSexFemea  ? "FEMEA" : "MACHO"),
-                "share_url": "../../src/cat-leia.png",
+                "share_url": "",
                 "health_info": {
                     "vaccinated": vacinnated,
                     "castreated": castreated,
@@ -220,9 +220,7 @@ export function createNewPost(){
 export function getUserPosts(){
 
     let userId = localStorage.getItem('user-id');
-
     let data = findPostByUserId(userId);
-
     let card_container = document.getElementById("card-container")
 
     data.then(data => {
@@ -240,5 +238,10 @@ export function getUserPosts(){
             console.log(data)
         }
     })
+
+}
+
+export function setUserImg(){
+    feed-header-user
 
 }

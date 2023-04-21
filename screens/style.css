@@ -892,11 +892,11 @@ body{
     font-weight: 700;
 }
 
-.input-animal-img{
+.input-img{
     width: 85%;
 }
 
-.input-animal-img label{
+.input-img label{
     font-size: 1rem;
     font-weight: 700;
 }

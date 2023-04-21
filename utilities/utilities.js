@@ -48,6 +48,7 @@ export function buildPost(post){
     let sex = post.animal.sex
     let age = (post.animal.age != undefined) ? post.animal.age : "?"   
     let type = post.animal.type   
+    let localization = post.state  
 
    return ` <a class="post-animal-link" href="post_details.html?postId=${postId}">
                 <article class="post-animal">
@@ -55,7 +56,7 @@ export function buildPost(post){
                         <img class="post-animal-user-img" src="../../src/user-img.jpg">
                         <p class="post-animal-user-nickname">Diandria</p>
                         <img src="../../src/maps-and-flags.svg">
-                        <p class="post-animal-user-localization">SP</p>
+                        <p class="post-animal-user-localization">${localization}</p>
                     </div>
 
                     <div class="post-animal-img">
