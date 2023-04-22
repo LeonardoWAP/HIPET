@@ -17,6 +17,8 @@ export function register_new_pf(){
     reader.readAsDataURL(file);
 
     reader.onload = () => {
+        const base64Image = reader.result.split(',')[1];
+
         let _userRequest = {
             "email": user_email,
             "password": user_password,
@@ -24,7 +26,8 @@ export function register_new_pf(){
             "phone_number": user_phoneNumber,
             "document": user_document,
             "nickname": user_nickName,
-            "type": "PERSON"
+            "type": "PERSON",
+            "picture": base64Image
         }
 
         console.log(_userRequest)
@@ -63,6 +66,9 @@ export function register_new_ong(){
     reader.readAsDataURL(file);
 
     reader.onload = () => {
+        const base64Image = reader.result.split(',')[1];
+
+
         let _userRequest = {
             "type": "ONG", 
             "name": user_name,
@@ -70,7 +76,8 @@ export function register_new_ong(){
             "email": user_email,
             "phone_number": user_phoneNumber,
             "password": user_password,
-            "donation_link": user_url_vakinha
+            "donation_link": user_url_vakinha,
+            "picture": base64Image
         }
 
         let data = createUser(_userRequest);

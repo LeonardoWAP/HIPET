@@ -27,6 +27,12 @@ export const modalPostCreate = `
             </div>
             `
 
+export const donationTag = `<a class="user-tag donation" 
+                                href="../user/edit_info_pf.html">
+                                <img src="../../src/donation.svg"> 
+                                <p class="subtitle">Quero fazer uma doação</p> </a> `
+
+
 function formatTextAbout(text){
     const limite = Math.floor(text.length * 0.36);
     const parte1 = text.substring(0, limite);
@@ -48,15 +54,17 @@ export function buildPost(post){
     let sex = post.animal.sex
     let age = (post.animal.age != undefined) ? post.animal.age : "?"   
     let type = post.animal.type   
-    let localization = post.state  
+    let localization = post.state 
+    let userName = post.user.nickname
+    let userImg = (post.user.picture != undefined) ? `data:image/png;base64,${post.user.picture}` : "../../src/user.svg"
 
    return ` <a class="post-animal-link" href="post_details.html?postId=${postId}">
                 <article class="post-animal">
                     <div class="post-animal-user">
-                        <img class="post-animal-user-img" src="../../src/user-img.jpg">
-                        <p class="post-animal-user-nickname">Diandria</p>
+                        <img class="post-user-img" src="${userImg}">
+                        <p class="post-animal-user-nickname">${userName}</p>
                         <img src="../../src/maps-and-flags.svg">
-                        <p class="post-animal-user-localization">${localization}</p>
+                        <p class="post-localization">${localization}</p>
                     </div>
 
                     <div class="post-animal-img">
