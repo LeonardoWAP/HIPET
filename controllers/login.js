@@ -27,7 +27,7 @@ export function login(){
             localStorage.setItem('user-id', data['user']['id']);
             localStorage.setItem('nickname', data['user']['nickname']);
             localStorage.setItem('user_type', data['user']['type']);
-            localStorage.setItem('user_img', data['user']['type']);
+            localStorage.setItem('user_img', data['user']['picture']);
             
             window.location.href = "../post/feed.html";
             

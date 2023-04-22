@@ -13,17 +13,19 @@
 
         <header class="user-header">
             <div class="user-header-title">
-                <img class="icon-user" src="../../src/user.svg">
+                <img id="user-img" >
                 <p class="title"><span id="feed-nickname"></span></p>
             </div>
 
-            <div class="user-header-buttons">
-                <button class="user-header-buttons-button user-header-buttons-edit"> 
+            <div class="user-header-tags" id="tags">
+                <a class="user-tag edit" 
+                    href="../user/edit_info_pf.html">
                     <img src="../../src/edit-perfil.svg"> 
-                    <p class="subtitle"><a href="../user/edit_info_pf.html">Editar perfil</a></p>
+                    <p class="subtitle">Editar perfil</p>
                     
-                </button>
-                <button id="copy-url-button" class="user-header-buttons-button user-header-buttons-share">
+                </a>
+                <button id="copy-url-button" 
+                        class="user-tag share">
                     <img src="../../src/share-perfil.svg"> 
                     <p   class="subtitle">Compartilhar perfil</p>
                 </button>
@@ -36,7 +38,7 @@
     </section>
 
     <footer class="feed-footer footer-container">
-        <a  href="../post/feed.html"> <img src="../../src/icon-home.svg"> </a>
+        <a href="../post/feed.html"> <img src="../../src/icon-home.svg"> </a>
         <a href="../post/create_post.html"> <img src="../../src/icon-new-post.svg"> </a>
         <a href="../user/user_perfil.html"> <img src="../../src/icon-user.svg"> </a>
 
@@ -45,12 +47,12 @@
 
     <script type="module">
         import {verify_login} from "../../controllers/login.js"
-        import {getUserPosts} from "../../controllers/user_perfil.js"
-        import {set_nickname , copiarUrl} from "../../controllers/user_info.js"
+        import {getUserPosts} from "../../controllers/post.js"
+        import {copiarUrl, setUserData} from "../../controllers/user.js"
 
 		verify_login()
         getUserPosts()
-        set_nickname()
+        setUserData()
         document.querySelector("#copy-url-button").addEventListener('click', copiarUrl)
     
     </script>
