@@ -7,6 +7,7 @@ export function info_elements(userId){
     
     data.then(data => {
         let formContainer = document.getElementById("register-form")
+        let vakinhaInput=""
 
         var name = data.user.name
         var nickname = data.user.nickname
@@ -14,6 +15,13 @@ export function info_elements(userId){
         var phoneNumber = data.user.phone_number
         var cpf = data.user.document
         var password = data.user.password
+
+        if (localStorage.getItem("user_type") == "ONG"){
+             vakinhaInput =`<div class="register-form-input input-large">
+                                    <label  class="title" for="inputUrlVakinha">Link do perfil na Vakinha <span class="label-subtitle"> (opcional) </span></label>
+                                    <input type="text" id="inputUrlVakinha" name="inputUrlVakinha" required placeholder="Preencha para receber doações">
+                                </div>`
+        }
 
         let qualquercoisa= ` 
         <div class="form-floating register-form input-large">
@@ -41,6 +49,7 @@ export function info_elements(userId){
                 <label for="cpf">CPF</label>
             </div>
 
+            ${vakinhaInput}
 
 			<div class=" form-floating register-form-input input-large" >
                 <input type="password" class="form-control"  id="newPassword" placeholder="password" >
