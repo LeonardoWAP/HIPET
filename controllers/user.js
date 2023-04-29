@@ -1,5 +1,5 @@
 import {findPostById, findUserById , updateUser } from '../diplomatic/https_client.js'
-import { buildPost, formatText, donationTag } from '../utilities/utilities.js'
+import { buildPost, formatText, donationTag, logout} from '../utilities/utilities.js'
 
 export function info_elements(userId){
 
@@ -144,6 +144,7 @@ export function setUserData(){
     const userPramsId = urlParams.get('userId');
     const localUserid = localStorage.getItem('user-id')
 
+
     if(userPramsId != localUserid){
 
         let data = findUserById(userPramsId);
@@ -157,9 +158,18 @@ export function setUserData(){
     }else{
         setNickname(localStorage.getItem('nickname'))
         setUserImg(localStorage.getItem('user_img'))
+
+        document.getElementById('userHeader').innerHTML += logout;
+
         if(localStorage.getItem('user_type') == "ONG"){
             setOngTag()
         } 
+
     }
 
+}
+
+export function realizarLogout(){
+    localStorage.clear();
+    window.location.href = "../login/login.html";
 }
