@@ -16,39 +16,40 @@ export function info_elements(userId){
         var password = data.user.password
 
         let qualquercoisa= ` 
-            <div class="create-post-form-input form-floating register-form">
-                <input type="text" class="form-control title" id="name" placeholder="Nome" value="${name}" > 
-                <label for="name">Nome</label>
-            </div>
+        <div class="form-floating register-form input-large">
+            <input type="text" class="form-control title" id="name" placeholder="Nome" value="${name}" > 
+            <label for="name">Nome</label>
+        </div>
 
-			<div class="create-post-form-input form-floating register-form" >
+			<div class=" form-floating register-form input-large" >
                 <input type="text" class="form-control" id="userName" placeholder="Nome de Usuário" value="${nickname}" disabled readonly>
                 <label for="userName">Nickname</label>
             </div>
 
-			<div class="create-post-form-input form-floating register-form-input input-large" >
+			<div class=" form-floating register-form-input input-large" >
                 <input type="email" class="form-control "  id="email" placeholder="Email" value= ${email}>
                 <label for="email">Email</label>
             </div>
 
-			<div class="create-post-form-input form-floating register-form-input" >
+			<div class="form-floating register-form-input" >
                 <input type="text" name="celular" class="form-control" id="phoneNumber" placeholder="telefone" value= ${phoneNumber}>
                 <label for="phoneNumber">Número de Ceular </label>
             </div>
 
-			<div class="create-post-form-input form-floating register-form-input" >
+			<div class=" form-floating register-form-input" >
                 <input type="text" id="cpf" name="cpf" class="form-control" placeholder="cpf" disabled readonly value= ${cpf}>
                 <label for="cpf">CPF</label>
             </div>
 
-            <div class="create-post-form-input form-floating register-form-input input-large">
-                <input type="password" class="form-control" id="currentPassword" placeholder="password">
-                <label for="currentPassword">Senha atual</label>
-            </div>
 
-			<div class="create-post-form-input form-floating register-form-input input-large" >
+			<div class=" form-floating register-form-input input-large" >
                 <input type="password" class="form-control"  id="newPassword" placeholder="password" >
                 <label for="newPassword">Nova senha</label>
+            </div>
+
+            <div class="form-floating register-form-input input-large" >
+                <input type="password" class="form-control"  id="reapetPassword" placeholder="password" >
+                <label for="reapetPassword">Repita Nova senha</label>
             </div>
             `
             formContainer.innerHTML += qualquercoisa;
@@ -60,32 +61,26 @@ export function editUser(){
     var name = document.getElementById("name").value
     var email = document.getElementById("email").value
     var phoneNumber = document.getElementById("phoneNumber").value
-    var currentPassword = document.getElementById("currentPassword").value
-    var newPassword = document.getElementById("newPassword").value
+    var password = document.getElementById("newPassword").value
+    var repeatPassword = document.getElementById("reapetPassword").value
     var type = localStorage.getItem("user_type")
-
-    console.log(name)
-    console.log(email)
-    console.log(phoneNumber)
-    // console.log(currentPassword)
-    // console.log(newPassword)
-    console.log(type)
 
 
     let userRequest = {
         "type" : type,
         "name": name,
         "phone_number" :phoneNumber,
-        "email" : email
-    }
-
-    console.log(userRequest)
+        "email" : (email == localStorage.getItem('email'))  ? null : email,
+        "password" : (password == repeatPassword) ? repeatPassword : null
+    } 
 
     let data = updateUser(userRequest , localStorage.getItem('user-id'))
 
     data.then(data =>{
     
-        if(data['status'] == "SUCCESS"){
+        if(data['status'] == "SUCCESS" ){
+
+            localStorage.setItem('email', email)
 
             let divPopUp = document.querySelector('.modal-content')
             divPopUp.innerHTML = `
