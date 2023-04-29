@@ -11,29 +11,31 @@
 </head>
 <body id="feed">
     <section class="mobile-container">
-
         <header class="feed-header" id="header-feed">
             <div class="feed-header-hipet">
                 <img id="logo" src="../../src/pata-de-animal.png">
                 <p class="title">HiPet</p>
             </div>
-
         </header>
+
         <div class="feed-header-filters">
             <div class="feed-header-filters-search"> <img src="../../src/search.svg">  <input placeholder="Pesquisar ...."> </div>
-
-            <button id="filter-by-dog" class="feed-header-filters-button subtitle dog "> 
+             <button id="filter-by-dog" 
+                     class="feed-header-filters-button subtitle filter-dog"
+                     aria-pressed="false"> 
                 <img src="../../src/icon-dog.svg"> Cão
             </button>
 
-            <button  id="filter-by-cat" class="feed-header-filters-button subtitle cat"> 
+            <button id="filter-by-cat" 
+                    class="feed-header-filters-button subtitle filter-cat" 
+                    aria-pressed="false"> 
                 <img src="../../src/icon-cat.svg"> Gato
             </button>
         </div>
 
         <main id="card-container">
+        
         </main>
-    
 	</section>
 
     <footer class="feed-footer footer-container" id="footer-home">
@@ -44,8 +46,8 @@
     </footer>
 
     <script type="module">
-        import {render_animal_cards,
-                filter_by_animal_type } from "../../controllers/post.js"
+        import {renderAnimalCards,
+                filterByAnimalType } from "../../controllers/post.js"
                 
         import{setUserImg} from "../../controllers/user.js"
 
@@ -53,17 +55,15 @@
         document.getElementById('header-feed').innerHTML += `<a href="../user/user_perfil.html?userId=${localStorage.getItem('user-id')}"> <img id="user-img"> </a>`
         document.getElementById('footer-home').innerHTML += `<a href="../user/user_perfil.html?userId=${localStorage.getItem('user-id')}"> <img src="../../src/icon-user.svg"> </a>`
 
-
-
 		verify_login()
         setUserImg(localStorage.getItem('user_img'))
-        render_animal_cards()
-        
-        document.querySelector("#filter-by-dog").addEventListener('click', filter_by_animal_type.bind(null, 'CACHORRO'))
+        renderAnimalCards()
 
-        document.querySelector("#filter-by-cat").addEventListener('click', filter_by_animal_type.bind(null, 'GATO'))
+        const buttonCat =document.querySelector("#filter-by-cat")
+        const buttonDog =document.querySelector("#filter-by-dog")
 
-
+        buttonDog.addEventListener('click', filterByAnimalType.bind(buttonDog, buttonCat, 'CACHORRO'))
+        buttonCat.addEventListener('click', filterByAnimalType.bind(buttonCat, buttonDog, 'GATO'))
 
     </script>
 

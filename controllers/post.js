@@ -1,5 +1,5 @@
 
-import { listPosts, findPostById, createPost, findPostByUserId, findUserById } from '../diplomatic/https_client.js'
+import { listPosts, findPostById, createPost, findPostByUserId, findUserById, listPostsByAnimalType } from '../diplomatic/https_client.js'
 import { buildPost, formatText } from '../utilities/utilities.js'
 
 export function imgCorreta(){
@@ -7,12 +7,28 @@ export function imgCorreta(){
   preview.enable
 }
 
-export function render_animal_cards(){
 
-    let card_container = document.getElementById("card-container")
+function showLoading() {
+    let cardContainer = document.getElementById("card-container")
+    cardContainer.innerHTML = ` <div id="loading" class="loading">
+                                    <div class="spinner"></div>
+                                </div>`
+}
+
+function hideLoading() {
+ let loading = document.getElementById('loading');
+  loading.style.display = 'none';
+} 
+
+export function renderAnimalCards(){
+
+    let cardContainer = document.getElementById("card-container")
+    showLoading()
 
     let data = listPosts()
     data.then(data =>{
+        
+        hideLoading() 
 
         if(data['status'] == "SUCCESS"){
 
@@ -20,7 +36,7 @@ export function render_animal_cards(){
 
             for (let  i = 0; i < posts.length; i++){
                 let post = buildPost(posts[i])           
-                card_container.innerHTML += post;
+                cardContainer.innerHTML += post;
             }
             
         }else{
@@ -29,36 +45,50 @@ export function render_animal_cards(){
     })
 }
 
-export function filter_by_animal_type(animal_type){
+export function filterByAnimalType(otherButton, animalType){
 
-    let card_container = document.getElementById("card-container")
+    showLoading()
 
-    let data = listPosts()
+    let cardContainer = document.getElementById("card-container");
+    let thisAriaPressed = this.getAttribute('aria-pressed');
 
-    data.then(data =>{
+    if (thisAriaPressed === 'false') {
 
-        if(data['status'] == "SUCCESS"){
+        this.style.backgroundColor = '#eb7b86';
+        this.style.backgroundColor = '#eb7b86';
+        this.setAttribute('aria-pressed', 'true');
+        otherButton.setAttribute('aria-pressed', 'false');
+        otherButton.style.backgroundColor = 'white';
 
-            let posts = data['posts']
-            
-            card_container.innerHTML = "";
+        let data = listPostsByAnimalType(animalType)
+
+        data.then(data =>{
+
+            if(data['status'] == "SUCCESS"){
+                hideLoading()
+
+                let posts = data['posts']
                 
-            for (let  i = 0; i < posts.length; i++){
-    
-                let type = posts[i].animal.type
-
-                if (type == animal_type.toString()){
+                cardContainer.innerHTML = "";
+                    
+                for (let  i = 0; i < posts.length; i++){
 
                     let post = buildPost(posts[i])
-                        
-                    card_container.innerHTML += post;
+                    cardContainer.innerHTML += post;
+                    
                 }
+                
+            }else{
+                console.log(data)
             }
-            
-        }else{
-            console.log(data)
-        }
-    })
+        })
+
+    } else {
+        this.setAttribute('aria-pressed', 'false');
+        this.style.backgroundColor = 'white';
+
+        renderAnimalCards()
+    }
 }
 
 export function getPostDetails(){
@@ -236,7 +266,7 @@ export function getUserPosts(){
     const userId = urlParams.get('userId');
 
     let data = findPostByUserId(userId);
-    let card_container = document.getElementById("card-container")
+    let cardContainer = document.getElementById("card-container")
 
     data.then(data => {
         if(data['status'] == "SUCCESS"){
@@ -245,7 +275,7 @@ export function getUserPosts(){
             for (let  i = 0; i < posts.length; i++){
        
                 let post = buildPost(posts[i])           
-                card_container.innerHTML += post;
+                cardContainer.innerHTML += post;
             }
             
         }else{
