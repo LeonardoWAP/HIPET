@@ -682,20 +682,9 @@ body{
 
 .filter-cat{
     color:var(--text-blue);
-    /* background-color: var(--background-blue); */
     background-color: white;
     border: none ;
 }
-
-/* Quando o botão é pressionado, a cor de fundo do elemento é vermelha */
-/* button[aria-pressed="false"]{
-    background-color: white !important;
-}
-  
-.btn-primary[aria-pressed="true"]:not(.disabled):not([disabled]) {
-    background-color: red  !important;
-  } */
-
 
 
 .feed-footer{
