@@ -21,7 +21,22 @@
             
 		</form>
 
-        <button class="button-purple" id="submitButton">Salvar alterações</button>
+		<button class="button-purple" 
+		id="buttonUpdateUser"
+		data-bs-target="#popUpadateUser"
+		data-bs-toggle="modal" >Salvar Alterações</button>
+</section>
+
+<div class="modal fade"
+	id="popUpadateUser" 
+	tabindex="-1" 
+	aria-labelledby="popUpadateUserLabel" 
+	aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" >
+		<div class="modal-content">
+		</div>
+	</div>
+</div>
 
 		<p class="footer-register"> <a href="../post/feed.html" >Mudei de ideia</a> </p>
 	</section>
@@ -32,8 +47,8 @@
 		import {info_elements , editUser} from "../../controllers/user_edit_info.js"
 
 		info_elements(localStorage.getItem('user-id'))
-
-		document.querySelector("#submitButton").addEventListener('click', editUser )
+		
+		document.querySelector("#buttonUpdateUser").addEventListener('click', editUser )
     </script>
 </body>
 </html>

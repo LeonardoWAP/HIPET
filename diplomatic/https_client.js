@@ -20,9 +20,8 @@ export function loginUser(userRequest){
     
 }
 
-export function updateUser(userRequest){
-  
-  return fetch(baseUrl+'user/update/'+userRequest.userId,{
+export function updateUser(userRequest , userId){
+  return fetch(baseUrl+'user/update/'+userId,{
     method: "PUT",
     body: JSON.stringify(userRequest),
     headers: {"Content-type": "application/json; charset=UTF-8"}

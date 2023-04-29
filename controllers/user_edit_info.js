@@ -1,4 +1,4 @@
-import {findPostById, findUserById } from '../diplomatic/https_client.js'
+import {findPostById, findUserById , updateUser } from '../diplomatic/https_client.js'
 
 export function info_elements(userId){
 
@@ -38,7 +38,7 @@ export function info_elements(userId){
             </div>
 
 			<div class="create-post-form-input form-floating register-form-input" >
-                <input type="text" id="cpf" name="cpf" class="form-control" placeholder="cpf" disabled readonly value= ${cpf}}>
+                <input type="text" id="cpf" name="cpf" class="form-control" placeholder="cpf" disabled readonly value= ${cpf}>
                 <label for="cpf">CPF</label>
             </div>
 
@@ -63,20 +63,48 @@ export function editUser(){
     var phoneNumber = document.getElementById("phoneNumber").value
     var currentPassword = document.getElementById("currentPassword").value
     var newPassword = document.getElementById("newPassword").value
+    var type = localStorage.getItem("user_type")
 
     console.log(name)
     console.log(email)
     console.log(phoneNumber)
-    console.log(currentPassword)
-    console.log(newPassword)
+    // console.log(currentPassword)
+    // console.log(newPassword)
+    console.log(type)
 
 
     let userRequest = {
-        "id": localStorage.getItem('user-id'),
+        "type" : type,
         "name": name,
-        "email" : email,
-        "phone_number" :phoneNumber
+        "phone_number" :phoneNumber,
+        "email" : email
     }
 
     console.log(userRequest)
+
+    let data = updateUser(userRequest , localStorage.getItem('user-id'))
+
+    data.then(data =>{
+    
+        if(data['status'] == "SUCCESS"){
+
+            let divPopUp = document.querySelector('.modal-content')
+            divPopUp.innerHTML = `
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="popUpCadastroLabel">Usuario Editado com Sucesso</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Seu perfil foi editado, clique no botão abaixo para visualizá-lo :)
+                        </div>
+                        <div class="modal-footer">
+                            
+                       <a href='/screens/user/user_perfil.html' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Aplicar</button>
+                       </a>
+                        </div>`
+        }else{            
+            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+            popoverTriggerList.map(function (popoverTriggerEl) {
+                return new bootstrap.Popover(popoverTriggerEl)
+            })}})
 }
