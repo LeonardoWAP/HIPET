@@ -9,42 +9,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>HIPET</title>
 </head>
-<body class="post-details">
-    <section class="mobile-container">
-        <header class="post-details-header"> 
-           <a href="feed.html">  <img src="../../src/left-arrow.svg"> </a>
-           <a href="feed.html">  <img src="../../src/share.svg">  </a>
-        </header>
+<body>
+    <section class="mobile-container post-details">
+    
+        <div id="post-details-card-img">
+                <a href="feed.html">  <img src="../../src/left-arrow.svg"> </a>
+                <a href="feed.html">  <img src="../../src/share.svg">  </a>
+        </div>
+    
+        <article class="post-details-card-info">
+            <div id="post-details-card-info-header"></div>
 
-        <main class="post-details-card">
-            <div id="post-details-card-img">
+            <div id="post-details-card-info-tags"></div>
+
+            <div id="post-details-card-info-resume">
+                <h2 class="title"> Resumo </h2>
             </div>
-        
-            <article class="post-details-card-info">
-                <div id="post-details-card-info-header"></div>
+        </article>
 
-                <div id="post-details-card-info-tags"></div>
 
-                <div id="post-details-card-info-resume">
-                    <h2 class="title"> Resumo </h2>
-                </div>
-            </article>
-
-        </main>
-
-        <footer class="post-details-footer footer-container">
-        
-                <div class="post-details-footer-user-information">
-                    <img class="icon-user" src="../../src/user.svg">
-                        <p class="title"> Caolidario</p>
-                    </div>
+        <footer class="post-details-footer footer-container" id="post-details-user-footer">
                     
-                    <div class="post-details-footer-user-actions">
-                        <img src="../../src/icon-whatsapp.svg">
-                        <img src="../../src/icon-report.svg">
-        
-                    </div>
-
         </footer>
 
         
@@ -52,11 +37,9 @@
 
     <script type="module">
         import { getPostDetails } from "../../controllers/post.js"
-
         import { verify_login } from "../../controllers/login.js"
 
 		verify_login()
-
         getPostDetails()
    
     </script>

@@ -12,12 +12,11 @@
 <body id="feed">
     <section class="mobile-container">
 
-        <header class="feed-header">
+        <header class="feed-header" id="header-feed">
             <div class="feed-header-hipet">
                 <img id="logo" src="../../src/pata-de-animal.png">
                 <p class="title">HiPet</p>
             </div>
-            <img class="feed-header-user" src="../../src/user-img.jpg">
 
         </header>
         <div class="feed-header-filters">
@@ -37,30 +36,34 @@
     
 	</section>
 
-    <footer class="feed-footer footer-container">
+    <footer class="feed-footer footer-container" id="footer-home">
 
         <a  href="../post/feed.html"> <img src="../../src/icon-home.svg"> </a>
         <a href="../post/create_post.html"> <img src="../../src/icon-new-post.svg"> </a>
-        <a href="../user/user_perfil.html"> <img src="../../src/icon-user.svg"> </a>
 
     </footer>
 
     <script type="module">
         import {render_animal_cards,
                 filter_by_animal_type } from "../../controllers/post.js"
-                       
-        import{
-            set_nickname
-        } from "../../controllers/user_info.js"
+                
+        import{setUserImg} from "../../controllers/user.js"
 
         import {verify_login } from "../../controllers/login.js"
+        document.getElementById('header-feed').innerHTML += `<a href="../user/user_perfil.html?userId=${localStorage.getItem('user-id')}"> <img id="user-img"> </a>`
+        document.getElementById('footer-home').innerHTML += `<a href="../user/user_perfil.html?userId=${localStorage.getItem('user-id')}"> <img src="../../src/icon-user.svg"> </a>`
+
+
 
 		verify_login()
+        setUserImg(localStorage.getItem('user_img'))
         render_animal_cards()
         
-     document.querySelector("#filter-by-dog").addEventListener('click', filter_by_animal_type.bind(null, 'CACHORRO'))
+        document.querySelector("#filter-by-dog").addEventListener('click', filter_by_animal_type.bind(null, 'CACHORRO'))
 
-     document.querySelector("#filter-by-cat").addEventListener('click', filter_by_animal_type.bind(null, 'GATO'))
+        document.querySelector("#filter-by-cat").addEventListener('click', filter_by_animal_type.bind(null, 'GATO'))
+
+
 
     </script>
 

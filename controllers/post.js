@@ -1,17 +1,10 @@
 
-import { listPosts, findPostById, createPost, findPostByUserId } from '../diplomatic/https_client.js'
-import { modalRegisteFailed, buildPost, formatText } from '../utilities/utilities.js'
-
-export function set_nickname(){
-    let user_name = document.getElementById("feed-nickname")
-    
-    user_name.innerHTML =  localStorage.getItem('nickname');         
-}
+import { listPosts, findPostById, createPost, findPostByUserId, findUserById } from '../diplomatic/https_client.js'
+import { buildPost, formatText } from '../utilities/utilities.js'
 
 export function imgCorreta(){
   let preview= document.querySelector("#preview") 
   preview.enable
-
 }
 
 export function render_animal_cards(){
@@ -53,7 +46,6 @@ export function filter_by_animal_type(animal_type){
             for (let  i = 0; i < posts.length; i++){
     
                 let type = posts[i].animal.type
-                console.log(type)
 
                 if (type == animal_type.toString()){
 
@@ -77,29 +69,50 @@ export function getPostDetails(){
     let data = findPostById(postId)
 
     let post_header = document.getElementById("post-details-card-info-header")
+    let post_footer = document.getElementById("post-details-user-footer")
+
     let post_tags = document.getElementById("post-details-card-info-tags")
     let post_details = document.getElementById("post-details-card-info-resume")
     let post_img = document.getElementById("post-details-card-img")
+
     data.then(data =>{
 
         if(data['status'] == "SUCCESS"){
 
             let post = data['post'];
             let animalName = post.animal.name
-            let animalSex = post.animal.sex
+            let animalSex = formatText(post.animal.sex)
             let animalAge = (post.animal.age != undefined) ? post.animal.age : "?"   
             let animalState = post.state
             let picture = post.picture
-            animalSex = formatText(animalSex);
+            let nickname = post.user.nickname
+            let userImg = ( post.user.picture != undefined) ? `data:image/png;base64,${post.user.picture}` : "../../src/user.svg"
 
-           post_img.innerHTML = `<img src="data:image/png;base64,${picture}">`
-            
-            post_header.innerHTML = `<h1 class="title"> ${animalName}</h1>
-                                    <p class="subtitle"> ${animalSex}, ${animalAge} anos </p>
+           post_img.style.backgroundImage = `url('data:image/png;base64,${picture}')`;
+
+           post_footer.innerHTML = `<a class="post-details-footer-user-information" 
+                                        href="../user/user_perfil.html?userId=${post.user.id}"> 
+                                       
+                                        <img id="user-img" src=${userImg}>
+                                        <p class="title" id="user-nickname">${nickname}</p>
+                                        
+                                    </a>
+                                    
+                                    <div class="post-details-footer-user-actions">
+                                        <img src="../../src/icon-whatsapp.svg">
+                                        <img src="../../src/icon-report.svg">
+                                    </div>`
+
+
+            post_header.innerHTML = `<h1 class="title animalName"> ${animalName}</h1>
+                                    <p class="post-details-subtitle animalInfo"> ${animalSex}, ${animalAge} anos </p>
                                     <img src="../../src/maps-and-flags.svg">
-                                    <p class="subtitle"> ${animalState}</p>`;
+                                    <p class="animalState post-localization"> ${animalState} </p>`;
 
-            post_details.innerHTML +=  `<p class="subtitle">${post.description}</p> `
+            post_details.innerHTML +=  `<div class="subtitle post-details-text-about"> 
+                                            <p >${post.description}</p>
+                                        </div> `
+
 
             let animalColor = post.animal.color
             let animalCastreated = post.animal.health_info.castreated
@@ -110,12 +123,12 @@ export function getPostDetails(){
             post_tags.innerHTML += `<div class="animal-tag animal-color"> 
                                     <img src="../../src/icon-color.svg"> 
                                     <p>${formatText(animalColor)}</p>
-                                    </div>` ;
+                                    </div>`;
 
             post_tags.innerHTML += `<div class="animal-tag animal-size"> 
                                         <img src="../../src/icon-size.svg"> 
                                         <p>${formatText(animalSize)}</p>
-                                    </div>`
+                                    </div>`;
 
             if(animalSpacialCare) {
                 post_tags.innerHTML += `<div class="animal-tag animal-health"> 
@@ -135,9 +148,8 @@ export function getPostDetails(){
                 post_tags.innerHTML += ` <div class="animal-tag animal-castrated"> 
                                             <img src="../../src/icon-castrated.svg"> 
                                             <p>Castrado</p>
-                                        </div>`
+                                        </div>`;
             }
-
 
         }else{
             console.log(data)
@@ -179,9 +191,10 @@ export function createNewPost(){
                 "name": animalName,
                 "color": animalColor,
                 "size": animalSize,
+                "age" : animalAge,
                 "type": (animalTypeDog  ? "CACHORRO" : "GATO"),
                 "sex": (animalSexFemea  ? "FEMEA" : "MACHO"),
-                "share_url": "../../src/cat-leia.png",
+                "share_url": "",
                 "health_info": {
                     "vaccinated": vacinnated,
                     "castreated": castreated,
@@ -219,15 +232,14 @@ export function createNewPost(){
 
 export function getUserPosts(){
 
-    let userId = localStorage.getItem('user-id');
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('userId');
 
     let data = findPostByUserId(userId);
-
     let card_container = document.getElementById("card-container")
 
     data.then(data => {
         if(data['status'] == "SUCCESS"){
-
             let posts = data['posts'] 
             
             for (let  i = 0; i < posts.length; i++){
@@ -240,5 +252,6 @@ export function getUserPosts(){
             console.log(data)
         }
     })
+
 
 }
