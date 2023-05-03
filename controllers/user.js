@@ -132,11 +132,11 @@ export function copiarUrl() {
   
     const copyUrlButton = document.getElementById('copy-url-button');
     copyUrlButton.removeEventListener('click', copiarUrl);
-  }
+}
   
 export function setUserImg(img){
     let userImg = document.getElementById("user-img")
-    userImg.src = ( img != undefined) ? `data:image/png;base64,${localStorage.getItem('user_img')}` : "../../src/user.svg"
+    userImg.src = ( img != undefined) ? `${localStorage.getItem('user_img')}` : "../../src/user.svg"
 }
   
 function setOngTag(){

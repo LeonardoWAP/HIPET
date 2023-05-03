@@ -32,7 +32,11 @@ export const donationTag = `<a class="user-tag donation"
                                 <img src="../../src/donation.svg"> 
                                 <p class="subtitle">Quero fazer uma doação</p> </a> `
 
-export const logout =  `<button id="logout-button" type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+export const logout =  `<button id="logout-button" 
+                                type="button" 
+                                class="btn btn-primary" 
+                                data-bs-toggle="modal" 
+                                data-bs-target="#logoutModal">
                             <svg id="logout" xmlns="http://www.w3.org/2000/svg" 
                             fill="currentColor" 
                             class="bi bi-box-arrow-right" 
@@ -67,7 +71,10 @@ export function buildPost(post){
     let type = post.animal.type   
     let localization = post.state 
     let userName = post.user.nickname
-    let userImg = (post.user.picture != undefined) ? `data:image/png;base64,${post.user.picture}` : "../../src/user.svg"
+    let userImg = (post.user.picture != undefined) ? `data:image/png;base64,${post.user.picture}` :  `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
+    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
+    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
+  </svg>`
 
    return ` <a class="post-animal-link" href="post_details.html?postId=${postId}">
                 <article class="post-animal">
@@ -99,3 +106,41 @@ export function buildPost(post){
              </a> `
 }
 
+export function showLoading(element) {
+    element.innerHTML += ` <div id="loading" class="loading">
+                                    <div class="spinner"></div>
+                                </div>`
+}
+
+export function hideLoading() {
+ let loading = document.getElementById('loading');
+  loading.style.display = 'none';
+} 
+
+export const reportWithoutReason = `<p id="report-error"> ** selecione o motivo da sua denuncia</p>`
+
+export const  reportConfirmation =` <div id="report-confirmation"> 
+                                        <p class="title"> Você tem certeza que deseja prosseguir com a denuncia? Essa ação é definitiva e não poderá ser desfeita</p>
+                                        
+                                    </div>
+                                    <div class="modal-footer" id="buttonCreateReport">
+                                        <button type="button" 
+                                            class="btn btn-primary report-btn" 
+                                            id="createReport"
+                                        > Confirmar Denuncia</button>
+                                    </div>`
+export const reportSucceeded = `<div id="report-confirmation"> <p class="title"> Criado com sucesso!</p> </div>
+                                    <div class="modal-footer">
+                                    <button type="button" 
+                                            class="btn btn-primary report-btn-success" 
+                                            id="createReport"
+                                        > Ok</button>
+                                    </div>`
+
+export const reportFailed = `<p class="title"> Não fpi possível criar </p>
+                                <div class="modal-footer">
+                                <button type="button" 
+                                        class="btn btn-primary report-btn" 
+                                        id="createReport"
+                                    > Ok</button>
+                                </div>`

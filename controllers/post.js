@@ -1,29 +1,15 @@
-
-import { listPosts, findPostById, createPost, findPostByUserId, findUserById, listPostsByAnimalType } from '../diplomatic/https_client.js'
-import { buildPost, formatText } from '../utilities/utilities.js'
+import { listPosts, findPostById, createPost, createReport, findPostByUserId, findUserById, listPostsByAnimalType } from '../diplomatic/https_client.js'
+import { buildPost, formatText, showLoading, hideLoading, reportFailed, reportSucceeded, reportConfirmation, reportWithoutReason } from '../utilities/utilities.js'
 
 export function imgCorreta(){
   let preview= document.querySelector("#preview") 
   preview.enable
 }
 
-
-function showLoading() {
-    let cardContainer = document.getElementById("card-container")
-    cardContainer.innerHTML = ` <div id="loading" class="loading">
-                                    <div class="spinner"></div>
-                                </div>`
-}
-
-function hideLoading() {
- let loading = document.getElementById('loading');
-  loading.style.display = 'none';
-} 
-
 export function renderAnimalCards(){
 
     let cardContainer = document.getElementById("card-container")
-    showLoading()
+    showLoading(cardContainer)
 
     let data = listPosts()
     data.then(data =>{
@@ -47,10 +33,10 @@ export function renderAnimalCards(){
 
 export function filterByAnimalType(otherButton, animalType){
 
-    showLoading()
-
     let cardContainer = document.getElementById("card-container");
     let thisAriaPressed = this.getAttribute('aria-pressed');
+    showLoading(cardContainer)
+
 
     if (thisAriaPressed === 'false') {
 
@@ -99,7 +85,7 @@ export function getPostDetails(){
     let data = findPostById(postId)
 
     let post_header = document.getElementById("post-details-card-info-header")
-    let post_footer = document.getElementById("post-details-user-footer")
+    let post_footer = document.getElementById("post-details-user-footer-user")
 
     let post_tags = document.getElementById("post-details-card-info-tags")
     let post_details = document.getElementById("post-details-card-info-resume")
@@ -121,17 +107,12 @@ export function getPostDetails(){
            post_img.style.backgroundImage = `url('data:image/png;base64,${picture}')`;
 
            post_footer.innerHTML = `<a class="post-details-footer-user-information" 
-                                        href="../user/user_perfil.html?userId=${post.user.id}"> 
-                                       
-                                        <img id="user-img" src=${userImg}>
-                                        <p class="title" id="user-nickname">${nickname}</p>
+                                            href="../user/user_perfil.html?userId=${post.user.id}"> 
                                         
-                                    </a>
-                                    
-                                    <div class="post-details-footer-user-actions">
-                                        <img src="../../src/icon-whatsapp.svg">
-                                        <img src="../../src/icon-report.svg">
-                                    </div>`
+                                            <img id="user-img" src=${userImg}>
+                                            <p class="title" id="user-nickname">${nickname}</p>
+                                                                        
+                                    </a>`
 
 
             post_header.innerHTML = `<h1 class="title animalName"> ${animalName}</h1>
@@ -185,6 +166,54 @@ export function getPostDetails(){
             console.log(data)
         }
     })
+}
+
+export function reportPost(){
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('postId');
+
+    const reason = document.getElementById("report-reason").value;
+    const mensagem = document.getElementById("report-mensagem").value;
+    const modalError = document.getElementById("report-modal-reason-error");
+    const reportModal = document.getElementById("report-modal-info");
+    const modalContent = document.getElementById("report-modal");
+
+    const reportRequest = {
+        "post_id": postId, 
+        "reason": reason,
+        "description": mensagem
+    }
+
+    if(reportRequest.reason == "Selecione"){
+        modalError.innerHTML = reportWithoutReason;
+    }else{
+
+        reportModal.innerHTML = reportConfirmation; 
+
+        const createReportButton = document.getElementById('createReport');
+
+
+        createReportButton.addEventListener('click', () => {
+
+            let data = createReport(reportRequest);
+            showLoading(createReportButton)
+
+            data.then(data => {
+                if(data['status'] == "SUCCESS"){
+                    hideLoading()
+                    
+                    reportModal.innerHTML = reportSucceeded;
+                    modalContent.style.backgroundColor = "#D6F9C8";
+                    
+                }else{
+                    console.log(data)
+                    reportModal.innerHTML = reportFailed;
+                }
+            })
+        });
+
+    }
 }
 
 export function createNewPost(){
@@ -243,7 +272,11 @@ export function createNewPost(){
                 divPopUp.innerHTML = `
                             <div class="modal-header">
                                 <h5 class="modal-title" id="popUpCadastroLabel">Post Criado com Sucesso!</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                <button 
+                                    type="button" 
+                                    class="btn-close" 
+                                    data-bs-dismiss="modal" 
+                                    aria-label="Close"></button>
                             </div>
                             <div class="modal-body">
                                 Seu post foi publicado, clique no botão abaixo para visualizá-lo :)
