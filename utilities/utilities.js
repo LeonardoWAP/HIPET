@@ -52,13 +52,15 @@ function formatTextAbout(text){
     const limite = Math.floor(text.length * 0.36);
     const parte1 = text.substring(0, limite);
     return parte1
-    
 }
 
 export function formatText(title){
     return title.charAt(0).toUpperCase() + title.slice(1).toLowerCase();
 }
 
+export function setImg(img){
+   return (img != undefined) ? `data:image/png;base64,${post.user.picture}` :  `../../src/user.svg`
+}
 
 export function buildPost(post){
 
@@ -71,15 +73,12 @@ export function buildPost(post){
     let type = post.animal.type   
     let localization = post.state 
     let userName = post.user.nickname
-    let userImg = (post.user.picture != undefined) ? `data:image/png;base64,${post.user.picture}` :  `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-circle" viewBox="0 0 16 16">
-    <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z"/>
-    <path fill-rule="evenodd" d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"/>
-  </svg>`
+    let userImg = (post.user.picture != undefined) ? `data:image/png;base64,${post.user.picture}` :  `../src/user.svg`
 
    return ` <a class="post-animal-link" href="post_details.html?postId=${postId}">
                 <article class="post-animal">
                     <div class="post-animal-user">
-                        <img class="post-user-img" src="${userImg}">
+                        <img class="post-user-img" src="${setImg(post.user.picture)}">
                         <p class="post-animal-user-nickname">${userName}</p>
                         <img src="../../src/maps-and-flags.svg">
                         <p class="post-localization">${localization}</p>
