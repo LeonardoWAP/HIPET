@@ -14,9 +14,10 @@ export function renderAnimalCards(){
     let data = listPosts()
     data.then(data =>{
         
-        hideLoading() 
-
         if(data['status'] == "SUCCESS"){
+
+            hideLoading() 
+            cardContainer.innerHTML = "";
 
             let posts = data['posts'] 
 

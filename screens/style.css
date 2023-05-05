@@ -129,7 +129,7 @@ body{
 }
 
 .post-animal-user{
-    width: 100%;
+    width: calc(100% - 24px);
     background-color: var(--white);
 
     display: grid;
@@ -607,9 +607,8 @@ body{
     margin-bottom: 50px;
 }
 
-
 .feed-header {
-    width: 100%;
+    width: calc(100% - 44px);
     height: 69px;
     display: flex;
     flex-direction:row;
