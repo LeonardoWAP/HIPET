@@ -1076,10 +1076,23 @@ body{
 }
 #mudei-ideia{
     display: flex;
-    width: 80%;
+    width: 100%;
     align-items: center;
     justify-content: center;
 }
+.edit-form{
+    gap: 15px;
+    height: auto;
+    width: 80%;
+}
+.input-large-edit{
+    width: 90%;
+}
+.input-short-edit{
+    width: 43%;
+}
+
+
 
 /************************* Create Post *********************************************/
 
@@ -1267,7 +1280,8 @@ body{
 }
 
 .edit{
-    width: 30%;
+
+    width: 35%;
     color: var(--purple);
     background-color: var(--background-purple);
 }

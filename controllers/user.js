@@ -24,39 +24,40 @@ export function info_elements(userId){
         }
 
         let qualquercoisa= ` 
-        <div class="form-floating register-form input-large">
-            <input type="text" class="form-control title" id="name" placeholder="Nome" value="${name}" > 
-            <label for="name">Nome</label>
-        </div>
+            <div class="form-floating  input-large-edit">
+                <input type="text" class="form-control title" id="name" placeholder="Nome" value="${name}" > 
+                <label for="name">Nome</label>
+            </div>
 
-			<div class=" form-floating register-form input-large" >
+			<div class=" form-floating  input-large-edit" >
                 <input type="text" class="form-control" id="userName" placeholder="Nome de Usuário" value="${nickname}" disabled readonly>
                 <label for="userName">Nickname</label>
             </div>
 
-			<div class=" form-floating register-form-input input-large" >
+			<div class=" form-floating  input-large-edit" >
                 <input type="email" class="form-control "  id="email" placeholder="Email" value= ${email}>
                 <label for="email">Email</label>
             </div>
 
-			<div class="form-floating register-form-input" >
+
+			<div class="form-floating input-short-edit" >
                 <input type="text" name="celular" class="form-control" id="phoneNumber" placeholder="telefone" value= ${phoneNumber}>
                 <label for="phoneNumber">Número de Ceular </label>
             </div>
 
-			<div class=" form-floating register-form-input" >
+			<div class=" form-floating input-short-edit" >
                 <input type="text" id="cpf" name="cpf" class="form-control" placeholder="cpf" disabled readonly value= ${cpf}>
                 <label for="cpf">CPF</label>
             </div>
 
             ${vakinhaInput}
 
-			<div class=" form-floating register-form-input input-large" >
+			<div class=" form-floating  input-large-edit" >
                 <input type="password" class="form-control"  id="newPassword" placeholder="password" >
                 <label for="newPassword">Nova senha</label>
             </div>
 
-            <div class="form-floating register-form-input input-large" >
+            <div class="form-floating  input-large-edit" >
                 <input type="password" class="form-control"  id="reapetPassword" placeholder="password" >
                 <label for="reapetPassword">Repita Nova senha</label>
             </div>
