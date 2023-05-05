@@ -1238,7 +1238,7 @@ body{
 }
 
 .edit{
-    width: 40%;
+    width: 35%;
     color: var(--purple);
     background-color: var(--background-purple);
 }
