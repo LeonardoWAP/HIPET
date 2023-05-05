@@ -1,5 +1,5 @@
-import {findPostById, findUserById , updateUser } from '../diplomatic/https_client.js'
-import { buildPost, formatText, donationTag, logout} from '../utilities/utilities.js'
+import {findPostById, findUserById , updateUser, findUserByNickname} from '../diplomatic/https_client.js'
+import { buildPost, formatText, donationTag, logout, setImg} from '../utilities/utilities.js'
 
 export function info_elements(userId){
 
@@ -181,4 +181,22 @@ export function setUserData(){
 export function realizarLogout(){
     localStorage.clear();
     window.location.href = "../login/login.html";
+}
+
+export function searchUser(nickname){
+
+    let data = findUserByNickname(nickname)
+
+    data.then(data =>{
+        if(data['status'] == 'SUCCESS'){
+            const user = data.user
+
+            document.getElementById("user-by-search").innerHTML = ` <div>
+                                                                    <img class="post-user-img" src="${setImg(user.picture)}">
+                                                                    <p class="post-animal-user-nickname">${user.nickname}</p>
+                                                                    </div>`
+            
+        }
+    })
+
 }

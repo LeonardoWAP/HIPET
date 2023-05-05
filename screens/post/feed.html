@@ -16,13 +16,18 @@
                 <img id="logo" src="../../src/pata-de-animal.png">
                 <p class="title">HiPet</p>
             </div>
+            
         </header>
 
         <div class="feed-header-filters">
-            <div class="feed-header-filters-search"> <img src="../../src/search.svg">  <input placeholder="Pesquisar ...."> </div>
-             <button id="filter-by-dog" 
-                     class="feed-header-filters-button subtitle filter-dog"
-                     aria-pressed="false"> 
+            <div class="feed-header-filters-search"> 
+                <button id="search-button"> <img src="../../src/search.svg"> </button>
+                <input id="search-input" placeholder="Pesquisar por nickname.... "> 
+            </div>
+
+            <button id="filter-by-dog" 
+                    class="feed-header-filters-button subtitle filter-dog"
+                    aria-pressed="false"> 
                 <img src="../../src/icon-dog.svg"> Cão
             </button>
 
@@ -31,6 +36,10 @@
                     aria-pressed="false"> 
                 <img src="../../src/icon-cat.svg"> Gato
             </button>
+
+        </div>
+
+        <div id="user-by-search">
         </div>
 
         <main id="card-container">
@@ -49,7 +58,7 @@
         import {renderAnimalCards,
                 filterByAnimalType } from "../../controllers/post.js"
                 
-        import{setUserImg} from "../../controllers/user.js"
+        import{setUserImg, searchUser} from "../../controllers/user.js"
 
         import {verify_login } from "../../controllers/login.js"
         document.getElementById('header-feed').innerHTML += `<a href="../user/user_perfil.html?userId=${localStorage.getItem('user-id')}"> <img id="user-img"> </a>`
@@ -64,6 +73,19 @@
 
         buttonDog.addEventListener('click', filterByAnimalType.bind(buttonDog, buttonCat, 'CACHORRO'))
         buttonCat.addEventListener('click', filterByAnimalType.bind(buttonCat, buttonDog, 'GATO'))
+
+        const searchInput = document.getElementById('search-input');
+        const searchButton = document.getElementById('search-button');
+
+        searchInput.addEventListener('keydown', (event) =>{
+            if(event.key == 'Enter'){
+                searchUser(searchInput.value)
+            }
+        })
+
+        searchButton.addEventListener('click', (event) => {
+            searchUser(searchInput.value)
+        });
 
     </script>
 

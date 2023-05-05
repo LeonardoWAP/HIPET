@@ -736,6 +736,34 @@ body{
 .feed-footer img{
     cursor: pointer;
 }
+
+#search-button{
+    border: none;
+    background: none;
+}
+
+#user-by-search{
+    height: auto;
+    background-color: var(--backgorund);
+
+    width: calc(85% - 24px);
+    padding: 12px;
+    align-items: center;
+
+}
+
+#user-by-search div{
+    border-top: solid 0.5px #e5e5e5;
+    border-bottom: solid 0.5px #e5e5e5; 
+    width: 100%;
+    
+    display: flex;
+    flex-direction: row;
+    gap: 25px; 
+    padding: 15px;
+    margin-top: -30px;
+}
+
 /*********************** end feed **********************************/
 
 
@@ -1194,7 +1222,8 @@ body{
     margin-bottom: 15px;
     gap: 15px;
     justify-content: space-between;
-    width: 100%;
+    padding: 0px 12px;
+    width: calc(100% - 24px);
 }
 
 .user-header-info{
@@ -1230,7 +1259,7 @@ body{
 }
 
 .share{
-    width: 56%;
+    width: 40%;
     background-color: var(--background-purple);
 }
 .share p{
@@ -1238,7 +1267,7 @@ body{
 }
 
 .edit{
-    width: 40%;
+    width: 30%;
     color: var(--purple);
     background-color: var(--background-purple);
 }

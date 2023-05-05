@@ -177,3 +177,19 @@ export function findUserById(userId){
 .catch(err => {return err})    
 }
 
+export function findUserByNickname(nickname){
+  return fetch (baseUrl+ 'user/find-by-nickname/'+ nickname,{
+    method: "GET",
+    headers: {"Content-type": "application/json; charset=UTF-8"}
+  })
+  .then(response =>{
+    if(response.status === 200){
+        return response.json()
+    }else{
+        throw new Error(response.status)
+    }
+  }) 
+  .then(json => {return json})
+  .catch(err => {return err})    
+}
+

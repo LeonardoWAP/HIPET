@@ -44,9 +44,35 @@ export const logout =  `<button id="logout-button"
                             <path fill-rule="evenodd" d="M10 12.5a.5.5 0 0 1-.5.5h-8a.5.5 0 0 1-.5-.5v-9a.5.5 0 0 1 .5-.5h8a.5.5 0 0 1 .5.5v2a.5.5 0 0 0 1 0v-2A1.5 1.5 0 0 0 9.5 2h-8A1.5 1.5 0 0 0 0 3.5v9A1.5 1.5 0 0 0 1.5 14h8a1.5 1.5 0 0 0 1.5-1.5v-2a.5.5 0 0 0-1 0v2z"/>
                             <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
                             </svg>
-                        </button>
+                        </button>`
+                        
+export const reportWithoutReason = `<p id="report-error"> ** selecione o motivo da sua denuncia</p>`
 
-                        `
+export const  reportConfirmation =` <div id="report-confirmation"> 
+                                        <p class="title"> Você tem certeza que deseja prosseguir com a denuncia? Essa ação é definitiva e não poderá ser desfeita</p>
+                                        
+                                    </div>
+                                    <div class="modal-footer" id="buttonCreateReport">
+                                        <button type="button" 
+                                            class="btn btn-primary report-btn" 
+                                            id="createReport"
+                                        > Confirmar Denuncia</button>
+                                    </div>`
+export const reportSucceeded = `<div id="report-confirmation"> <p class="title"> Criado com sucesso!</p> </div>
+                                    <div class="modal-footer">
+                                    <button type="button" 
+                                            class="btn btn-primary report-btn-success" 
+                                            id="createReport"
+                                        > Ok</button>
+                                    </div>`
+
+export const reportFailed = `<p class="title"> Não fpi possível criar </p>
+                                <div class="modal-footer">
+                                <button type="button" 
+                                        class="btn btn-primary report-btn" 
+                                        id="createReport"
+                                    > Ok</button>
+                                </div>`
 
 function formatTextAbout(text){
     const limite = Math.floor(text.length * 0.36);
@@ -114,31 +140,3 @@ export function hideLoading() {
  let loading = document.getElementById('loading');
   loading.style.display = 'none';
 } 
-
-export const reportWithoutReason = `<p id="report-error"> ** selecione o motivo da sua denuncia</p>`
-
-export const  reportConfirmation =` <div id="report-confirmation"> 
-                                        <p class="title"> Você tem certeza que deseja prosseguir com a denuncia? Essa ação é definitiva e não poderá ser desfeita</p>
-                                        
-                                    </div>
-                                    <div class="modal-footer" id="buttonCreateReport">
-                                        <button type="button" 
-                                            class="btn btn-primary report-btn" 
-                                            id="createReport"
-                                        > Confirmar Denuncia</button>
-                                    </div>`
-export const reportSucceeded = `<div id="report-confirmation"> <p class="title"> Criado com sucesso!</p> </div>
-                                    <div class="modal-footer">
-                                    <button type="button" 
-                                            class="btn btn-primary report-btn-success" 
-                                            id="createReport"
-                                        > Ok</button>
-                                    </div>`
-
-export const reportFailed = `<p class="title"> Não fpi possível criar </p>
-                                <div class="modal-footer">
-                                <button type="button" 
-                                        class="btn btn-primary report-btn" 
-                                        id="createReport"
-                                    > Ok</button>
-                                </div>`
