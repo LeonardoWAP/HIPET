@@ -59,7 +59,7 @@ export function formatText(title){
 }
 
 export function setImg(img){
-   return (img != undefined) ? `data:image/png;base64,${post.user.picture}` :  `../../src/user.svg`
+   return (img != undefined) ? `data:image/png;base64,${img}` :  `../../src/user.svg`
 }
 
 export function buildPost(post){
@@ -73,7 +73,6 @@ export function buildPost(post){
     let type = post.animal.type   
     let localization = post.state 
     let userName = post.user.nickname
-    let userImg = (post.user.picture != undefined) ? `data:image/png;base64,${post.user.picture}` :  `../src/user.svg`
 
    return ` <a class="post-animal-link" href="post_details.html?postId=${postId}">
                 <article class="post-animal">
