@@ -1,4 +1,4 @@
-const baseUrl ='https://us-central1-hipet-67bd6.cloudfunctions.net/hipet/';
+const baseUrl ='https://us-central1-hipet-67bd6.cloudfunctions.net/hipet/api/';
 
 export function loginUser(userRequest){
 

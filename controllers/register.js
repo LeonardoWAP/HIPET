@@ -2,7 +2,6 @@
 import { createUser } from '../diplomatic/https_client.js'
 import { modalRegisteFailed } from '../utilities/utilities.js'
 
-
 export function register_new_pf(){
     let user_name = document.getElementById("inputName").value;
     let user_nickName = document.getElementById("inputNickName").value;
@@ -13,11 +12,44 @@ export function register_new_pf(){
 
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
 
-    reader.onload = () => {
-        const base64Image = reader.result.split(',')[1];
+    if(file != undefined){
+        const reader = new FileReader();
+
+        reader.readAsDataURL(file);
+
+        reader.onload = () => {
+            const base64Image = reader.result.split(',')[1];
+        
+            let _userRequest = {
+                "email": user_email,
+                "password": user_password,
+                "name": user_name,
+                "phone_number": user_phoneNumber,
+                "document": user_document,
+                "nickname": user_nickName,
+                "type": "PERSON",
+                "picture": base64Image
+            }
+
+            let data = createUser(_userRequest);
+            data.then(data =>{
+
+                if(data['status'] == "SUCCESS"){
+                    localStorage.setItem('deslogado', 'sim'); 
+                    window.location.href = "../login/register_created.html";
+        
+                }else{
+                // tratativa de erro
+                console.log(data)
+                    let divPopUp = document.querySelector('.modal-content')
+                    divPopUp.innerHTML = modalRegisteFailed
+                }
+            })
+        }
+
+
+    }else{
 
         let _userRequest = {
             "email": user_email,
@@ -27,28 +59,26 @@ export function register_new_pf(){
             "document": user_document,
             "nickname": user_nickName,
             "type": "PERSON",
-            "picture": base64Image
+            "picture": null
         }
 
-        console.log(_userRequest)
-
         let data = createUser(_userRequest);
-
-
         data.then(data =>{
 
             if(data['status'] == "SUCCESS"){
                 localStorage.setItem('deslogado', 'sim'); 
                 window.location.href = "../login/register_created.html";
-      
+    
             }else{
-               // tratativa de erro
-               console.log(data)
+            // tratativa de erro
+            console.log(data)
                 let divPopUp = document.querySelector('.modal-content')
                 divPopUp.innerHTML = modalRegisteFailed
             }
         })
+
     }
+  
 }
 
 export function register_new_ong(){
@@ -62,39 +92,74 @@ export function register_new_ong(){
 
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
 
-    reader.onload = () => {
-        const base64Image = reader.result.split(',')[1];
+    if(file != undefined){
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
 
+        reader.onload = () => {
+            const base64Image = reader.result.split(',')[1];
+
+
+            let _userRequest = {
+                "type": "ONG", 
+                "name": user_name,
+                "nickname": user_nickName,
+                "email": user_email,
+                "phone_number": user_phoneNumber,
+                "password": user_password,
+                "donation_link": user_url_vakinha,
+                "picture": base64Image
+            }
+
+            let data = createUser(_userRequest);
+
+            data.then(data =>{
+                
+                if(data['status'] == "SUCCESS"){
+
+                    localStorage.setItem('deslogado', 'sim'); 
+                    window.location.href = "../login/register_created.html";
+        
+                }else{
+                // tratativa de erro
+                    let divPopUp = document.querySelector('.modal-content')
+                    divPopUp.innerHTML = modalRegisteFailed
+                }
+            })
+        }  
+
+    }else{
 
         let _userRequest = {
-            "type": "ONG", 
-            "name": user_name,
-            "nickname": user_nickName,
             "email": user_email,
-            "phone_number": user_phoneNumber,
             "password": user_password,
-            "donation_link": user_url_vakinha,
-            "picture": base64Image
+            "name": user_name,
+            "phone_number": user_phoneNumber,
+            "document": user_document,
+            "nickname": user_nickName,
+            "type": "PERSON",
+            "picture": null
         }
 
         let data = createUser(_userRequest);
-
         data.then(data =>{
-            
-            if(data['status'] == "SUCCESS"){
 
+            if(data['status'] == "SUCCESS"){
                 localStorage.setItem('deslogado', 'sim'); 
                 window.location.href = "../login/register_created.html";
     
             }else{
             // tratativa de erro
+            console.log(data)
                 let divPopUp = document.querySelector('.modal-content')
                 divPopUp.innerHTML = modalRegisteFailed
             }
         })
-    }   
+
+    }
+
+
+     
 }
 
