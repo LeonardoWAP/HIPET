@@ -79,6 +79,7 @@ export function getPostDetails(){
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('postId');
 
+
     let post_header = document.getElementById("post-details-card-info-header")
     let post_footer = document.getElementById("post-details-user-footer-user")
 
@@ -98,9 +99,9 @@ export function getPostDetails(){
                 let animalState = post.state
                 let picture = post.picture
                 let nickname = post.user.nickname
-                let userImg = ( post.user.picture != undefined) ? `data:image/png;base64,${post.user.picture}` : "../../src/user.svg"
+                let userImg = ( post.user.picture != undefined) ? post.user.picture : "../../src/user.svg"
 
-            post_img.style.backgroundImage = `url('data:image/png;base64,${picture}')`;
+            post_img.style.backgroundImage = `url('${picture}')`;
 
             post_footer.innerHTML = `<a class="post-details-footer-user-information" 
                                                 href="../user/user_perfil.html?userId=${post.user.id}"> 

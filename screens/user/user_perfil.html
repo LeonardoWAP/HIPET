@@ -15,7 +15,7 @@
         <header class="user-header">
             <div class="user-header-title" id="userHeader">
                 <div class="user-header-info">
-                    <img id="user-img" >
+                    <img id="user-img">
                     <p class="title"><span id="feed-nickname"></span></p>
                 </div>
                 
@@ -29,10 +29,14 @@
                     
                 </a>
                 <button id="copy-url-button" 
-                        class="user-tag share">
+                        type="button" 
+                        class="user-tag share" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#shareUserModal">
                     <img src="../../src/share-perfil.svg"> 
                     <p   class="subtitle">Compartilhar perfil</p>
                 </button>
+
             </div>
             
         </header>
@@ -40,6 +44,7 @@
         
         <main id="card-container"></main>
     </section>
+
 
     <footer class="feed-footer footer-container">
         <a href="../post/feed.html"> <img src="../../src/icon-home.svg"> </a>
@@ -80,17 +85,44 @@
         </div>
     </div>
 
+    <div class="modal fade" 
+        id="shareUserModal" 
+        tabindex="-1" 
+        aria-labelledby="exampleModalLabel" 
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" 
+                        id="exampleModalLabel">
+                        Link Copiado!
+                    </h1>
+                    <button type="button" 
+                            class="btn-close" 
+                            data-bs-dismiss="modal" 
+                            aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    A url do perfil foi copiada para sua área de Transferência! <br><br>
+                    Cole ela para enviar para quem quiser ver este perfil! 
+                </div>
+            </div>
+
+        </div>
+    </div>
+
 
     <script type="module">
         import {verify_login} from "../../controllers/login.js"
         import {getUserPosts} from "../../controllers/post.js"
-        import {copiarUrl, setUserData, realizarLogout} from "../../controllers/user.js"
+        import {shareUser, setUserData, realizarLogout} from "../../controllers/user.js"
         
         verify_login()
         getUserPosts()
         setUserData()
 		
-        document.querySelector("#copy-url-button").addEventListener('click', copiarUrl)
+        document.querySelector("#copy-url-button").addEventListener('click', shareUser)
         document.querySelector("#logoutUser").addEventListener('click', realizarLogout)
 
     </script>

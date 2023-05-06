@@ -120,16 +120,15 @@ export function setNickname(nickname){
     user_name.innerHTML =  nickname;         
 }
 
-export function copiarUrl() {
-    const url = window.location.href;
+export function shareUser() {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const userPramsId = urlParams.get('userId');
+
+    const url = `https://leonardowap.github.io/HIPET_FrontEnd/screens/user/user_perfil.html?userId=${userPramsId}`;
   
     navigator.clipboard.writeText(url)
-      .then(() => {
-        alert('URL copiada para a área de transferência!');
-      })
-      .catch(() => {
-        alert('Não foi possível copiar a URL');
-      });
+
   
     const copyUrlButton = document.getElementById('copy-url-button');
     copyUrlButton.removeEventListener('click', copiarUrl);
@@ -137,7 +136,7 @@ export function copiarUrl() {
   
 export function setUserImg(img){
     let userImg = document.getElementById("user-img")
-    userImg.src = ( img != undefined) ? `${localStorage.getItem('user_img')}` : "../../src/user.svg"
+    userImg.src = ( img != undefined) ? img : "../../src/user.svg"
 }
   
 function setOngTag(){
@@ -157,7 +156,7 @@ export function setUserData(){
         let data = findUserById(userPramsId);
         data.then(data =>{
             setNickname(data.user.nickname)
-            setUserImg(data.user.pickture)    
+            setUserImg(data.user.picture)    
             if(data.user.type == 'ONG'){
                 setOngTag()
             }        
