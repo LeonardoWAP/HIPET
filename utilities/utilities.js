@@ -89,7 +89,6 @@ export function setImg(img){
 }
 
 export function buildPost(post){
-    console.log(post.user.picture)
 
     let postId = post.id
     let picture = post.picture

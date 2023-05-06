@@ -83,7 +83,7 @@ export function register_new_pf(){
 
 export function register_new_ong(){
     let user_name = document.getElementById("inputName").value;
-    let user_nickName = document.getElementById("inputNickName").value;
+    let user_nickName = document.getElementById("inputNickName").value.toLowerCase();
     let user_email = document.getElementById("inputEmail").value;
     let user_phoneNumber = document.getElementById("inputPhoneNumber").value;
     let user_password = document.getElementById("inputPassword").value;

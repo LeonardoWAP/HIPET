@@ -120,16 +120,15 @@ export function setNickname(nickname){
     user_name.innerHTML =  nickname;         
 }
 
-export function copiarUrl() {
-    const url = window.location.href;
+export function shareUser() {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const userPramsId = urlParams.get('userId');
+
+    const url = `https://leonardowap.github.io/HIPET_FrontEnd/screens/user/user_perfil.html?userId=${userPramsId}`;
   
     navigator.clipboard.writeText(url)
-      .then(() => {
-        alert('URL copiada para a área de transferência!');
-      })
-      .catch(() => {
-        alert('Não foi possível copiar a URL');
-      });
+
   
     const copyUrlButton = document.getElementById('copy-url-button');
     copyUrlButton.removeEventListener('click', copiarUrl);
@@ -137,7 +136,7 @@ export function copiarUrl() {
   
 export function setUserImg(img){
     let userImg = document.getElementById("user-img")
-    userImg.src = ( img != undefined) ? `${localStorage.getItem('user_img')}` : "../../src/user.svg"
+    userImg.src = ( img != undefined) ? img : "../../src/user.svg"
 }
   
 function setOngTag(){
@@ -157,7 +156,7 @@ export function setUserData(){
         let data = findUserById(userPramsId);
         data.then(data =>{
             setNickname(data.user.nickname)
-            setUserImg(data.user.pickture)    
+            setUserImg(data.user.picture)    
             if(data.user.type == 'ONG'){
                 setOngTag()
             }        
@@ -181,28 +180,47 @@ export function realizarLogout(){
     window.location.href = "../login/login.html";
 }
 
-function closeFunction(){
-    console.log('close')
+function adicionarEventoDeEscuta(searchResult) {
+    searchResult.addEventListener('click', (event) => {
+        searchResult.parentNode.remove()
+    });
 }
 
 export function searchUser(nickname){
+    console.log(nickname)
 
-    let data = findUserByNickname(nickname)
-
-    data.then(data =>{
+   findUserByNickname(nickname.toLowerCase())
+    .then(data =>{
         if(data['status'] == 'SUCCESS'){
             const user = data.user
 
-            document.getElementById("feed-search").innerHTML += ` <div id="user-by-search">
-                                                                        <div>
-                                                                            <img class="post-user-img" src="${setImg(user.picture)}">
-                                                                            <p class="post-animal-user-nickname">${user.nickname}</p>
-                                                                        </div>
-                                                                        <img id="close-search" src="../../src/x.svg"
-                                                                        onclick="closeSearch()"
-                                                                    </div>`
             
+        document.getElementById("user-search").innerHTML = ""
+        document.getElementById("user-search").innerHTML = `  <div id="user-by-search">
+                                                                <a class="user-localizated" href="../user/user_perfil.html?userId=${user.id}?">
+                                                                    <img class="post-user-img" src="${setImg(user.picture)}">
+                                                                    <p class="post-animal-user-nickname">${user.nickname}</p>
+                                                                </a>
+                                                                <img id="close-search" src="../../src/x.svg">
+                                                            </div>`
+   
+            const  searchResult = document.getElementById('close-search');
+            adicionarEventoDeEscuta(searchResult)
         }
-    })
+        else{
+            document.getElementById("user-search").innerHTML = ""
+            document.getElementById("user-search").innerHTML = ` <div id="user-by-search">
+                                                                        <div class="user-not-found">
+                                                                            Este usuário não existe na nossa base de dados :(
+                                                                        </div>
+                                                                        <img id="close-search" src="../../src/x.svg">
+                                                                    </div>`
+            const searchResult = document.getElementById('close-search');
+            adicionarEventoDeEscuta(searchResult)
+
+        }
+
+        
+    })  .catch(err => console.error(err)) 
 
 }
