@@ -143,9 +143,6 @@ export function setUserImg(img){
 function setOngTag(){
     let tags = document.getElementById("tags")
     tags.innerHTML += donationTag
-
-    console.log(tags)
-
 }
 
 export function setUserData(){
@@ -184,6 +181,10 @@ export function realizarLogout(){
     window.location.href = "../login/login.html";
 }
 
+function closeFunction(){
+    console.log('close')
+}
+
 export function searchUser(nickname){
 
     let data = findUserByNickname(nickname)
@@ -192,9 +193,13 @@ export function searchUser(nickname){
         if(data['status'] == 'SUCCESS'){
             const user = data.user
 
-            document.getElementById("user-by-search").innerHTML = ` <div>
-                                                                    <img class="post-user-img" src="${setImg(user.picture)}">
-                                                                    <p class="post-animal-user-nickname">${user.nickname}</p>
+            document.getElementById("feed-search").innerHTML += ` <div id="user-by-search">
+                                                                        <div>
+                                                                            <img class="post-user-img" src="${setImg(user.picture)}">
+                                                                            <p class="post-animal-user-nickname">${user.nickname}</p>
+                                                                        </div>
+                                                                        <img id="close-search" src="../../src/x.svg"
+                                                                        onclick="closeSearch()"
                                                                     </div>`
             
         }

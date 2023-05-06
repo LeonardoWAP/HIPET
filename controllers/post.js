@@ -6,7 +6,7 @@ export function imgCorreta(){
   preview.enable
 }
 
-export function renderAnimalCards(){
+export function renderPosts(){
 
     let cardContainer = document.getElementById("card-container")
     showLoading(cardContainer)
@@ -20,6 +20,7 @@ export function renderAnimalCards(){
             cardContainer.innerHTML = "";
 
             let posts = data['posts'] 
+            console.log(posts)
 
             for (let  i = 0; i < posts.length; i++){
                 let post = buildPost(posts[i])           

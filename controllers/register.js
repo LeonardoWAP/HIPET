@@ -4,7 +4,7 @@ import { modalRegisteFailed } from '../utilities/utilities.js'
 
 export function register_new_pf(){
     let user_name = document.getElementById("inputName").value;
-    let user_nickName = document.getElementById("inputNickName").value;
+    let user_nickName = document.getElementById("inputNickName").value.toLowerCase();
     let user_email = document.getElementById("inputEmail").value;
     let user_phoneNumber = document.getElementById("inputPhoneNumber").value;
     let user_document = document.getElementById("inputDocument").value;

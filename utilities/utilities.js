@@ -85,10 +85,11 @@ export function formatText(title){
 }
 
 export function setImg(img){
-   return (img != undefined) ? `data:image/png;base64,${img}` :  `../../src/user.svg`
+   return (img != undefined) ? img :  `../../src/user.svg`
 }
 
 export function buildPost(post){
+    console.log(post.user.picture)
 
     let postId = post.id
     let picture = post.picture
@@ -110,7 +111,7 @@ export function buildPost(post){
                     </div>
 
                     <div class="post-animal-img">
-                        <img id="img-animal" src='data:image/png;base64,${picture}'> 
+                        <img id="img-animal" src='${picture}'> 
                     </div>
                     
                     <div class="post-animal-info">

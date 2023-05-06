@@ -18,28 +18,27 @@
             </div>
             
         </header>
+        <div id="feed-search">
+            <div class="feed-header-filters">
+                <div class="feed-header-filters-search"> 
+                    <button id="search-button"> <img src="../../src/search.svg"> </button>
+                    <input id="search-input" placeholder="Pesquisar por nickname.... "> 
+                </div>
 
-        <div class="feed-header-filters">
-            <div class="feed-header-filters-search"> 
-                <button id="search-button"> <img src="../../src/search.svg"> </button>
-                <input id="search-input" placeholder="Pesquisar por nickname.... "> 
+                <button id="filter-by-dog" 
+                        class="feed-header-filters-button subtitle filter-dog"
+                        aria-pressed="false"> 
+                    <img src="../../src/icon-dog.svg"> Cão
+                </button>
+
+                <button id="filter-by-cat" 
+                        class="feed-header-filters-button subtitle filter-cat" 
+                        aria-pressed="false"> 
+                    <img src="../../src/icon-cat.svg"> Gato
+                </button>
+
             </div>
 
-            <button id="filter-by-dog" 
-                    class="feed-header-filters-button subtitle filter-dog"
-                    aria-pressed="false"> 
-                <img src="../../src/icon-dog.svg"> Cão
-            </button>
-
-            <button id="filter-by-cat" 
-                    class="feed-header-filters-button subtitle filter-cat" 
-                    aria-pressed="false"> 
-                <img src="../../src/icon-cat.svg"> Gato
-            </button>
-
-        </div>
-
-        <div id="user-by-search">
         </div>
 
         <main id="card-container">
@@ -55,18 +54,17 @@
     </footer>
 
     <script type="module">
-        import {renderAnimalCards,
+        import {renderPosts,
                 filterByAnimalType } from "../../controllers/post.js"
-                
-        import{setUserImg, searchUser} from "../../controllers/user.js"
-
+        import {setUserImg, searchUser} from "../../controllers/user.js"
         import {verify_login } from "../../controllers/login.js"
+
         document.getElementById('header-feed').innerHTML += `<a href="../user/user_perfil.html?userId=${localStorage.getItem('user-id')}"> <img id="user-img"> </a>`
         document.getElementById('footer-home').innerHTML += `<a href="../user/user_perfil.html?userId=${localStorage.getItem('user-id')}"> <img src="../../src/icon-user.svg"> </a>`
 
 		verify_login()
         setUserImg(localStorage.getItem('user_img'))
-        renderAnimalCards()
+        renderPosts()
 
         const buttonCat =document.querySelector("#filter-by-cat")
         const buttonDog =document.querySelector("#filter-by-dog")

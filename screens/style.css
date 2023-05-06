@@ -25,6 +25,7 @@
     --text-orage: #9B5C00;
     --text-green: #316C1D;
     --text-gray: #9C9AA4;
+    --text-input: #47454c;
 }
 *, ::after, ::before {
     box-sizing: content-box !important; 
@@ -371,6 +372,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
+    
 }
 
 .button-purple a {
@@ -491,6 +493,19 @@ body{
     font-weight: 600;
     width: 80%;
 }
+
+.link-to-register-user{
+    width: 100%;
+    text-decoration: none;
+}
+
+.link-to-register-user .button-purple{
+    margin: auto;
+}
+
+#register .mobile-container{
+    justify-content: space-around;
+}
 /********************** end register ************************/
 
 
@@ -563,6 +578,10 @@ body{
 
 /********************** register created ***********************/
 
+#register-created .mobile-container{
+    height: 100vh;
+    justify-content: inherit;
+}
 .register-ok-circle{
     width: 90%;
     height: 43%;
@@ -583,6 +602,8 @@ body{
 .register-ok-circle .subtitle{
     font-weight: 600;
 }
+
+
 /********************** end register created ***********************/
 
 
@@ -737,6 +758,12 @@ body{
     cursor: pointer;
 }
 
+#feed-search{
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
 #search-button{
     border: none;
     background: none;
@@ -746,22 +773,26 @@ body{
     height: auto;
     background-color: var(--backgorund);
 
-    width: calc(85% - 24px);
+    width: calc(100% - 24px);
     padding: 12px;
     align-items: center;
 
-}
-
-#user-by-search div{
     border-top: solid 0.5px #e5e5e5;
     border-bottom: solid 0.5px #e5e5e5; 
-    width: 100%;
     
     display: flex;
     flex-direction: row;
-    gap: 25px; 
-    padding: 15px;
-    margin-top: -30px;
+    justify-content: space-between;
+}
+
+#user-by-search div{
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+#close-search{
+    width: 8%;
 }
 
 /*********************** end feed **********************************/
