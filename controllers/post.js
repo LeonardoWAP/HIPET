@@ -20,8 +20,7 @@ export function renderPosts(){
             cardContainer.innerHTML = "";
 
             let posts = data['posts'] 
-            console.log(posts)
-
+            
             for (let  i = 0; i < posts.length; i++){
                 let post = buildPost(posts[i])           
                 cardContainer.innerHTML += post;
@@ -39,18 +38,20 @@ export function filterByAnimalType(otherButton, animalType){
     let thisAriaPressed = this.getAttribute('aria-pressed');
     showLoading(cardContainer)
 
-
     if (thisAriaPressed === 'false') {
 
-        this.style.backgroundColor = '#eb7b86';
-        this.style.backgroundColor = '#eb7b86';
+        if(animalType =="GATO"){
+            this.style.backgroundColor = 'var(--background-green)';
+        }else{
+            this.style.backgroundColor = 'var(--background-red)';
+        }
+
         this.setAttribute('aria-pressed', 'true');
         otherButton.setAttribute('aria-pressed', 'false');
         otherButton.style.backgroundColor = 'white';
 
-        let data = listPostsByAnimalType(animalType)
-
-        data.then(data =>{
+        listPostsByAnimalType(animalType)
+            .then(data =>{
 
             if(data['status'] == "SUCCESS"){
                 hideLoading()
@@ -60,22 +61,16 @@ export function filterByAnimalType(otherButton, animalType){
                 cardContainer.innerHTML = "";
                     
                 for (let  i = 0; i < posts.length; i++){
-
                     let post = buildPost(posts[i])
                     cardContainer.innerHTML += post;
-                    
                 }
-                
-            }else{
-                console.log(data)
             }
-        })
+        }).catch(err => console.error(err))
 
     } else {
         this.setAttribute('aria-pressed', 'false');
         this.style.backgroundColor = 'white';
-
-        renderAnimalCards()
+        renderPosts()
     }
 }
 
@@ -84,8 +79,6 @@ export function getPostDetails(){
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('postId');
 
-    let data = findPostById(postId)
-
     let post_header = document.getElementById("post-details-card-info-header")
     let post_footer = document.getElementById("post-details-user-footer-user")
 
@@ -93,76 +86,77 @@ export function getPostDetails(){
     let post_details = document.getElementById("post-details-card-info-resume")
     let post_img = document.getElementById("post-details-card-img")
 
-    data.then(data =>{
+    findPostById(postId)
+        .then(data =>{
 
-        if(data['status'] == "SUCCESS"){
+            if(data['status'] == "SUCCESS"){
 
-            let post = data['post'];
-            let animalName = post.animal.name
-            let animalSex = formatText(post.animal.sex)
-            let animalAge = (post.animal.age != undefined) ? post.animal.age : "?"   
-            let animalState = post.state
-            let picture = post.picture
-            let nickname = post.user.nickname
-            let userImg = ( post.user.picture != undefined) ? `data:image/png;base64,${post.user.picture}` : "../../src/user.svg"
+                let post = data['post'];
+                let animalName = post.animal.name
+                let animalSex = formatText(post.animal.sex)
+                let animalAge = (post.animal.age != undefined) ? post.animal.age : "?"   
+                let animalState = post.state
+                let picture = post.picture
+                let nickname = post.user.nickname
+                let userImg = ( post.user.picture != undefined) ? `data:image/png;base64,${post.user.picture}` : "../../src/user.svg"
 
-           post_img.style.backgroundImage = `url('data:image/png;base64,${picture}')`;
+            post_img.style.backgroundImage = `url('data:image/png;base64,${picture}')`;
 
-           post_footer.innerHTML = `<a class="post-details-footer-user-information" 
-                                            href="../user/user_perfil.html?userId=${post.user.id}"> 
-                                        
-                                            <img id="user-img" src=${userImg}>
-                                            <p class="title" id="user-nickname">${nickname}</p>
-                                                                        
-                                    </a>`
-
-
-            post_header.innerHTML = `<h1 class="title animalName"> ${animalName}</h1>
-                                    <p class="post-details-subtitle animalInfo"> ${animalSex}, ${animalAge} anos </p>
-                                    <img src="../../src/maps-and-flags.svg">
-                                    <p class="animalState post-localization"> ${animalState} </p>`;
-
-            post_details.innerHTML +=  `<div class="subtitle post-details-text-about"> 
-                                            <p >${post.description}</p>
-                                        </div> `
+            post_footer.innerHTML = `<a class="post-details-footer-user-information" 
+                                                href="../user/user_perfil.html?userId=${post.user.id}"> 
+                                            
+                                                <img id="user-img" src=${userImg}>
+                                                <p class="title" id="user-nickname">${nickname}</p>
+                                                                            
+                                        </a>`
 
 
-            let animalColor = post.animal.color
-            let animalCastreated = post.animal.health_info.castreated
-            let animalVacinneted = post.animal.health_info.vaccinated
-            let animalSpacialCare = post.animal.health_info.special_care
-            let animalSize = post.animal.size
+                post_header.innerHTML = `<h1 class="title animalName"> ${animalName}</h1>
+                                        <p class="post-details-subtitle animalInfo"> ${animalSex}, ${animalAge} anos </p>
+                                        <img src="../../src/maps-and-flags.svg">
+                                        <p class="animalState post-localization"> ${animalState} </p>`;
 
-            post_tags.innerHTML += `<div class="animal-tag animal-color"> 
-                                    <img src="../../src/icon-color.svg"> 
-                                    <p>${formatText(animalColor)}</p>
-                                    </div>`;
+                post_details.innerHTML +=  `<div class="subtitle post-details-text-about"> 
+                                                <p >${post.description}</p>
+                                            </div> `
 
-            post_tags.innerHTML += `<div class="animal-tag animal-size"> 
-                                        <img src="../../src/icon-size.svg"> 
-                                        <p>${formatText(animalSize)}</p>
-                                    </div>`;
 
-            if(animalSpacialCare) {
-                post_tags.innerHTML += `<div class="animal-tag animal-health"> 
-                                        <img src="../../src/icon-health.svg"> 
-                                        <p>Requer cuiodados especiais</p>
-                                    </div>`
-            }
+                let animalColor = post.animal.color
+                let animalCastreated = post.animal.health_info.castreated
+                let animalVacinneted = post.animal.health_info.vaccinated
+                let animalSpacialCare = post.animal.health_info.special_care
+                let animalSize = post.animal.size
 
-            if(animalVacinneted){
-                post_tags.innerHTML += ` <div class="animal-tag animal-vaccine"> 
-                                            <img src="../../src/icon-vaccine.svg"> 
-                                            <p>Vacinado</p>
+                post_tags.innerHTML += `<div class="animal-tag animal-color"> 
+                                        <img src="../../src/icon-color.svg"> 
+                                        <p>${formatText(animalColor)}</p>
                                         </div>`;
-            }
 
-            if (animalCastreated) {
-                post_tags.innerHTML += ` <div class="animal-tag animal-castrated"> 
-                                            <img src="../../src/icon-castrated.svg"> 
-                                            <p>Castrado</p>
+                post_tags.innerHTML += `<div class="animal-tag animal-size"> 
+                                            <img src="../../src/icon-size.svg"> 
+                                            <p>${formatText(animalSize)}</p>
                                         </div>`;
-            }
+
+                if(animalSpacialCare) {
+                    post_tags.innerHTML += `<div class="animal-tag animal-health"> 
+                                            <img src="../../src/icon-health.svg"> 
+                                            <p>Requer cuiodados especiais</p>
+                                        </div>`
+                }
+
+                if(animalVacinneted){
+                    post_tags.innerHTML += ` <div class="animal-tag animal-vaccine"> 
+                                                <img src="../../src/icon-vaccine.svg"> 
+                                                <p>Vacinado</p>
+                                            </div>`;
+                }
+
+                if (animalCastreated) {
+                    post_tags.innerHTML += ` <div class="animal-tag animal-castrated"> 
+                                                <img src="../../src/icon-castrated.svg"> 
+                                                <p>Castrado</p>
+                                            </div>`;
+                }
 
         }else{
             console.log(data)

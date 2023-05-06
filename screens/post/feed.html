@@ -37,6 +37,11 @@
                     <img src="../../src/icon-cat.svg"> Gato
                 </button>
 
+            
+            </div>
+
+            <div id="user-search">
+    
             </div>
 
         </div>
@@ -72,18 +77,25 @@
         buttonDog.addEventListener('click', filterByAnimalType.bind(buttonDog, buttonCat, 'CACHORRO'))
         buttonCat.addEventListener('click', filterByAnimalType.bind(buttonCat, buttonDog, 'GATO'))
 
-        const searchInput = document.getElementById('search-input');
-        const searchButton = document.getElementById('search-button');
+        const searchInput = document.querySelector("#search-input") 
+        const searchButton = document.querySelector('#search-button');
+
+        let nickname = searchInput.value;
+        console.log(nickname)
 
         searchInput.addEventListener('keydown', (event) =>{
             if(event.key == 'Enter'){
+                const searchInput = document.querySelector("#search-input") 
                 searchUser(searchInput.value)
             }
         })
 
-        searchButton.addEventListener('click', (event) => {
+        searchButton.addEventListener('click', (event) =>{
+            const searchInput = document.querySelector("#search-input") 
             searchUser(searchInput.value)
         });
+
+        
 
     </script>
 

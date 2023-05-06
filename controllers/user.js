@@ -181,28 +181,47 @@ export function realizarLogout(){
     window.location.href = "../login/login.html";
 }
 
-function closeFunction(){
-    console.log('close')
+function adicionarEventoDeEscuta(searchResult) {
+    searchResult.addEventListener('click', (event) => {
+        searchResult.parentNode.remove()
+    });
 }
 
 export function searchUser(nickname){
+    console.log(nickname)
 
-    let data = findUserByNickname(nickname)
-
-    data.then(data =>{
+   findUserByNickname(nickname.toLowerCase())
+    .then(data =>{
         if(data['status'] == 'SUCCESS'){
             const user = data.user
 
-            document.getElementById("feed-search").innerHTML += ` <div id="user-by-search">
-                                                                        <div>
-                                                                            <img class="post-user-img" src="${setImg(user.picture)}">
-                                                                            <p class="post-animal-user-nickname">${user.nickname}</p>
-                                                                        </div>
-                                                                        <img id="close-search" src="../../src/x.svg"
-                                                                        onclick="closeSearch()"
-                                                                    </div>`
             
+        document.getElementById("user-search").innerHTML = ""
+        document.getElementById("user-search").innerHTML = `  <div id="user-by-search">
+                                                                <a class="user-localizated" href="../user/user_perfil.html?userId=${user.id}?">
+                                                                    <img class="post-user-img" src="${setImg(user.picture)}">
+                                                                    <p class="post-animal-user-nickname">${user.nickname}</p>
+                                                                </a>
+                                                                <img id="close-search" src="../../src/x.svg">
+                                                            </div>`
+   
+            const  searchResult = document.getElementById('close-search');
+            adicionarEventoDeEscuta(searchResult)
         }
-    })
+        else{
+            document.getElementById("user-search").innerHTML = ""
+            document.getElementById("user-search").innerHTML = ` <div id="user-by-search">
+                                                                        <div class="user-not-found">
+                                                                            Este usuário não existe na nossa base de dados :(
+                                                                        </div>
+                                                                        <img id="close-search" src="../../src/x.svg">
+                                                                    </div>`
+            const searchResult = document.getElementById('close-search');
+            adicionarEventoDeEscuta(searchResult)
+
+        }
+
+        
+    })  .catch(err => console.error(err)) 
 
 }
