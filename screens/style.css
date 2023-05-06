@@ -45,12 +45,14 @@ body{
     display: flex;
     position: absolute;
     top: 0;
-    left: 0;
+    /* left: 0; */
     width: 100%;
-    height: calc(100% - 45px);
+    height: 100%;
     background-color: rgba(255, 255, 255, 0.5);
     z-index: 9999;
-
+    /* min-width: 500px; */
+    max-width: 432px;
+    margin: auto;
 }
   
 .spinner {
@@ -836,6 +838,12 @@ body{
     z-index: 9999;
 }
 
+.share-post-button{
+    border: none;
+    height: 25px;   
+    background-color: transparent; 
+}
+
 #post-details-card-img{
     grid-row-start: 1;
     grid-row-end: 2;
@@ -1350,12 +1358,12 @@ body{
     font-size: 1rem;
 }
 
-#shareUserModal .modal-content{
+#shareUserModal .modal-content, #sharePostModal .modal-content{
     background-color: var(--background-green);
     
 }
 
-#shareUserModal .modal-body{
+#shareUserModal .modal-body, #sharePostModal .modal-body{
     color: var(--text-green);
 }
 /********************** end perfil pf ******************/

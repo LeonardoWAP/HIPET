@@ -89,7 +89,47 @@ export function setImg(img){
 }
 
 export function buildPost(post){
+    let postId = post.id
+    let picture = post.picture
+    let description = post.description
+    let animalName = post.animal.name
+    let sex = post.animal.sex
+    let age = (post.animal.age != undefined) ? post.animal.age : "?"   
+    let type = post.animal.type   
+    let localization = post.state 
+    let userName = post.user.nickname
 
+   return ` <a class="post-animal-link" href="post_details.html?postId=${postId}">
+                <article class="post-animal">
+                    <div class="post-animal-user">
+                        <img class="post-user-img" src="${setImg(post.user.picture)}">
+                        <p class="post-animal-user-nickname">${userName}</p>
+                        <img src="../../src/maps-and-flags.svg">
+                        <p class="post-localization">${localization}</p>
+                    </div>
+
+                    <div class="post-animal-img">
+                        <img id="img-animal" src='${picture}'> 
+                    </div>
+                    
+                    <div class="post-animal-info">
+                        <p class="title">${animalName} </p>
+                       <div class="post-animal-info-about">
+                        <p id="post-animal-info-about-text" class="subtitle"> ${formatTextAbout(description)}
+                        </p>
+                       </div> 
+                        <div class="post-animal-info-animal-tag">
+                            <div class="animal-tag dog">  ${formatText(type)} </div>
+                            <div class="animal-tag sex"> ${formatText(sex)} </div>
+                            <div class="animal-tag age"> ${age} anos </div>
+                        </div>
+                    </div>
+
+                </article> 
+             </a> `
+}
+
+export function buildPostToUserLogin(post){
     let postId = post.id
     let picture = post.picture
     let description = post.description

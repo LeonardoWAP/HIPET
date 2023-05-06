@@ -1,5 +1,5 @@
 import { listPosts, findPostById, createPost, createReport, findPostByUserId, findUserById, listPostsByAnimalType } from '../diplomatic/https_client.js'
-import { buildPost, formatText, showLoading, hideLoading, reportFailed, reportSucceeded, reportConfirmation, reportWithoutReason } from '../utilities/utilities.js'
+import { buildPost,buildPostToUserLogin, formatText, showLoading, hideLoading, reportFailed, reportSucceeded, reportConfirmation, reportWithoutReason } from '../utilities/utilities.js'
 
 export function imgCorreta(){
   let preview= document.querySelector("#preview") 
@@ -304,7 +304,7 @@ export function getUserPosts(){
             
             for (let  i = 0; i < posts.length; i++){
        
-                let post = buildPost(posts[i])           
+                let post = buildPostToUserLogin(posts[i])           
                 cardContainer.innerHTML += post;
             }
             
@@ -314,4 +314,18 @@ export function getUserPosts(){
     })
 
 
+}
+
+
+export function sharePost() {
+
+    const urlParams = new URLSearchParams(window.location.search);
+    const postPramsId = urlParams.get('postId');
+
+    const url = `https://leonardowap.github.io/HIPET_FrontEnd/screens/post/post_details.html?postId=${postPramsId}`;
+  
+    navigator.clipboard.writeText(url)
+
+    const copyUrlButton = document.getElementById('copy-url-button');
+    copyUrlButton.removeEventListener('click', copiarUrl);
 }

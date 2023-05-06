@@ -14,7 +14,14 @@
     
         <div id="post-details-card-img">
                 <a href="feed.html">  <img src="../../src/left-arrow.svg"> </a>
-                <a href="feed.html">  <img src="../../src/share.svg">  </a>
+                <button id="copy-url-button" 
+                        type="button" 
+                        class="share-post-button" 
+                        data-bs-toggle="modal" 
+                        data-bs-target="#sharePostModal">
+                        <img src="../../src/share.svg"> 
+                </button>
+                  
         </div>
     
         <article class="post-details-card-info">
@@ -97,6 +104,33 @@
                         </div>
                     </div>
             </div>
+        </div>
+    </div>
+
+    <div class="modal fade" 
+        id="sharePostModal" 
+        tabindex="-1" 
+        aria-labelledby="exampleModalLabel" 
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" 
+                        id="exampleModalLabel">
+                        Link Copiado!
+                    </h1>
+                    <button type="button" 
+                            class="btn-close" 
+                            data-bs-dismiss="modal" 
+                            aria-label="Close">
+                    </button>
+                </div>
+                <div class="modal-body">
+                    A url da pubicação foi copiada para sua área de Transferência! <br><br>
+                    Cole ela para enviar para quem quiser ver esta publicação! 
+                </div>
+            </div>
+
         </div>
     </div>
 
