@@ -18,7 +18,6 @@
                     <img id="user-img">
                     <p class="title"><span id="feed-nickname"></span></p>
                 </div>
-                
             </div>
 
             <div class="user-header-tags" id="tags">
@@ -26,15 +25,14 @@
                     href="../user/edit_info_pf.html">
                     <img src="../../src/edit-perfil.svg"> 
                     <p class="subtitle">Editar perfil</p>
-                    
                 </a>
-                <button id="copy-url-button" 
+                <button class="user-tag share" 
+                        id="copy-url-button" 
                         type="button" 
-                        class="user-tag share" 
-                        data-bs-toggle="modal" 
-                        data-bs-target="#shareUserModal">
+                        data-bs-target="#shareUserModal"
+                        data-bs-toggle="modal" >
                     <img src="../../src/share-perfil.svg"> 
-                    <p   class="subtitle">Compartilhar perfil</p>
+                    <p class="subtitle">Compartilhar perfil</p>
                 </button>
 
             </div>
@@ -46,10 +44,9 @@
     </section>
 
 
-    <footer class="feed-footer footer-container">
+    <footer class="feed-footer footer-container" id="footer-perfil">
         <a href="../post/feed.html"> <img src="../../src/icon-home.svg"> </a>
         <a href="../post/create_post.html"> <img src="../../src/icon-new-post.svg"> </a>
-        <a href="../user/user_perfil.html"> <img src="../../src/icon-user.svg"> </a>
     </footer>
 
     <div class="modal fade" 
@@ -83,7 +80,7 @@
             </div>
             
         </div>
-    </div>
+    </div> 
 
     <div class="modal fade" 
         id="shareUserModal" 
@@ -112,19 +109,18 @@
         </div>
     </div>
 
-
     <script type="module">
         import {verify_login} from "../../controllers/login.js"
         import {getUserPosts} from "../../controllers/post.js"
-        import {shareUser, setUserData, realizarLogout} from "../../controllers/user.js"
+        import {shareUser, setUserData, realizarLogout, setUserIconFooter} from "../../controllers/user.js"
         
         verify_login()
         getUserPosts()
         setUserData()
-		
+		setUserIconFooter(document.getElementById('footer-perfil'))
+
         document.querySelector("#copy-url-button").addEventListener('click', shareUser)
         document.querySelector("#logoutUser").addEventListener('click', realizarLogout)
-
     </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 

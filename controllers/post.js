@@ -79,9 +79,8 @@ export function getPostDetails(){
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('postId');
 
-
     let post_header = document.getElementById("post-details-card-info-header")
-    let post_footer = document.getElementById("post-details-user-footer-user")
+    let post_footer = document.getElementById("footer-user")
 
     let post_tags = document.getElementById("post-details-card-info-tags")
     let post_details = document.getElementById("post-details-card-info-resume")
@@ -104,13 +103,12 @@ export function getPostDetails(){
             post_img.style.backgroundImage = `url('${picture}')`;
 
             post_footer.innerHTML = `<a class="post-details-footer-user-information" 
-                                                href="../user/user_perfil.html?userId=${post.user.id}"> 
-                                            
-                                                <img id="user-img" src=${userImg}>
-                                                <p class="title" id="user-nickname">${nickname}</p>
-                                                                            
-                                        </a>`
-
+                                        href="../user/user_perfil.html?userId=${post.user.id}"> 
+                                    
+                                        <img id="user-img" src=${userImg}>
+                                        <p class="title" id="user-nickname">${nickname}</p>
+                                                                    
+                                    </a>`
 
                 post_header.innerHTML = `<h1 class="title animalName"> ${animalName}</h1>
                                         <p class="post-details-subtitle animalInfo"> ${animalSex}, ${animalAge} anos </p>
@@ -213,7 +211,10 @@ export function reportPost(){
     }
 }
 
-export function createNewPost(){
+export function createNewPost(resize){
+
+   
+
 
     let animalTypeDog = document.getElementById("checkAnimalTypeDog").firstElementChild.checked ;
     let animalSexFemea = document.getElementById("checkAnimalSexFemea").firstElementChild.checked ;
@@ -230,19 +231,23 @@ export function createNewPost(){
 
     let userId = localStorage.getItem('user-id')
 
-    const fileInput = document.getElementById('fileInput');
-    const file = fileInput.files[0];
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
+    // const fileInput = document.getElementById('fileInput');
+    // const file = fileInput.files[0];
+    // const reader = new FileReader();
+    // reader.readAsDataURL(file);
 
-    reader.onload = () => {
-        const base64Image = reader.result.split(',')[1];
-    
+    resize.croppie('result',{
+        type:'base64',
+        size:'viewport'
+    }).then(function(img){
+        // const fileInput  = document.getElementById('preview')
+        // console.log("newImg" + )
+
         let postRequest = {
             "customer_id": userId, 
             "state": state,
             "description": about,
-            "picture": base64Image,
+            "picture": img.split(',')[1],
             "animal": {
                 "name": animalName,
                 "color": animalColor,
@@ -259,6 +264,8 @@ export function createNewPost(){
             }
         }
 
+        console.log(postRequest)
+
         let data = createPost(postRequest)
 
         data.then(data =>{
@@ -266,6 +273,7 @@ export function createNewPost(){
             if(data['status'] == "SUCCESS"){
     
                 let divPopUp = document.querySelector('.modal-content')
+                console.log(divPopUp)
                 divPopUp.innerHTML = `
                             <div class="modal-header">
                                 <h5 class="modal-title" id="popUpCadastroLabel">Post Criado com Sucesso!</h5>
@@ -275,20 +283,70 @@ export function createNewPost(){
                                     data-bs-dismiss="modal" 
                                     aria-label="Close"></button>
                             </div>
-                            <div class="modal-body">
-                                Seu post foi publicado, clique no botão abaixo para visualizá-lo :)
-                            </div>
+                                <div class="modal-body">
+                                    Seu post foi publicado, clique no botão abaixo para visualizá-lo :)
+                                </div>
                             <div class="modal-footer">
+                                <a href='post_details.html?postId=${data['post'].id}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Visualizar Post</button>
+                                </a>
+                            </div>`
+            }else{       
+                
+                let divPopUp = document.querySelector('.modal-content')
+                console.log(divPopUp)
+                divPopUp.innerHTML = `
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="popUpCadastroLabel">Post com falha!</h5>
+                                <button 
+                                    type="button" 
+                                    class="btn-close" 
+                                    data-bs-dismiss="modal" 
+                                    aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                Não foi possível criar o seu post, verifique se preencheu todos os campos :(
+                            </div>
+                        `
+               }})
+    });
+
+    // reader.onload = () => {
+        // const base64Image = reader.result.split(',')[1];
+
+        // console.log(base64Image)
+
+
+        // let data = createPost(postRequest)
+
+        // data.then(data =>{
+    
+        //     if(data['status'] == "SUCCESS"){
+    
+        //         let divPopUp = document.querySelector('.modal-content')
+        //         divPopUp.innerHTML = `
+        //                     <div class="modal-header">
+        //                         <h5 class="modal-title" id="popUpCadastroLabel">Post Criado com Sucesso!</h5>
+        //                         <button 
+        //                             type="button" 
+        //                             class="btn-close" 
+        //                             data-bs-dismiss="modal" 
+        //                             aria-label="Close"></button>
+        //                     </div>
+        //                     <div class="modal-body">
+        //                         Seu post foi publicado, clique no botão abaixo para visualizá-lo :)
+        //                     </div>
+        //                     <div class="modal-footer">
                                 
-                           <a href='post_details.html?postId=${data['post'].id}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Visualizar Post</button>
-                           </a>
-                        </div>`
-            }else{            
-                var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-                popoverTriggerList.map(function (popoverTriggerEl) {
-                    return new bootstrap.Popover(popoverTriggerEl)
-            })}})
-}}
+        //                    <a href='post_details.html?postId=${data['post'].id}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Visualizar Post</button>
+        //                    </a>
+        //                 </div>`
+        //     }else{            
+        //         var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+        //         popoverTriggerList.map(function (popoverTriggerEl) {
+        //             return new bootstrap.Popover(popoverTriggerEl)
+        //     })}})
+// }
+}
 
 export function getUserPosts(){
 
@@ -307,15 +365,11 @@ export function getUserPosts(){
                 let post = buildPostToUserLogin(posts[i])           
                 cardContainer.innerHTML += post;
             }
-            
         }else{
             console.log(data)
         }
     })
-
-
 }
-
 
 export function sharePost() {
 

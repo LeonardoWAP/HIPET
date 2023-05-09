@@ -10,8 +10,7 @@ export const modalRegisteFailed = `
         <div class="modal-footer">
             
         <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Tentar novamente</button>
-        </div>
-        `
+        </div>`
 
 export const modalPostCreate = `
             <div class="modal-header">
@@ -24,8 +23,7 @@ export const modalPostCreate = `
             <div class="modal-footer">
                 
             <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Visualizar Post</button>
-            </div>
-            `
+            </div>`
 
 export const donationTag = `<a class="user-tag donation" 
                                 href="../user/edit_info_pf.html">
@@ -140,7 +138,7 @@ export function buildPostToUserLogin(post){
     let localization = post.state 
     let userName = post.user.nickname
 
-   return ` <a class="post-animal-link" href="post_details.html?postId=${postId}">
+   return  `<a class="post-animal-link" href="../post/post_details.html?postId=${postId}">
                 <article class="post-animal">
                     <div class="post-animal-user">
                         <img class="post-user-img" src="${setImg(post.user.picture)}">
@@ -162,12 +160,11 @@ export function buildPostToUserLogin(post){
                         <div class="post-animal-info-animal-tag">
                             <div class="animal-tag dog">  ${formatText(type)} </div>
                             <div class="animal-tag sex"> ${formatText(sex)} </div>
-                            <div class="animal-tag age"> ${age} anos </div>
+                            <div class="animal-tag age"> ${age} ano(s) </div>
                         </div>
                     </div>
-
                 </article> 
-             </a> `
+            </a>`
 }
 
 export function showLoading(element) {

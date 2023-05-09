@@ -120,6 +120,10 @@ export function setNickname(nickname){
     user_name.innerHTML =  nickname;         
 }
 
+export function setUserIconFooter(footer){
+    footer.innerHTML += `<a href="../user/user_perfil.html?userId=${localStorage.getItem('user-id')}"> <img src="../../src/icon-user.svg"> </a>`
+}
+
 export function shareUser() {
 
     const urlParams = new URLSearchParams(window.location.search);

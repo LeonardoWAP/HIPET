@@ -10,31 +10,26 @@ var resize = $('#preview').croppie({
         width:300,
         height:300
     }
-
-
 })
 
 
 $("#fileInput").on("change", function(){
-
     var reader = new FileReader();
-
     reader.onload = function(e){
         resize.croppie('bind',{
             url: e.target.result
         });
     }
-
-    reader.readAsDataURL(this.files[0]);
-
-
+   reader.readAsDataURL(this.files[0]);
+    
 })
 
-$('.button-upload-image').on('click', function(){
+$('#buttonCreatePost').on('click', function(){
     resize.croppie('result',{
-        type:'canvas',
+        type:'base64',
         size:'viewport'
     }).then(function(img){
-        const fileInput  = document.getElementById('preview')
+        // const fileInput  = document.getElementById('preview')
+        console.log(img)
     });
 });

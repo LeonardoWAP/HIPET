@@ -56,20 +56,21 @@
         <a  href="../post/feed.html"> <img src="../../src/icon-home.svg"> </a>
         <a href="../post/create_post.html"> <img src="../../src/icon-new-post.svg"> </a>
 
-    </footer>
+    </footer> 
 
     <script type="module">
         import {renderPosts,
                 filterByAnimalType } from "../../controllers/post.js"
-        import {setUserImg, searchUser} from "../../controllers/user.js"
+        import {setUserImg, searchUser, setUserIconFooter} from "../../controllers/user.js"
         import {verify_login } from "../../controllers/login.js"
 
         document.getElementById('header-feed').innerHTML += `<a href="../user/user_perfil.html?userId=${localStorage.getItem('user-id')}"> <img id="user-img"> </a>`
-        document.getElementById('footer-home').innerHTML += `<a href="../user/user_perfil.html?userId=${localStorage.getItem('user-id')}"> <img src="../../src/icon-user.svg"> </a>`
 
 		verify_login()
         setUserImg(localStorage.getItem('user_img'))
         renderPosts()
+
+        setUserIconFooter(document.getElementById('footer-home'))
 
         const buttonCat =document.querySelector("#filter-by-cat")
         const buttonDog =document.querySelector("#filter-by-dog")
