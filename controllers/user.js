@@ -185,7 +185,6 @@ export function setUserData(){
     const userPramsId = urlParams.get('userId');
     const localUserid = localStorage.getItem('user-id')
 
-
     if(userPramsId != localUserid){
 
         let data = findUserById(userPramsId);
@@ -200,16 +199,9 @@ export function setUserData(){
         setNickname(localStorage.getItem('nickname'))
         setUserImg(localStorage.getItem('user_img'))
 
-    
         document.getElementById('tags').innerHTML += editUserTag;
-        document.getElementById('userHeader').innerHTML += logout;
-
-        if(localStorage.getItem('user_type') == "ONG"){
-            setOngTag()
-        } 
-
+        document.getElementById('userHeader').innerHTML += logout; 
     }
-
 }
 
 export function realizarLogout(){

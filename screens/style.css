@@ -27,9 +27,7 @@
     --text-gray: #9C9AA4;
     --text-input: #47454c;
 }
-*, ::after, ::before {
-    box-sizing: content-box !important; 
-} 
+
 
 p{
     margin-block-start: 0 !important;
@@ -132,7 +130,7 @@ body{
 }
 
 .post-animal-user{
-    width: calc(100% - 24px);
+    width: 100% ;
     background-color: var(--white);
 
     display: grid;
@@ -847,7 +845,7 @@ body{
 #post-details-card-img{
     grid-row-start: 1;
     grid-row-end: 2;
-    height: calc(100% - 26px);
+    height: 100% ;
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;
@@ -882,7 +880,6 @@ body{
     grid-template-rows: 18% auto 51%;
     gap: 15px;
     padding: 31px 31px 0px 31px;
-    margin-top: -93px;
     height: calc(100% + 96px);
     overflow: auto;
     border-radius: 25px 25px 0 0;
@@ -978,7 +975,7 @@ body{
 
     border-radius: 5px;
     height: 10px;
-    padding: 3% 3%;
+    padding: 5% 3%;
 }
 
 .animal-color{
@@ -1183,6 +1180,11 @@ body{
 }
 
 
+#whatsappMensagemButton{
+    border: none;
+    background: transparent;
+}
+
 
 
 
@@ -1193,6 +1195,9 @@ body{
     font-weight: 700;
 }
 
+#create-post ::after, #create-post ::before {
+    box-sizing: border-box !important; 
+}
 
 
 #create-post .mobile-container{
@@ -1236,6 +1241,7 @@ body{
     flex-direction: column;
     gap: 10px;
     width: 85%;
+    background-color: red;
 }
 
 .create-post-form-input >label{
@@ -1290,7 +1296,7 @@ body{
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    width: calc(100% - 46px);
+    width: calc(100%);
     height: auto;
     gap: 2%;
     box-shadow: 0px 4px 16px -9px rgba(0,0,0,0.1);
@@ -1322,7 +1328,7 @@ body{
     gap: 15px;
     justify-content: space-between;
     padding: 0px 12px;
-    width: calc(100% - 24px);
+    width: 100% ;
 }
 
 .user-header-info{
@@ -1358,7 +1364,7 @@ body{
 }
 
 .share{
-    width: 47%;
+    width: 48%;
     background-color: var(--background-purple);
 }
 .share p{
@@ -1432,8 +1438,12 @@ body{
 
     display: flex;
     justify-content: space-between;
-    align-items: center;
+    align-items: center;  
+}
+
+#delete-post-button{
     border: none;
+    background-color: transparent;
 }
 
 #card-container-perfil{

@@ -362,9 +362,6 @@ export function getUserPosts(){
                 });
             });
 
-            
-
-
         }else{
             console.log(data)
         }

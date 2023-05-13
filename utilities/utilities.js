@@ -83,6 +83,14 @@ export const reportFailed = `<p class="title"> Não fpi possível criar </p>
                                     > Ok</button>
                                 </div>`
 
+export const deletePostButton = `<button 
+                                    id="delete-post-button" 
+                                    type="button" 
+                                    data-bs-target="#deletePostModal"
+                                    data-bs-toggle="modal" >
+                                    <img class="delete-post" src="../../src/trash.svg">
+                                    </button>`
+
 function formatTextAbout(text){
     const limite = Math.floor(text.length * 0.36);
     const parte1 = text.substring(0, limite);
@@ -138,30 +146,31 @@ export function buildPost(post){
              </a> `
 }
 
-function deletePost(botaoDelete){
-    console.log('teste')
-    // botaoDelete.parentNode.parentNode.remove()
-}
-
-
 export function buildPostToUser(post){
     let postId = post.id
     let picture = post.picture
     let animalName = post.animal.name
-    
+
+    let localUserid = localStorage.getItem('user-id')
+    const urlParams = new URLSearchParams(window.location.search);
+    const userPramsId = urlParams.get('userId');
+
+    let deletePost = `<div> </div>`
+
+    if(userPramsId == localUserid){
+      deletePost = deletePostButton
+
+    }
+
    return  `<article class="post-animal-perfil">
                     <a class="post-animal-img-perfil" href="../post/post_details.html?postId=${postId}">
                         <img id="img-animal" src='${picture}'> 
                     </a>
-                   
-                    <button class="post-animal-info-perfil"
-                        id="copy-url-button" 
-                        type="button" 
-                        data-bs-target="#deletePostModal"
-                        data-bs-toggle="modal" >
+
+                    <div class="post-animal-info-perfil">
                         <p class="title">${animalName} </p> 
-                        <img class="delete-post" src="../../src/trash.svg">
-                    </button>
+                        ${deletePost}
+                    </div>
                 </article> 
             `
 }
