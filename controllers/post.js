@@ -315,7 +315,6 @@ function deletePost(botao){
     const modalContent = document.getElementById("delete-post-modal");
     const deletePostButton = document.getElementById('deletePostButton');
 
-
     deletePostButton.addEventListener('click', () => {
 
         showLoading(deletePostButton)

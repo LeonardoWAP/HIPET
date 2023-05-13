@@ -20,8 +20,8 @@ export function loginUser(userRequest){
     
 }
 
-export function updateUser(userRequest , userId){
-  return fetch(baseUrl+'user/update/'+userId,{
+export function updateUser(userRequest, userId){
+  return fetch(baseUrl+'user/'+userId,{
     method: "PUT",
     body: JSON.stringify(userRequest),
     headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -38,7 +38,7 @@ export function updateUser(userRequest , userId){
 .catch(err => {return err})
 }
 
-export function deleteUserById( userId){
+export function deleteUserById(userId){
   return fetch(baseUrl+'user/'+userId,{
     method: "DELETE",
     headers: {"Content-type": "application/json; charset=UTF-8"}
@@ -90,7 +90,6 @@ export function createReport(reportRequest){
   .then(json => {return json})
   .catch(err => {return err}) 
 }
-
 
 export function createPost(postRequest){
     
