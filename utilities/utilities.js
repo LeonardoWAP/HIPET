@@ -64,6 +64,12 @@ export const reportSucceeded = `<div id="report-confirmation"> <p class="title">
                                         > Ok</button>
                                     </div>`
 
+export const deletePostSucceded = `<div id="report-confirmation"> <p class="title"> Deletado com sucesso!</p> </div>
+                                        <div class="modal-footer"></div>`
+
+export const deletePostFailed = `<div id="report-confirmation"> <p class="title"> Não foi possivel deletar a postagem, tente novamente mais tarde :(</p> </div>
+                                    <div class="modal-footer"></div>`
+
 export const reportFailed = `<p class="title"> Não fpi possível criar </p>
                                 <div class="modal-footer">
                                 <button type="button" 
@@ -127,44 +133,32 @@ export function buildPost(post){
              </a> `
 }
 
-export function buildPostToUserLogin(post){
+function deletePost(botaoDelete){
+    console.log('teste')
+    // botaoDelete.parentNode.parentNode.remove()
+}
+
+
+export function buildPostToUser(post){
     let postId = post.id
     let picture = post.picture
-    let description = post.description
     let animalName = post.animal.name
-    let sex = post.animal.sex
-    let age = (post.animal.age != undefined) ? post.animal.age : "?"   
-    let type = post.animal.type   
-    let localization = post.state 
-    let userName = post.user.nickname
-
-   return  `<a class="post-animal-link" href="../post/post_details.html?postId=${postId}">
-                <article class="post-animal">
-                    <div class="post-animal-user">
-                        <img class="post-user-img" src="${setImg(post.user.picture)}">
-                        <p class="post-animal-user-nickname">${userName}</p>
-                        <img src="../../src/maps-and-flags.svg">
-                        <p class="post-localization">${localization}</p>
-                    </div>
-
-                    <div class="post-animal-img">
+    
+   return  `<article class="post-animal-perfil">
+                    <a class="post-animal-img-perfil" href="../post/post_details.html?postId=${postId}">
                         <img id="img-animal" src='${picture}'> 
-                    </div>
-                    
-                    <div class="post-animal-info">
-                        <p class="title">${animalName} </p>
-                       <div class="post-animal-info-about">
-                        <p id="post-animal-info-about-text" class="subtitle"> ${formatTextAbout(description)}
-                        </p>
-                       </div> 
-                        <div class="post-animal-info-animal-tag">
-                            <div class="animal-tag dog">  ${formatText(type)} </div>
-                            <div class="animal-tag sex"> ${formatText(sex)} </div>
-                            <div class="animal-tag age"> ${age} ano(s) </div>
-                        </div>
-                    </div>
+                    </a>
+                   
+                    <button class="post-animal-info-perfil"
+                        id="copy-url-button" 
+                        type="button" 
+                        data-bs-target="#deletePostModal"
+                        data-bs-toggle="modal" >
+                        <p class="title">${animalName} </p> 
+                        <img class="delete-post" src="../../src/trash.svg">
+                    </button>
                 </article> 
-            </a>`
+            `
 }
 
 export function showLoading(element) {

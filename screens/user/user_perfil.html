@@ -40,7 +40,7 @@
         </header>
         <h2 class="user-edit-posts-title title">Publicações</h2>   
         
-        <main id="card-container"></main>
+        <main id="card-container-perfil"></main>
     </section>
 
 
@@ -109,11 +109,50 @@
         </div>
     </div>
 
+    <div class="modal fade" 
+        id="deletePostModal" 
+        tabindex="-1" 
+        aria-labelledby="exampleModalLabel" 
+        aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content" id="delete-post-modal">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" 
+                        id="exampleModalLabel">
+                        Deseja deletar a sua publicação?
+                    </h1>
+                    <button type="button" 
+                            class="btn-close" 
+                            data-bs-dismiss="modal" 
+                            aria-label="Close">
+                    </button>
+                </div>
+
+                <div id="delete-post-modal-info">
+
+                    <div class="modal-body">
+                        Tem certeza que deseja excluir sua publicação?
+                    </div>
+    
+                    <div class="modal-footer">
+                        <button type="button" 
+                                class="btn btn-primary report-btn" 
+                                id="deletePostButton">Deletar</button>
+                    </div>
+
+
+                </div>
+                
+            </div>
+
+        </div>
+    </div>
+
     <script type="module">
         import {verify_login} from "../../controllers/login.js"
         import {getUserPosts} from "../../controllers/post.js"
         import {shareUser, setUserData, realizarLogout, setUserIconFooter} from "../../controllers/user.js"
-        
+       
         verify_login()
         getUserPosts()
         setUserData()
@@ -121,6 +160,7 @@
 
         document.querySelector("#copy-url-button").addEventListener('click', shareUser)
         document.querySelector("#logoutUser").addEventListener('click', realizarLogout)
+
     </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 

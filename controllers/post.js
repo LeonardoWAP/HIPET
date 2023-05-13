@@ -1,5 +1,5 @@
-import { listPosts, findPostById, createPost, createReport, findPostByUserId, findUserById, listPostsByAnimalType } from '../diplomatic/https_client.js'
-import { buildPost,buildPostToUserLogin, formatText, showLoading, hideLoading, reportFailed, reportSucceeded, reportConfirmation, reportWithoutReason } from '../utilities/utilities.js'
+import { listPosts, findPostById, createPost, createReport, findPostByUserId, findUserById, deletePostById,listPostsByAnimalType } from '../diplomatic/https_client.js'
+import { buildPost,buildPostToUser, formatText, showLoading, hideLoading, reportFailed, reportSucceeded,deletePostSucceded, deletePostFailed, reportConfirmation, reportWithoutReason } from '../utilities/utilities.js'
 
 export function imgCorreta(){
   let preview= document.querySelector("#preview") 
@@ -100,15 +100,15 @@ export function getPostDetails(){
                 let nickname = post.user.nickname
                 let userImg = ( post.user.picture != undefined) ? post.user.picture : "../../src/user.svg"
 
-            post_img.style.backgroundImage = `url('${picture}')`;
+                post_img.style.backgroundImage = `url('${picture}')`;
 
-            post_footer.innerHTML = `<a class="post-details-footer-user-information" 
-                                        href="../user/user_perfil.html?userId=${post.user.id}"> 
-                                    
-                                        <img id="user-img" src=${userImg}>
-                                        <p class="title" id="user-nickname">${nickname}</p>
-                                                                    
-                                    </a>`
+                post_footer.innerHTML = `<a class="post-details-footer-user-information" 
+                                            href="../user/user_perfil.html?userId=${post.user.id}"> 
+                                        
+                                            <img id="user-img" src=${userImg}>
+                                            <p class="title" id="user-nickname">${nickname}</p>
+                                                                        
+                                        </a>`
 
                 post_header.innerHTML = `<h1 class="title animalName"> ${animalName}</h1>
                                         <p class="post-details-subtitle animalInfo"> ${animalSex}, ${animalAge} anos </p>
@@ -212,10 +212,6 @@ export function reportPost(){
 }
 
 export function createNewPost(resize){
-
-   
-
-
     let animalTypeDog = document.getElementById("checkAnimalTypeDog").firstElementChild.checked ;
     let animalSexFemea = document.getElementById("checkAnimalSexFemea").firstElementChild.checked ;
     let animalName = document.getElementById("animalName").firstElementChild.value;
@@ -348,23 +344,64 @@ export function createNewPost(resize){
 // }
 }
 
+function deletePost(botao){
+   
+    let postId= botao.parentNode.parentNode.querySelector('a').getAttribute('href').match(/postId=([^&]*)/)[1]
+
+    const deletePostModal = document.getElementById("delete-post-modal-info");
+    const modalContent = document.getElementById("delete-post-modal");
+    const deletePostButton = document.getElementById('deletePostButton');
+
+
+    deletePostButton.addEventListener('click', () => {
+
+        showLoading(deletePostButton)
+
+        deletePostById(postId)
+        .then(data => {
+            if(data['status'] == "SUCCESS"){
+                hideLoading()
+                
+                deletePostModal.innerHTML = deletePostSucceded;
+                modalContent.style.backgroundColor = "#D6F9C8";
+                location.reload()
+            }else{
+                console.log(data)
+                deletePostModal.innerHTML = deletePostFailed;
+            }
+        })
+    });
+}
+
 export function getUserPosts(){
 
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get('userId');
 
     let data = findPostByUserId(userId);
-    let cardContainer = document.getElementById("card-container")
-
+    let cardContainer = document.getElementById("card-container-perfil")
+    
     data.then(data => {
         if(data['status'] == "SUCCESS"){
             let posts = data['posts'] 
             
             for (let  i = 0; i < posts.length; i++){
-       
-                let post = buildPostToUserLogin(posts[i])           
+                let post =  buildPostToUser(posts[i])
+                                      
                 cardContainer.innerHTML += post;
             }
+
+            let botao = document.querySelectorAll('.delete-post');
+
+            botao.forEach(function(elemento) {
+                elemento.addEventListener('click', function() {
+                  deletePost(this);
+                });
+            });
+
+            
+
+
         }else{
             console.log(data)
         }
