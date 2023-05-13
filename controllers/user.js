@@ -42,7 +42,7 @@ export function info_elements(userId){
 
 			<div class="form-floating input-short-edit" >
                 <input type="text" name="celular" class="form-control" id="phoneNumber" placeholder="telefone" value= ${phoneNumber}>
-                <label for="phoneNumber">Número de Ceular </label>
+                <label for="phoneNumber">Celular</label>
             </div>
 
 			<div class=" form-floating input-short-edit" >

@@ -1134,17 +1134,53 @@ body{
     align-items: center;
     justify-content: center;
 }
+#delete-perfil{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+.button-red{
+    width: 82%;
+    height: 55px;
+    background-color: var(--text-red);
+    color: var(--center-button);
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: 0.5s;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+}
 .edit-form{
-    gap: 15px;
-    height: auto;
+    gap: 30px;
     width: 80%;
 }
 .input-large-edit{
-    width: 90%;
+    width: 90%;    
 }
 .input-short-edit{
-    width: 43%;
+    width: 40%;
+    padding: 0;
+    margin: 0;    
 }
+
+.input-short-edit> .form-control {
+    height:1rem  !important;
+    line-height: 1.25;
+}
+
+.input-large-edit> .form-control {
+    height:1rem  !important;
+    line-height: 1.25;
+}
+
+
+
 
 
 
