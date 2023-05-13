@@ -38,10 +38,9 @@ export function updateUser(userRequest , userId){
 .catch(err => {return err})
 }
 
-export function DeleteUser(userRequest , userId){
-  return fetch(baseUrl+'user/update/'+userId,{
+export function deleteUserById( userId){
+  return fetch(baseUrl+'user/'+userId,{
     method: "DELETE",
-    body: JSON.stringify(userRequest),
     headers: {"Content-type": "application/json; charset=UTF-8"}
   })
 .then(response =>{
