@@ -878,14 +878,14 @@ body{
     grid-template-columns: 100%;
     grid-template-rows: 18% auto 51%;
     gap: 15px;
-    height: calc(100% );
     padding: 31px 31px 0px 31px;
     margin-top: -93px;
+    height: calc(100% + 96px);
+    overflow: auto;
     border-radius: 25px 25px 0 0;
 }
 
 .post-details-text-about{
-    height: 100%;
     overflow: auto;
 }
 

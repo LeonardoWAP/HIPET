@@ -86,12 +86,17 @@ export function getPostDetails(){
     let post_details = document.getElementById("post-details-card-info-resume")
     let post_img = document.getElementById("post-details-card-img")
 
+
     findPostById(postId)
         .then(data =>{
 
             if(data['status'] == "SUCCESS"){
 
                 let post = data['post'];
+
+                localStorage.setItem('user-number-post', post.user.phone_number)
+
+
                 let animalName = post.animal.name
                 let animalSex = formatText(post.animal.sex)
                 let animalAge = (post.animal.age != undefined) ? post.animal.age : "?"   
@@ -99,6 +104,7 @@ export function getPostDetails(){
                 let picture = post.picture
                 let nickname = post.user.nickname
                 let userImg = ( post.user.picture != undefined) ? post.user.picture : "../../src/user.svg"
+
 
                 post_img.style.backgroundImage = `url('${picture}')`;
 
@@ -227,18 +233,12 @@ export function createNewPost(resize){
 
     let userId = localStorage.getItem('user-id')
 
-    // const fileInput = document.getElementById('fileInput');
-    // const file = fileInput.files[0];
-    // const reader = new FileReader();
-    // reader.readAsDataURL(file);
 
     resize.croppie('result',{
         type:'base64',
         size:'viewport'
     }).then(function(img){
-        // const fileInput  = document.getElementById('preview')
-        // console.log("newImg" + )
-
+    
         let postRequest = {
             "customer_id": userId, 
             "state": state,
@@ -305,43 +305,6 @@ export function createNewPost(resize){
                         `
                }})
     });
-
-    // reader.onload = () => {
-        // const base64Image = reader.result.split(',')[1];
-
-        // console.log(base64Image)
-
-
-        // let data = createPost(postRequest)
-
-        // data.then(data =>{
-    
-        //     if(data['status'] == "SUCCESS"){
-    
-        //         let divPopUp = document.querySelector('.modal-content')
-        //         divPopUp.innerHTML = `
-        //                     <div class="modal-header">
-        //                         <h5 class="modal-title" id="popUpCadastroLabel">Post Criado com Sucesso!</h5>
-        //                         <button 
-        //                             type="button" 
-        //                             class="btn-close" 
-        //                             data-bs-dismiss="modal" 
-        //                             aria-label="Close"></button>
-        //                     </div>
-        //                     <div class="modal-body">
-        //                         Seu post foi publicado, clique no botão abaixo para visualizá-lo :)
-        //                     </div>
-        //                     <div class="modal-footer">
-                                
-        //                    <a href='post_details.html?postId=${data['post'].id}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Visualizar Post</button>
-        //                    </a>
-        //                 </div>`
-        //     }else{            
-        //         var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
-        //         popoverTriggerList.map(function (popoverTriggerEl) {
-        //             return new bootstrap.Popover(popoverTriggerEl)
-        //     })}})
-// }
 }
 
 function deletePost(botao){
@@ -419,4 +382,17 @@ export function sharePost() {
 
     const copyUrlButton = document.getElementById('copy-url-button');
     copyUrlButton.removeEventListener('click', copiarUrl);
+}
+
+export function mensagemByWhatsApp(){
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('postId');
+    const url = `https://leonardowap.github.io/HIPET_FrontEnd/screens/post/post_details.html?postId=${postId}`;
+
+    var numeroTelefone = localStorage.getItem('user-number-post'); // Substitua pelo número de telefone desejado
+    var mensagem = "Olá, vi seu post no HiPet e gostaria de conversar sobre :)  " + url; // Substitua pela mensagem desejada
+
+    var urlShare = "https://wa.me/" + numeroTelefone + "?text=" + encodeURIComponent(mensagem);
+
+    window.open(urlShare, "_blank");
 }
