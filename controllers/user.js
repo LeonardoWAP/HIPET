@@ -129,13 +129,14 @@ export function deleteUser(){
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            Seu perfil foi editado, clique no botão abaixo para visualizá-lo :)
+                            Seu perfil foi Deletado
                         </div>
                         <div class="modal-footer">
                             
                        <a href='/screens/user/login/login.html' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Aplicar</button>
                        </a>
                         </div>`
+                        realizarLogout()
         }else{            
             var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
             popoverTriggerList.map(function (popoverTriggerEl) {
