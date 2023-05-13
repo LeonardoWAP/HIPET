@@ -1,5 +1,5 @@
 import {findPostById, findUserById , updateUser, findUserByNickname , deleteUserById} from '../diplomatic/https_client.js'
-import { buildPost, formatText, donationTag, logout, setImg} from '../utilities/utilities.js'
+import { buildPost, formatText, donationTag, logout, editUserTag, setImg} from '../utilities/utilities.js'
 
 export function info_elements(userId){
 
@@ -200,6 +200,8 @@ export function setUserData(){
         setNickname(localStorage.getItem('nickname'))
         setUserImg(localStorage.getItem('user_img'))
 
+    
+        document.getElementById('tags').innerHTML += editUserTag;
         document.getElementById('userHeader').innerHTML += logout;
 
         if(localStorage.getItem('user_type') == "ONG"){

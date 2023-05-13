@@ -43,6 +43,11 @@ export const logout =  `<button id="logout-button"
                             <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
                             </svg>
                         </button>`
+export   const editUserTag = `<a class="user-tag edit" 
+                            href="../user/edit_info_pf.html">
+                            <img src="../../src/edit-perfil.svg"> 
+                            <p class="subtitle">Editar perfil</p>
+                            </a>`
                         
 export const reportWithoutReason = `<p id="report-error"> ** selecione o motivo da sua denuncia</p>`
 
