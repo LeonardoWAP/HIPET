@@ -1,4 +1,4 @@
-import {findPostById, findUserById , updateUser, findUserByNickname} from '../diplomatic/https_client.js'
+import {findPostById, findUserById , updateUser, findUserByNickname , deleteUserById} from '../diplomatic/https_client.js'
 import { buildPost, formatText, donationTag, logout, setImg} from '../utilities/utilities.js'
 
 export function info_elements(userId){
@@ -106,6 +106,37 @@ export function editUser(){
                        <a href='/screens/user/user_perfil.html' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Aplicar</button>
                        </a>
                         </div>`
+        }else{            
+            var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
+            popoverTriggerList.map(function (popoverTriggerEl) {
+                return new bootstrap.Popover(popoverTriggerEl)
+            })}})
+
+}
+
+export function deleteUser(){
+
+    let data = deleteUserById(localStorage.getItem('user-id'))
+
+    data.then(data =>{
+    
+        if(data['status'] == "SUCCESS" ){
+            
+            let divPopUp = document.querySelector('.modal-content')
+            divPopUp.innerHTML = `
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="popUpCadastroLabel">Usuario Deletado com Sucesso</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            Seu perfil foi Deletado
+                        </div>
+                        <div class="modal-footer">
+                            
+                       <a href='/screens/user/login/login.html' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Aplicar</button>
+                       </a>
+                        </div>`
+                        realizarLogout()
         }else{            
             var popoverTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="popover"]'))
             popoverTriggerList.map(function (popoverTriggerEl) {
