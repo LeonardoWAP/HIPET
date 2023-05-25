@@ -25,10 +25,15 @@ export const modalPostCreate = `
             <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Visualizar Post</button>
             </div>`
 
-export const donationTag = `<a class="user-tag donation" 
-                                href="../user/edit_info_pf.html">
-                                <img src="../../src/donation.svg"> 
-                                <p class="subtitle">Quero fazer uma doação</p> </a> `
+export const donationTag = `<button id="donation-button" 
+                                    type="button" 
+                                    class="user-tag donation" 
+                                    data-bs-toggle="modal" 
+                                    data-bs-target="#donationModal">
+
+                                    <img src="../../src/donation.svg"> 
+                                    <p class="subtitle">Quero fazer uma doação</p>
+                                </button>`
 
 export const logout =  `<button id="logout-button" 
                                 type="button" 
@@ -43,8 +48,9 @@ export const logout =  `<button id="logout-button"
                             <path fill-rule="evenodd" d="M15.854 8.354a.5.5 0 0 0 0-.708l-3-3a.5.5 0 0 0-.708.708L14.293 7.5H5.5a.5.5 0 0 0 0 1h8.793l-2.147 2.146a.5.5 0 0 0 .708.708l3-3z"/>
                             </svg>
                         </button>`
+
 export   const editUserTag = `<a class="user-tag edit" 
-                            href="../user/edit_info_pf.html">
+                                href="../user/edit_user.html?userType=${localStorage.getItem('user_type')}">
                             <img src="../../src/edit-perfil.svg"> 
                             <p class="subtitle">Editar perfil</p>
                             </a>`

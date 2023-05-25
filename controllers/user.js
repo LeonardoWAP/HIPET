@@ -7,24 +7,32 @@ export function userEditForms(userId){
     
     data.then(data => {
         let formContainer = document.getElementById("register-form")
-        let vakinhaInput=""
+        let vakinhaInput="<div> </div>"
+        let cpfInput="<div> </div>"
 
         var name = data.user.name
         var nickname = data.user.nickname
         var email = data.user.email
         var phoneNumber = data.user.phone_number
         var cpf = data.user.document
+        var vakinhaUrl = data.user.donation_link
         setUserImg(data.user.picture) 
 
 
         if (localStorage.getItem("user_type") == "ONG"){
-             vakinhaInput =`<div class="register-form-input input-large">
-                                    <label  class="title" for="inputUrlVakinha">Link do perfil na Vakinha <span class="label-subtitle"> (opcional) </span></label>
-                                    <input type="text" id="inputUrlVakinha" name="inputUrlVakinha" required placeholder="Preencha para receber doações">
-                                </div>`
+             vakinhaInput =`<div class="form-floating  input-large-edit">
+                                <input type="text" class="form-control title" id="vakinha" placeholder="Nome" value="${vakinhaUrl}" > 
+                                <label for="name">Link para receber doações pela Vakinha</label>
+                            </div>`
+        }else{
+            cpfInput = `<div class=" form-floating input-short-edit" >
+                            <input type="text" id="cpf" name="cpf" class="form-control" placeholder="cpf" disabled readonly value= ${cpf}>
+                            <label for="cpf">CPF</label>
+                        </div>`
+
         }
 
-        let qualquercoisa= ` 
+        let userEditForm= ` 
             <div class="form-floating  input-short-edit">
                 <input type="text" class="form-control title" id="name" placeholder="Nome" value="${name}" > 
                 <label for="name">Nome</label>
@@ -41,15 +49,12 @@ export function userEditForms(userId){
             </div>
 
 
-			<div class="form-floating input-short-edit" >
+			<div class="form-floating input-large-edit" >
                 <input type="text" name="celular" class="form-control" id="phoneNumber" placeholder="telefone" value= ${phoneNumber}>
                 <label for="phoneNumber">Celular</label>
             </div>
 
-			<div class=" form-floating input-short-edit" >
-                <input type="text" id="cpf" name="cpf" class="form-control" placeholder="cpf" disabled readonly value= ${cpf}>
-                <label for="cpf">CPF</label>
-            </div>
+            ${cpfInput}
 
             ${vakinhaInput}
 
@@ -58,12 +63,12 @@ export function userEditForms(userId){
                 <label for="newPassword">Nova senha</label>
             </div>
 
-            <div class="form-floating  input-large-edit" >
+            <div class="form-floating  input-ldonationTagarge-edit" >
                 <input type="password" class="form-control"  id="reapetPassword" placeholder="password" >
                 <label for="reapetPassword">Repita Nova senha</label>
             </div>
             `
-            formContainer.innerHTML += qualquercoisa;
+            formContainer.innerHTML += userEditForm;
     }) 
 }
 
@@ -188,7 +193,7 @@ export function setUserImg(img){
     userImg.src = ( img != undefined) ? img : "../../src/user.svg"
 }
   
-function setOngTag(){
+function setDonationTag(){
     let tags = document.getElementById("tags")
     tags.innerHTML += donationTag
 }
@@ -206,7 +211,16 @@ export function setUserData(){
             setNickname(data.user.nickname)
             setUserImg(data.user.picture)    
             if(data.user.type == 'ONG'){
-                setOngTag()
+                setDonationTag()
+
+                document.getElementById("donation-modal-info").innerHTML +=  `  <div class="modal-footer">
+                                                                                    <a href=${data.user.donation_link} class="donationLink"> 
+                                                                                    <button type="button" 
+                                                                                            class="btn btn-primary" 
+                                                                                            id="makeDonation">Quero prosseguir
+                                                                                    </button>
+                                                                                            </a>
+                                                                                </div>`
             }        
         })
     }else{
@@ -223,7 +237,7 @@ export function realizarLogout(){
     window.location.href = "../login/login.html";
 }
 
-function adicionarEventoDeEscuta(searchResult) {
+function adicionarEventoDeEscuta(searchResult){
     searchResult.addEventListener('click', (event) => {
         searchResult.parentNode.remove()
     });
