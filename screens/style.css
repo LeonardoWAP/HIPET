@@ -1231,9 +1231,13 @@ body{
     font-weight: 700;
 }
 
-.input-img{
+.input-animal-img {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
     width: 85%;
 }
+
 
 .input-img label{
     font-size: 1rem;
@@ -1249,7 +1253,6 @@ body{
     flex-direction: column;
     gap: 10px;
     width: 85%;
-    background-color: red;
 }
 
 .create-post-form-input >label{
