@@ -192,6 +192,8 @@ export function buildPostToUser(post){
 }
 
 export function showLoading(element) {
+    console.log("login")
+
     element.innerHTML += ` <div id="loading" class="loading">
                                     <div class="spinner"></div>
                                 </div>`
