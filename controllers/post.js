@@ -94,8 +94,8 @@ export function getPostDetails(){
 
                 let post = data['post'];
 
-                localStorage.setItem('user-number-post', post.user.phone_number)
-
+                localStorage.setItem('whatsapp-number', post.user.phone_number)
+                
 
                 let animalName = post.animal.name
                 let animalSex = formatText(post.animal.sex)
@@ -145,7 +145,7 @@ export function getPostDetails(){
                 if(animalSpacialCare) {
                     post_tags.innerHTML += `<div class="animal-tag animal-health"> 
                                             <img src="../../src/icon-health.svg"> 
-                                            <p>Requer cuiodados especiais</p>
+                                            <p>Requer cuidados especiais</p>
                                         </div>`
                 }
 
@@ -309,7 +309,7 @@ export function createNewPost(resize){
 
 function deletePost(botao){
    
-    let postId= botao.parentNode.parentNode.querySelector('a').getAttribute('href').match(/postId=([^&]*)/)[1]
+    let postId= botao.parentNode.parentNode.parentNode.querySelector('a').getAttribute('href').match(/postId=([^&]*)/)[1]
 
     const deletePostModal = document.getElementById("delete-post-modal-info");
     const modalContent = document.getElementById("delete-post-modal");
@@ -385,7 +385,7 @@ export function mensagemByWhatsApp(){
     const postId = urlParams.get('postId');
     const url = `https://leonardowap.github.io/HIPET_FrontEnd/screens/post/post_details.html?postId=${postId}`;
 
-    var numeroTelefone = localStorage.getItem('user-number-post'); // Substitua pelo número de telefone desejado
+    var numeroTelefone = localStorage.getItem('whatsapp-number'); // Substitua pelo número de telefone desejado
     var mensagem = "Olá, vi seu post no HiPet e gostaria de conversar sobre :)  " + url; // Substitua pela mensagem desejada
 
     var urlShare = "https://wa.me/" + numeroTelefone + "?text=" + encodeURIComponent(mensagem);

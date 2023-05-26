@@ -184,13 +184,13 @@ body{
     grid-column-start: 1;
     grid-row-start: 2;
     grid-row-end: 3;
+
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
    
 }
 
-.post-animal-img img{
-    width: 100%;
-    object-fit: cover;
-}
 
 .post-animal-info{
     grid-column-start: 1;
@@ -241,6 +241,7 @@ body{
     font-size: 0.85rem;
     color: var(--text-gray);
     margin: 0;
+    word-wrap: break-word;
     
 }
 
@@ -886,6 +887,7 @@ body{
 .post-details-text-about{
     overflow: auto;
     height: 130px;
+    word-wrap: break-word;
 }
 
 .post-details-text-about p{
@@ -979,6 +981,9 @@ body{
     border-radius: 5px;
     height: 10px;
     padding: 5% 3%;
+
+    min-height: 25px;
+    min-width: 110px;
 }
 
 .animal-color{
@@ -1376,6 +1381,8 @@ body{
 
 .share{
     width: 48%;
+    min-width: 182px;
+
     background-color: var(--background-purple);
 }
 .share p{
@@ -1383,6 +1390,7 @@ body{
 }
 
 .edit{
+    min-width: 118px;
 
     width: 35%;
     color: var(--purple);
@@ -1434,6 +1442,9 @@ body{
     grid-column-start: 1;
     grid-row-start: 1;
     grid-row-end: 2;
+
+    background-size: cover;
+    background-position: center;
    
 }
 
@@ -1539,69 +1550,115 @@ body{
 
 /****************************** box alterações salvas ************/
 
+@media only screen and (max-width: 410px){
 
+    
+/************ FEED ************/
+ .post-animal {
+    grid-template-rows: 11% 61% 28%;
+}
 
+.post-animal-user{
+    grid-template-columns: 16% 63% 7% 8%;
+}
 
-@media (min-width: 420px){
+.post-animal-info-animal-tag{
+    flex-wrap: wrap;
+}
 
-/* 
-   #perfil .mobile-container{
+#feed .animal-tag{
+    width: 29%;
+    min-width: 73px;
+}
 
-     height: 100vh; 
-    justify-content: stretch; 
-   }
+/******************************/
+    
+/**** Detalhe da publicaçãp*****/
+    .post-animal-perfil{
+        width: 80%;
+        height: 332px ;
+    }
 
-    .mobile-container{
-        box-shadow: 0px 0px 14px 5px rgba(0,0,0,0.14);
-        /* height: 100vh; */
-        /* justify-content: stretch; */
-    /* } */
-/*
-    .post-details-header{
-        width:calc(420px - 40px);
-    } */
-
-    /* .card-animal {
-        width: 174px;
-        height: 330px;
-        border-radius: 12px;
-        overflow: hidden;
+    .user-header-tags {
        
-    } */
+        gap: 16% 17%;
+    
+    }
+
+    .share{
+        margin-bottom: 5px;
+    }
+}
+
+
+@media only screen and (max-width: 360px) {
+
+
+
+/************ Feed *************/
+.post-animal-user {
+    grid-template-columns: 15% 63% 10% 11%;
+
+}
+
+.post-animal-info-animal-tag {
+
+    flex-wrap: wrap;
+}
+/******************************/
+
+
+/**** Detalhe da publicaçãp*****/
+
+#post-details-card-info-header {
+    grid-template-columns: 80% 9% 10%;
+}
+
+#post-details-card-info-tags{
+    padding: 0px ;
+    gap: 7px 7px;
    
 }
 
+.animal-tag{
+    padding: 0;
+    /* height: 45px;
+    min-width: 188px; */
+}
+
+.animal-health {
+    line-height: 15px;
+    height: 39px;
+    padding: 6px;
+    margin: 0;
+}
+
+.animal-health p{
+    width: 72%;
+}
+/*******************************/
+
+}
+
  
-@media (max-width: 296px){
-/* 
-    .mobile-container{
-        gap:50px;
+@media (max-width: 310px){
 
+    .animal-tag, .animal-health{
+      height: 45px;
+      width: 188px; 
     }
 
-    .post-details-header{
-        width:calc(420px - 40px);
+    .post-details-card-info{
+        
+     height: calc(100% + 236px);
+     margin-bottom: 195px;
+     gap: 12px;
     }
 
-    /* .card-animal {
-        width: 210px;
-        height: 330px;
-        border-radius: 12px;
-        overflow: hidden;
-    } */
-/*
-    .feed-header-filters {
-        flex-wrap: wrap;
-        gap: 25% 5%;
+    #post-details-card-img {
+        
+        padding: 0px ;
+      
     }
-
-    .feed-header-filters-search{
-        width: 80%;
-    }
-
-    .feed-header-filters-button{
-        width: 29%;
-    } */
-
 }
  

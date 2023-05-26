@@ -173,9 +173,42 @@
         </div>
     </div>
 
+    <div class="modal fade" 
+            id="whatsappMensagemModal" 
+            tabindex="-1" 
+            aria-labelledby="exampleModalLabel" 
+            aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" 
+                    id="exampleModalLabel">
+                    Conversar pelo WhatsApp
+                </h1>
+                <button type="button" 
+                        class="btn-close" 
+                        data-bs-dismiss="modal" 
+                        aria-label="Close">
+                </button>
+            </div>
+            <div class="modal-body">
+                Você será redirecionado para o aplicativo do WhatsApp para seguir sua conversa, deseja proseguir?
+
+            </div>
+
+            <div class="modal-footer">
+                <button type="button" 
+                        class="btn btn-primary report-btn" 
+                        id="whatsappMensagemOK">Seguir</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
     <script type="module">
         import {verify_login} from "../../controllers/login.js"
-        import {getUserPosts} from "../../controllers/post.js"
+        import {getUserPosts, mensagemByWhatsApp} from "../../controllers/post.js"
         import {shareUser, setUserData, realizarLogout, setUserIconFooter} from "../../controllers/user.js"
        
         verify_login()
@@ -185,6 +218,8 @@
 
         document.querySelector("#copy-url-button").addEventListener('click', shareUser)
         document.querySelector("#logoutUser").addEventListener('click', realizarLogout)
+        document.querySelector("#whatsappMensagemOK").addEventListener('click', mensagemByWhatsApp)
+
     </script>
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" 

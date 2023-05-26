@@ -54,6 +54,14 @@ export   const editUserTag = `<a class="user-tag edit"
                             <img src="../../src/edit-perfil.svg"> 
                             <p class="subtitle">Editar perfil</p>
                             </a>`
+
+export  const whatasAppTag = `<button class="user-tag edit" 
+                                        type="button" 
+                                        data-bs-toggle="modal" 
+                                        data-bs-target="#whatsappMensagemModal" >
+                                    <img src="../../src/whatsapp.svg"> 
+                                    <p class="subtitle">Mensagem</p>
+                                </button>`
                         
 export const reportWithoutReason = `<p id="report-error"> ** selecione o motivo da sua denuncia</p>`
 
@@ -122,7 +130,7 @@ export function buildPost(post){
     let localization = post.state 
     let userName = post.user.nickname
 
-   return ` <a class="post-animal-link" href="post_details.html?postId=${postId}">
+   return ` 
                 <article class="post-animal">
                     <div class="post-animal-user">
                         <img class="post-user-img" src="${setImg(post.user.picture)}">
@@ -131,9 +139,11 @@ export function buildPost(post){
                         <p class="post-localization">${localization}</p>
                     </div>
 
-                    <div class="post-animal-img">
-                        <img id="img-animal" src='${picture}'> 
-                    </div>
+            
+                    <a class="post-animal-img" 
+                         href="post_details.html?postId=${postId}"
+                        style = "background-image: url('${picture}')">
+                    </a>    
                     
                     <div class="post-animal-info">
                         <p class="title">${animalName} </p>
@@ -149,7 +159,7 @@ export function buildPost(post){
                     </div>
 
                 </article> 
-             </a> `
+            `
 }
 
 export function buildPostToUser(post){
@@ -164,13 +174,13 @@ export function buildPostToUser(post){
     let deletePost = `<div> </div>`
 
     if(userPramsId == localUserid){
-      deletePost = deletePostButton
-
+        deletePost = deletePostButton
     }
-
+ 
    return  `<article class="post-animal-perfil">
-                    <a class="post-animal-img-perfil" href="../post/post_details.html?postId=${postId}">
-                        <img id="img-animal" src='${picture}'> 
+                    <a class="post-animal-img-perfil" href="../post/post_details.html?postId=${postId}"
+                        style = "background-image: url('${picture}')">
+                        
                     </a>
 
                     <div class="post-animal-info-perfil">

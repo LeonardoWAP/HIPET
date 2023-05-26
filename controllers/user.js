@@ -1,5 +1,5 @@
 import {findPostById, findUserById , updateUser, findUserByNickname , deleteUserById} from '../diplomatic/https_client.js'
-import { buildPost, formatText, donationTag, logout, editUserTag, setImg} from '../utilities/utilities.js'
+import { buildPost, formatText, donationTag, logout, whatasAppTag, editUserTag, setImg} from '../utilities/utilities.js'
 
 export function userEditForms(userId){
 
@@ -143,7 +143,7 @@ export function editUser(){
                                                 Seu perfil foi editado, clique no botão abaixo para visualizá-lo :)
                                             </div>
                                             <div class="modal-footer">
-                                                <a href='/screens/user/user_perfil.html?userId=${localStorage.getItem('user-id')}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Aplicar</button>
+                                                <a href='/screens/user/user_perfil.html?userId=${localStorage.getItem('user-id')}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Visualizar</button>
                                                 </a>
                                             </div>`
                 }})
@@ -198,6 +198,11 @@ function setDonationTag(){
     tags.innerHTML += donationTag
 }
 
+function setMensageTag(){
+    let tags = document.getElementById("tags")
+    console.log(tags)
+    tags.innerHTML += whatasAppTag
+}
 export function setUserData(){
 
     const urlParams = new URLSearchParams(window.location.search);
@@ -209,27 +214,31 @@ export function setUserData(){
         let data = findUserById(userPramsId);
         data.then(data =>{
             setNickname(data.user.nickname)
-            setUserImg(data.user.picture)    
+            setUserImg(data.user.picture)   
+           
+            setMensageTag()
+            localStorage.setItem("whatsapp-number", data.user.phone_number)
+
             if(data.user.type == 'ONG'){
                 setDonationTag()
 
                 document.getElementById("donation-modal-info").innerHTML +=  `  <div class="modal-footer">
                                                                                     <a href=${data.user.donation_link} class="donationLink"> 
-                                                                                    <button type="button" 
-                                                                                            class="btn btn-primary" 
-                                                                                            id="makeDonation">Quero prosseguir
-                                                                                    </button>
-                                                                                            </a>
+                                                                                        <button type="button" 
+                                                                                                class="btn btn-primary" 
+                                                                                                id="makeDonation">Quero prosseguir
+                                                                                        </button>
+                                                                                    </a>
                                                                                 </div>`
             }        
         })
-    }else{
-        setNickname(localStorage.getItem('nickname'))
-        setUserImg(localStorage.getItem('user_img'))
+        }else{
+            setNickname(localStorage.getItem('nickname'))
+            setUserImg(localStorage.getItem('user_img'))
 
-        document.getElementById('tags').innerHTML += editUserTag;
-        document.getElementById('userHeader').innerHTML += logout; 
-    }
+            document.getElementById('tags').innerHTML += editUserTag;
+            document.getElementById('userHeader').innerHTML += logout; 
+        }
 }
 
 export function realizarLogout(){
