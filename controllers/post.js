@@ -372,7 +372,7 @@ export function sharePost() {
     const urlParams = new URLSearchParams(window.location.search);
     const postPramsId = urlParams.get('postId');
 
-    const url = `https://leonardowap.github.io/HIPET_FrontEnd/screens/post/post_details.html?postId=${postPramsId}`;
+    const url = `https://leonardowap.github.io/HIPET/screens/post/post_details.html?postId=${postPramsId}`;
   
     navigator.clipboard.writeText(url)
 
@@ -383,7 +383,7 @@ export function sharePost() {
 export function mensagemByWhatsApp(){
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('postId');
-    const url = `https://leonardowap.github.io/HIPET_FrontEnd/screens/post/post_details.html?postId=${postId}`;
+    const url = `https://leonardowap.github.io/HIPET/screens/post/post_details.html?postId=${postId}`;
 
     var numeroTelefone = localStorage.getItem('whatsapp-number'); // Substitua pelo número de telefone desejado
     var mensagem = "Olá, vi seu post no HiPet e gostaria de conversar sobre :)  " + url; // Substitua pela mensagem desejada

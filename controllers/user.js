@@ -179,7 +179,7 @@ export function shareUser() {
     const urlParams = new URLSearchParams(window.location.search);
     const userPramsId = urlParams.get('userId');
 
-    const url = `https://leonardowap.github.io/HIPET_FrontEnd/screens/user/user_perfil.html?userId=${userPramsId}`;
+    const url = `https://leonardowap.github.io/HIPET/screens/user/user_perfil.html?userId=${userPramsId}`;
   
     navigator.clipboard.writeText(url)
 
