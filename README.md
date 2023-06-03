@@ -1,3 +1,3 @@
 # HIPET_FrontEnd
 
-<a href="https://leonardowap.github.io/HIPET_FrontEnd/screens/login/login.html">Link para acessar </a>
+<a href="https://leonardowap.github.io/HIPET/screens/login/login.html">Link para acessar </a>
