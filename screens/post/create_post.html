@@ -217,7 +217,7 @@
 
         var parentWidth = $('#preview').width();
 
-        var resize = $('#preview').croppie({
+        let resize = $('#preview').croppie({
             enableExif: true,
             enableOrientation: true,
             viewport:{
@@ -242,7 +242,7 @@
             }
             reader.readAsDataURL(this.files[0]); 
         })
-
+    
     document.querySelector("#buttonCreatePost").addEventListener('click',  createNewPost.bind(null, resize))
 
     </script>

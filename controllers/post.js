@@ -236,7 +236,8 @@ export function createNewPost(resize) {
 
     resize.croppie('result', {
         type: 'base64',
-        size: 'viewport'
+        size: {width: 1200, height: 1200},
+        quality: 1,
     }).then(function (img) {
 
         let postRequest = {
