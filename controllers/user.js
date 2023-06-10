@@ -120,7 +120,7 @@ export function editUser(){
                                                 Seu perfil foi editado, clique no botão abaixo para visualizá-lo :)
                                             </div>
                                             <div class="modal-footer">
-                                                <a href='/screens/user/user_perfil.html?userId=${localStorage.getItem('user-id')}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Aplicar</button>
+                                                <a href='../screens/user/user_perfil.html?userId=${localStorage.getItem('user-id')}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Aplicar</button>
                                                 </a>
                                             </div>`
                 }})
@@ -143,7 +143,7 @@ export function editUser(){
                                                 Seu perfil foi editado, clique no botão abaixo para visualizá-lo :)
                                             </div>
                                             <div class="modal-footer">
-                                                <a href='/screens/user/user_perfil.html?userId=${localStorage.getItem('user-id')}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Visualizar</button>
+                                                <a href='../screens/user/user_perfil.html?userId=${localStorage.getItem('user-id')}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Visualizar</button>
                                                 </a>
                                             </div>`
                 }})
