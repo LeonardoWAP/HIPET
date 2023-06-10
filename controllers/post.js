@@ -1,38 +1,38 @@
-import { listPosts, findPostById, createPost, createReport, findPostByUserId, findUserById, deletePostById,listPostsByAnimalType } from '../diplomatic/https_client.js'
-import { buildPost,buildPostToUser, formatText, showLoading, hideLoading, reportFailed, reportSucceeded,deletePostSucceded, deletePostFailed, reportConfirmation, reportWithoutReason } from '../utilities/utilities.js'
+import { listPosts, findPostById, createPost, createReport, findPostByUserId, findUserById, deletePostById, listPostsByAnimalType } from '../diplomatic/https_client.js'
+import { buildPost, buildPostToUser, formatText, showLoading, hideLoading, reportFailed, reportSucceeded, deletePostSucceded, deletePostFailed, reportConfirmation, reportWithoutReason } from '../utilities/utilities.js'
 
-export function imgCorreta(){
-  let preview= document.querySelector("#preview") 
-  preview.enable
+export function imgCorreta() {
+    let preview = document.querySelector("#preview")
+    preview.enable
 }
 
-export function renderPosts(){
+export function renderPosts() {
 
     let cardContainer = document.getElementById("card-container")
     showLoading(cardContainer)
 
     let data = listPosts()
-    data.then(data =>{
-        
-        if(data['status'] == "SUCCESS"){
+    data.then(data => {
 
-            hideLoading() 
+        if (data['status'] == "SUCCESS") {
+
+            hideLoading()
             cardContainer.innerHTML = "";
 
-            let posts = data['posts'] 
-            
-            for (let  i = 0; i < posts.length; i++){
-                let post = buildPost(posts[i])           
+            let posts = data['posts']
+
+            for (let i = 0; i < posts.length; i++) {
+                let post = buildPost(posts[i])
                 cardContainer.innerHTML += post;
             }
-            
-        }else{
+
+        } else {
             console.log(data)
         }
     })
 }
 
-export function filterByAnimalType(otherButton, animalType){
+export function filterByAnimalType(otherButton, animalType) {
 
     let cardContainer = document.getElementById("card-container");
     let thisAriaPressed = this.getAttribute('aria-pressed');
@@ -40,9 +40,9 @@ export function filterByAnimalType(otherButton, animalType){
 
     if (thisAriaPressed === 'false') {
 
-        if(animalType =="GATO"){
+        if (animalType == "GATO") {
             this.style.backgroundColor = 'var(--background-green)';
-        }else{
+        } else {
             this.style.backgroundColor = 'var(--background-red)';
         }
 
@@ -51,21 +51,21 @@ export function filterByAnimalType(otherButton, animalType){
         otherButton.style.backgroundColor = 'white';
 
         listPostsByAnimalType(animalType)
-            .then(data =>{
+            .then(data => {
 
-            if(data['status'] == "SUCCESS"){
-                hideLoading()
+                if (data['status'] == "SUCCESS") {
+                    hideLoading()
 
-                let posts = data['posts']
-                
-                cardContainer.innerHTML = "";
-                    
-                for (let  i = 0; i < posts.length; i++){
-                    let post = buildPost(posts[i])
-                    cardContainer.innerHTML += post;
+                    let posts = data['posts']
+
+                    cardContainer.innerHTML = "";
+
+                    for (let i = 0; i < posts.length; i++) {
+                        let post = buildPost(posts[i])
+                        cardContainer.innerHTML += post;
+                    }
                 }
-            }
-        }).catch(err => console.error(err))
+            }).catch(err => console.error(err))
 
     } else {
         this.setAttribute('aria-pressed', 'false');
@@ -74,7 +74,7 @@ export function filterByAnimalType(otherButton, animalType){
     }
 }
 
-export function getPostDetails(){
+export function getPostDetails() {
 
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('postId');
@@ -88,22 +88,22 @@ export function getPostDetails(){
 
 
     findPostById(postId)
-        .then(data =>{
+        .then(data => {
 
-            if(data['status'] == "SUCCESS"){
+            if (data['status'] == "SUCCESS") {
 
                 let post = data['post'];
 
                 localStorage.setItem('whatsapp-number', post.user.phone_number)
-                
+
 
                 let animalName = post.animal.name
                 let animalSex = formatText(post.animal.sex)
-                let animalAge = (post.animal.age != undefined) ? post.animal.age : "?"   
+                let animalAge = (post.animal.age != undefined) ? post.animal.age : "?"
                 let animalState = post.state
                 let picture = post.picture
                 let nickname = post.user.nickname
-                let userImg = ( post.user.picture != undefined) ? post.user.picture : "../../src/user.svg"
+                let userImg = (post.user.picture != undefined) ? post.user.picture : "../../src/user.svg"
 
 
                 post_img.style.backgroundImage = `url('${picture}')`;
@@ -121,7 +121,7 @@ export function getPostDetails(){
                                         <img src="../../src/maps-and-flags.svg">
                                         <p class="animalState post-localization"> ${animalState} </p>`;
 
-                post_details.innerHTML +=  `<div class="subtitle post-details-text-about"> 
+                post_details.innerHTML += `<div class="subtitle post-details-text-about"> 
                                                 <p >${post.description}</p>
                                             </div> `
 
@@ -142,14 +142,14 @@ export function getPostDetails(){
                                             <p>${formatText(animalSize)}</p>
                                         </div>`;
 
-                if(animalSpacialCare) {
+                if (animalSpacialCare) {
                     post_tags.innerHTML += `<div class="animal-tag animal-health"> 
                                             <img src="../../src/icon-health.svg"> 
                                             <p>Requer cuidados especiais</p>
                                         </div>`
                 }
 
-                if(animalVacinneted){
+                if (animalVacinneted) {
                     post_tags.innerHTML += ` <div class="animal-tag animal-vaccine"> 
                                                 <img src="../../src/icon-vaccine.svg"> 
                                                 <p>Vacinado</p>
@@ -163,13 +163,13 @@ export function getPostDetails(){
                                             </div>`;
                 }
 
-        }else{
-            console.log(data)
-        }
-    })
+            } else {
+                console.log(data)
+            }
+        })
 }
 
-export function reportPost(){
+export function reportPost() {
 
     const urlParams = new URLSearchParams(window.location.search);
     const postId = urlParams.get('postId');
@@ -181,16 +181,16 @@ export function reportPost(){
     const modalContent = document.getElementById("report-modal");
 
     const reportRequest = {
-        "post_id": postId, 
+        "post_id": postId,
         "reason": reason,
         "description": mensagem
     }
 
-    if(reportRequest.reason == "Selecione"){
+    if (reportRequest.reason == "Selecione") {
         modalError.innerHTML = reportWithoutReason;
-    }else{
+    } else {
 
-        reportModal.innerHTML = reportConfirmation; 
+        reportModal.innerHTML = reportConfirmation;
 
         const createReportButton = document.getElementById('createReport');
 
@@ -201,13 +201,13 @@ export function reportPost(){
             showLoading(createReportButton)
 
             data.then(data => {
-                if(data['status'] == "SUCCESS"){
+                if (data['status'] == "SUCCESS") {
                     // hideLoading()
-                    
+
                     // reportModal.innerHTML = reportSucceeded;
                     // modalContent.style.backgroundColor = "#D6F9C8";
-                    
-                }else{
+
+                } else {
                     console.log(data)
                     reportModal.innerHTML = reportFailed;
                 }
@@ -217,16 +217,16 @@ export function reportPost(){
     }
 }
 
-export function createNewPost(resize){
-    let animalTypeDog = document.getElementById("checkAnimalTypeDog").firstElementChild.checked ;
-    let animalSexFemea = document.getElementById("checkAnimalSexFemea").firstElementChild.checked ;
+export function createNewPost(resize) {
+    let animalTypeDog = document.getElementById("checkAnimalTypeDog").firstElementChild.checked;
+    let animalSexFemea = document.getElementById("checkAnimalSexFemea").firstElementChild.checked;
     let animalName = document.getElementById("animalName").firstElementChild.value;
     let animalAge = document.getElementById("animalAge").firstElementChild.value;
     let animalColor = document.getElementById("animalColor").firstElementChild.value;
     let animalSize = document.getElementById("animalSize").firstElementChild.value;
     let castreated = document.getElementById("checkbox-info-castreated").firstElementChild.checked;
-    let vacinnated = document.getElementById("checkbox-info-vacinnated").firstElementChild.checked ;
-    let spacialCare = document.getElementById("checkbox-info-spacial-care").firstElementChild.checked ;
+    let vacinnated = document.getElementById("checkbox-info-vacinnated").firstElementChild.checked;
+    let spacialCare = document.getElementById("checkbox-info-spacial-care").firstElementChild.checked;
 
     let about = document.getElementById("aboutAnimal").firstElementChild.value;
     let state = document.getElementById("state").firstElementChild.value;
@@ -234,13 +234,13 @@ export function createNewPost(resize){
     let userId = localStorage.getItem('user-id')
 
 
-    resize.croppie('result',{
-        type:'base64',
-        size:'viewport'
-    }).then(function(img){
-    
+    resize.croppie('result', {
+        type: 'base64',
+        size: 'viewport'
+    }).then(function (img) {
+
         let postRequest = {
-            "customer_id": userId, 
+            "customer_id": userId,
             "state": state,
             "description": about,
             "picture": img.split(',')[1],
@@ -248,9 +248,9 @@ export function createNewPost(resize){
                 "name": animalName,
                 "color": animalColor,
                 "size": animalSize,
-                "age" : animalAge,
-                "type": (animalTypeDog  ? "CACHORRO" : "GATO"),
-                "sex": (animalSexFemea  ? "FEMEA" : "MACHO"),
+                "age": animalAge,
+                "type": (animalTypeDog ? "CACHORRO" : "GATO"),
+                "sex": (animalSexFemea ? "FEMEA" : "MACHO"),
                 "share_url": "",
                 "health_info": {
                     "vaccinated": vacinnated,
@@ -260,16 +260,13 @@ export function createNewPost(resize){
             }
         }
 
-        console.log(postRequest)
-
         let data = createPost(postRequest)
 
-        data.then(data =>{
-    
-            if(data['status'] == "SUCCESS"){
-    
+        data.then(data => {
+
+            if (data['status'] == "SUCCESS") {
+
                 let divPopUp = document.querySelector('.modal-content')
-                console.log(divPopUp)
                 divPopUp.innerHTML = `
                             <div class="modal-header">
                                 <h5 class="modal-title" id="popUpCadastroLabel">Post Criado com Sucesso!</h5>
@@ -286,10 +283,9 @@ export function createNewPost(resize){
                                 <a href='post_details.html?postId=${data['post'].id}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Visualizar Post</button>
                                 </a>
                             </div>`
-            }else{       
-                
+            } else {
+
                 let divPopUp = document.querySelector('.modal-content')
-                console.log(divPopUp)
                 divPopUp.innerHTML = `
                             <div class="modal-header">
                                 <h5 class="modal-title" id="popUpCadastroLabel">Post com falha!</h5>
@@ -303,13 +299,14 @@ export function createNewPost(resize){
                                 Não foi possível criar o seu post, verifique se preencheu todos os campos :(
                             </div>
                         `
-               }})
+            }
+        })
     });
 }
 
-function deletePost(botao){
-   
-    let postId= botao.parentNode.parentNode.parentNode.querySelector('a').getAttribute('href').match(/postId=([^&]*)/)[1]
+function deletePost(botao) {
+
+    let postId = botao.parentNode.parentNode.parentNode.querySelector('a').getAttribute('href').match(/postId=([^&]*)/)[1]
 
     const deletePostModal = document.getElementById("delete-post-modal-info");
     const modalContent = document.getElementById("delete-post-modal");
@@ -320,48 +317,48 @@ function deletePost(botao){
         showLoading(deletePostButton)
 
         deletePostById(postId)
-        .then(data => {
-            if(data['status'] == "SUCCESS"){
-                hideLoading()
-                
-                deletePostModal.innerHTML = deletePostSucceded;
-                modalContent.style.backgroundColor = "#D6F9C8";
-                location.reload()
-            }else{
-                console.log(data)
-                deletePostModal.innerHTML = deletePostFailed;
-            }
-        })
+            .then(data => {
+                if (data['status'] == "SUCCESS") {
+                    hideLoading()
+
+                    deletePostModal.innerHTML = deletePostSucceded;
+                    modalContent.style.backgroundColor = "#D6F9C8";
+                    location.reload()
+                } else {
+                    console.log(data)
+                    deletePostModal.innerHTML = deletePostFailed;
+                }
+            })
     });
 }
 
-export function getUserPosts(){
+export function getUserPosts() {
 
     const urlParams = new URLSearchParams(window.location.search);
     const userId = urlParams.get('userId');
 
     let data = findPostByUserId(userId);
     let cardContainer = document.getElementById("card-container-perfil")
-    
+
     data.then(data => {
-        if(data['status'] == "SUCCESS"){
-            let posts = data['posts'] 
-            
-            for (let  i = 0; i < posts.length; i++){
-                let post =  buildPostToUser(posts[i])
-                                      
+        if (data['status'] == "SUCCESS") {
+            let posts = data['posts']
+
+            for (let i = 0; i < posts.length; i++) {
+                let post = buildPostToUser(posts[i])
+
                 cardContainer.innerHTML += post;
             }
 
             let botao = document.querySelectorAll('.delete-post');
 
-            botao.forEach(function(elemento) {
-                elemento.addEventListener('click', function() {
-                  deletePost(this);
+            botao.forEach(function (elemento) {
+                elemento.addEventListener('click', function () {
+                    deletePost(this);
                 });
             });
 
-        }else{
+        } else {
             console.log(data)
         }
     })
@@ -373,20 +370,21 @@ export function sharePost() {
     const postPramsId = urlParams.get('postId');
 
     const url = `https://leonardowap.github.io/HIPET/screens/post/post_details.html?postId=${postPramsId}`;
-  
+
     navigator.clipboard.writeText(url)
 
     const copyUrlButton = document.getElementById('copy-url-button');
     copyUrlButton.removeEventListener('click', copiarUrl);
 }
 
-export function mensagemByWhatsApp(){
+export function mensagemByWhatsApp() {
     const urlParams = new URLSearchParams(window.location.search);
-    const postId = urlParams.get('postId');
+    const postId = urlParams.get('userId');
+    console.log(postId)
     const url = `https://leonardowap.github.io/HIPET/screens/post/post_details.html?postId=${postId}`;
 
     var numeroTelefone = localStorage.getItem('whatsapp-number'); // Substitua pelo número de telefone desejado
-    var mensagem = "Olá, vi seu post no HiPet e gostaria de conversar sobre :)  " + url; // Substitua pela mensagem desejada
+    var mensagem = "Envie esse link para quem quiser compartilhar esse perfil! " + url; // Substitua pela mensagem desejada
 
     var urlShare = "https://wa.me/" + numeroTelefone + "?text=" + encodeURIComponent(mensagem);
 

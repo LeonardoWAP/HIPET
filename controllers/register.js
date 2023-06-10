@@ -54,8 +54,6 @@ export function registerUser(){
         "picture": null
     }
 
-    console.log(_userRequest)
-
     if(file != undefined){
         const reader = new FileReader();
 

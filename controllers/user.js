@@ -101,8 +101,6 @@ export function editUser() {
             const base64Image = reader.result.split(',')[1];
             userRequest.picture = base64Image
 
-            console.log(userRequest)
-
             let data = updateUser(userRequest, localStorage.getItem('user-id'))
 
             data.then(data => {
@@ -178,9 +176,12 @@ export function setUserIconFooter(footer) {
 }
 
 export function shareUser() {
+    console.log("test1")
 
     const urlParams = new URLSearchParams(window.location.search);
     const userPramsId = urlParams.get('userId');
+
+    console.log("test")
 
     const url = `https://leonardowap.github.io/HIPET/screens/user/user_perfil.html?userId=${userPramsId}`;
 
@@ -203,7 +204,6 @@ function setDonationTag() {
 
 function setMensageTag() {
     let tags = document.getElementById("tags")
-    console.log(tags)
     tags.innerHTML += whatasAppTag
 }
 export function setUserData() {
@@ -256,8 +256,6 @@ function adicionarEventoDeEscuta(searchResult) {
 }
 
 export function searchUser(nickname) {
-    console.log(nickname)
-
     findUserByNickname(nickname.toLowerCase())
         .then(data => {
             if (data['status'] == 'SUCCESS') {
