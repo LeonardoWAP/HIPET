@@ -221,8 +221,8 @@
             enableExif: true,
             enableOrientation: true,
             viewport:{
-                width: parentWidth * 0.9,
-                height:  parentWidth * 0.9,
+                width: parentWidth * 0.95,
+                height:  parentWidth * 0.95,
                 type:'square'
             },
             boundary:{
@@ -239,8 +239,7 @@
                     url: e.target.result
                 });
             }
-        reader.readAsDataURL(this.files[0]);
-            
+        reader.readAsDataURL(this.files[0]); 
         })
 
     document.querySelector("#buttonCreatePost").addEventListener('click',  createNewPost.bind(null, resize))

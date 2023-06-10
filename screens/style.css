@@ -835,6 +835,11 @@ body{
     right: 13px;
 } */
 
+#preview{
+    width: 110% !important;
+    margin-left: -5%;
+}
+
 #copy-url-button{
     background: var(--text-green) !important;
 }
