@@ -236,6 +236,7 @@ body{
     background-color: var(--background-orage);
     font-weight: 600;
     padding:  1% !important;
+    min-width: 146px;
 }
 
 
@@ -996,7 +997,7 @@ body{
     padding: 5% 3%;
 
     min-height: 25px;
-    min-width: 110px;
+    min-width: 91px;
 }
 
 .animal-color{
