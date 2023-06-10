@@ -75,13 +75,7 @@ export const  reportConfirmation =` <div id="report-confirmation">
                                             id="createReport"
                                         > Confirmar Denuncia</button>
                                     </div>`
-export const reportSucceeded = `<div id="report-confirmation"> <p class="title"> Criado com sucesso!</p> </div>
-                                    <div class="modal-footer">
-                                    <button type="button" 
-                                            class="btn btn-primary report-btn-success" 
-                                            id="createReport"
-                                        > Ok</button>
-                                    </div>`
+export const reportSucceeded = `<div id="report-confirmation"> <p class="title"> Criado com sucesso!</p> </div>`
 
 export const deletePostSucceded = `<div id="report-confirmation"> <p class="title"> Deletado com sucesso!</p> </div>
                                         <div class="modal-footer"></div>`

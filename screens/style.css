@@ -124,7 +124,7 @@ body{
     overflow: hidden;
     display: grid;
     grid-template-columns: 100%;
-    grid-template-rows: 11% 69% 20%;
+    grid-template-rows: 11% 65% 24%;
     text-decoration: none;
 }
 
@@ -150,6 +150,7 @@ body{
     border-radius: 50%;
     grid-column-start: 1;
     grid-column-end: 1;
+    object-fit: cover;
 }
 
 .post-animal-user-nickname{
@@ -541,6 +542,7 @@ body{
     padding: 0 6%;
     font-size: 0.8rem;
     color: var(--text-input);
+    width: 100%;
 }
 
 .register-form-input .title{
@@ -583,8 +585,8 @@ body{
     justify-content: inherit;
 }
 .register-ok-circle{
-    width: 79%;
-    height: 58%;
+    width: 370px;
+    height: 370px;
     background-color: var(--white);
     border-radius: 50%;
 
@@ -842,6 +844,10 @@ body{
     background-color: transparent; 
 }
 
+#post-details .loading{
+    left: 0;
+}
+
 #post-details-card-img{
     grid-row-start: 1;
     grid-row-end: 2;
@@ -954,7 +960,7 @@ body{
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 0px 7px;
+    gap: 7px 7px;
     height: auto;
     padding: 0px 25px 0px 25px;
     padding-bottom: 0;
@@ -999,7 +1005,6 @@ body{
 .animal-health{
     background-color: var(--background-green);
     color: var(--text-green);
-    margin: 5px 0 5px;
 }
 .animal-castrated{
     background-color: var(--background-blue);
@@ -1078,11 +1083,11 @@ body{
     width: 80%;
     display: flex;
     flex-direction: column;
+    padding: 0px !important;
+    padding-bottom: 10px !important;
 }
 
-.report-select{
-    width: 94% !important;
-}
+
 
 .report-modal-body .title{
     font-size: 1rem;
@@ -1404,6 +1409,7 @@ body{
 .donation{
     background-color: var(--background-green);
     width: 60%;
+    min-width: 215px;
     margin-top: 5px;
 }
 .donation p{
@@ -1581,7 +1587,7 @@ body{
 
     .user-header-tags {
        
-        gap: 16% 17%;
+        /* gap: 16% 17%; */
     
     }
 
