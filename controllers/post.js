@@ -236,7 +236,7 @@ export function createNewPost(resize) {
 
     resize.croppie('result', {
         type: 'base64',
-        size: {width: 1200, height: 1200},
+        size: {width: 2200, height: 2200},
         quality: 1,
     }).then(function (img) {
 
