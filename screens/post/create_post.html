@@ -229,7 +229,8 @@
                 width:  parentWidth * 1,
                 height: parentWidth * 1,
                 
-            }
+            },
+            quality: 1,
         })
 
         $("#fileInput").on("change", function(){
@@ -239,7 +240,7 @@
                     url: e.target.result
                 });
             }
-        reader.readAsDataURL(this.files[0]); 
+            reader.readAsDataURL(this.files[0]); 
         })
 
     document.querySelector("#buttonCreatePost").addEventListener('click',  createNewPost.bind(null, resize))
