@@ -99,7 +99,7 @@ export function getPostDetails() {
 
                 let animalName = post.animal.name
                 let animalSex = formatText(post.animal.sex)
-                let animalAge = (post.animal.age != undefined) ? post.animal.age : "?"
+                let animalAge = (post.animal.age != undefined) ? `${post.animal.age} ano(s)` : "Idade desconhecida"
                 let animalState = post.state
                 let picture = post.picture
                 let nickname = post.user.nickname
@@ -117,7 +117,7 @@ export function getPostDetails() {
                                         </a>`
 
                 post_header.innerHTML = `<h1 class="title animalName"> ${animalName}</h1>
-                                        <p class="post-details-subtitle animalInfo"> ${animalSex}, ${animalAge} anos </p>
+                                        <p class="post-details-subtitle animalInfo"> ${animalSex}, ${animalAge} </p>
                                         <img src="../../src/maps-and-flags.svg">
                                         <p class="animalState post-localization"> ${animalState} </p>`;
 

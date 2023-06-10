@@ -235,6 +235,7 @@ body{
     color: var(--text-orage);
     background-color: var(--background-orage);
     font-weight: 600;
+    padding:  1% !important;
 }
 
 
@@ -829,6 +830,9 @@ body{
     grid-template-rows: 60% 47%;
 }
 
+#preview .cr-boundary{
+    right: 13px;
+}
 
 
 .post-details-header{
