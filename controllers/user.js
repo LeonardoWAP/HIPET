@@ -176,17 +176,11 @@ export function setUserIconFooter(footer) {
 }
 
 export function shareUser() {
-    console.log("test1")
-
     const urlParams = new URLSearchParams(window.location.search);
     const userPramsId = urlParams.get('userId');
-
-    console.log("test")
-
     const url = `https://leonardowap.github.io/HIPET/screens/user/user_perfil.html?userId=${userPramsId}`;
 
     navigator.clipboard.writeText(url)
-
 
     const copyUrlButton = document.getElementById('copy-url-button');
     copyUrlButton.removeEventListener('click', copiarUrl);

@@ -14,8 +14,7 @@
     
         <div id="post-details-card-img">
                 <a href="feed.html">  <img src="../../src/left-arrow.svg"> </a>
-                <button id="copy-url-button" 
-                        type="button" 
+                <button type="button" 
                         class="share-post-button" 
                         data-bs-toggle="modal" 
                         data-bs-target="#sharePostModal">
@@ -122,7 +121,7 @@
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" 
                         id="exampleModalLabel">
-                        Link Copiado!
+                        Copie para Compartilhar!
                     </h1>
                     <button type="button" 
                             class="btn-close" 
@@ -131,9 +130,14 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    A url da pubicação foi copiada para sua área de transferência! <br><br>
-                    Cole ela para enviar para quem quiser ver esta publicação! 
+                   Clique no botão abaixo para copiar e envie para quem quiser ver este perfil! 
                 </div>
+                <div class="modal-footer">
+                    <button type="button" 
+                            class="btn btn-primary report-btn" 
+                            id="copy-url-button">Copiar</button>
+                </div>
+                
             </div>
 
         </div>
@@ -176,12 +180,13 @@
 	</section>
 
     <script type="module">
-        import { getPostDetails, reportPost, mensagemByWhatsApp } from "../../controllers/post.js"
+        import { getPostDetails, reportPost, mensagemByWhatsApp, sharePost } from "../../controllers/post.js"
         import { verify_login } from "../../controllers/login.js"
 
 		verify_login()
         getPostDetails()
 
+        document.querySelector("#copy-url-button").addEventListener('click', sharePost)
         document.querySelector("#createReport").addEventListener('click', reportPost)
         document.querySelector("#whatsappMensagemOK").addEventListener('click', mensagemByWhatsApp)
     </script>

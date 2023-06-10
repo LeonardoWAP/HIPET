@@ -202,10 +202,10 @@ export function reportPost() {
 
             data.then(data => {
                 if (data['status'] == "SUCCESS") {
-                    // hideLoading()
+                    hideLoading()
 
-                    // reportModal.innerHTML = reportSucceeded;
-                    // modalContent.style.backgroundColor = "#D6F9C8";
+                    reportModal.innerHTML = reportSucceeded;
+                    modalContent.style.backgroundColor = "#D6F9C8";
 
                 } else {
                     console.log(data)

@@ -215,17 +215,19 @@
 
         setUserIconFooter(document.getElementById('new-post-footer'))
 
+        var parentWidth = $('#preview').width();
+
         var resize = $('#preview').croppie({
             enableExif: true,
             enableOrientation: true,
             viewport:{
-                width: 370,
-                height: 422,
+                width: parentWidth * 0.9,
+                height:  parentWidth * 0.9,
                 type:'square'
             },
             boundary:{
-                width:375,
-                height:427,
+                width:  parentWidth * 1,
+                height: parentWidth * 1,
                 
             }
         })

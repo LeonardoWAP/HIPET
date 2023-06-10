@@ -133,8 +133,8 @@ export function buildPost(post){
                 </div>
 
         
-                <a class="post-animal-img" 
-                        href="post_details.html?postId=${postId}"
+                <a  class="post-animal-img" 
+                    href="post_details.html?postId=${postId}"
                     style = "background-image: url('${picture}')">
                 </a>    
                 

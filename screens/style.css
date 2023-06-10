@@ -236,7 +236,7 @@ body{
     background-color: var(--background-orage);
     font-weight: 600;
     padding:  1% !important;
-    min-width: 146px;
+    /* min-width: 150px !important; */
 }
 
 
@@ -831,10 +831,13 @@ body{
     grid-template-rows: 60% 47%;
 }
 
-#preview .cr-boundary{
+/* #preview .cr-boundary{
     right: 13px;
-}
+} */
 
+#copy-url-button{
+    background: var(--text-green) !important;
+}
 
 .post-details-header{
     height: 100%;
@@ -1525,9 +1528,9 @@ body{
     
 }
 
-#shareUserModal .modal-body, #sharePostModal .modal-body{
+/* #shareUserModal .modal-body, #sharePostModal .modal-body{
     color: var(--text-green);
-}
+} */
 /********************** end perfil pf ******************/
 
 /************************** user ONG *********************/
@@ -1580,10 +1583,14 @@ body{
     flex-wrap: wrap;
 }
 
-#feed .animal-tag{
+.age{
+
+}
+
+/* #feed .animal-tag{
     width: 29%;
     min-width: 73px;
-}
+} */
 
 /******************************/
     
