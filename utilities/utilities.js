@@ -124,35 +124,34 @@ export function buildPost(post){
     let localization = post.state 
     let userName = post.user.nickname
 
-   return ` 
-                <article class="post-animal">
-                    <div class="post-animal-user">
-                        <img class="post-user-img" src="${setImg(post.user.picture)}">
-                        <p class="post-animal-user-nickname">${userName}</p>
-                        <img src="../../src/maps-and-flags.svg">
-                        <p class="post-localization">${localization}</p>
-                    </div>
+   return ` <article class="post-animal">
+                <div class="post-animal-user">
+                    <a href="../user/user_perfil.html?userId=${post.user.id}"> <img  class="post-user-img" src="${setImg(post.user.picture)}"> </a>
+                    <a href="../user/user_perfil.html?userId=${post.user.id}"> <p class="post-animal-user-nickname" >${userName}</p> </a> 
+                    <img src="../../src/maps-and-flags.svg">
+                    <p class="post-localization">${localization}</p>
+                </div>
 
-            
-                    <a class="post-animal-img" 
-                         href="post_details.html?postId=${postId}"
-                        style = "background-image: url('${picture}')">
-                    </a>    
-                    
-                    <div class="post-animal-info">
-                        <p class="title">${animalName} </p>
-                       <div class="post-animal-info-about">
-                        <p id="post-animal-info-about-text" class="subtitle"> ${formatTextAbout(description)}
-                        </p>
-                       </div> 
-                        <div class="post-animal-info-animal-tag">
-                            <div class="animal-tag dog">  ${formatText(type)} </div>
-                            <div class="animal-tag sex"> ${formatText(sex)} </div>
-                            <div class="animal-tag age"> ${age} anos </div>
-                        </div>
+        
+                <a class="post-animal-img" 
+                        href="post_details.html?postId=${postId}"
+                    style = "background-image: url('${picture}')">
+                </a>    
+                
+                <div class="post-animal-info">
+                    <p class="title">${animalName} </p>
+                    <div class="post-animal-info-about">
+                    <p id="post-animal-info-about-text" class="subtitle"> ${formatTextAbout(description)}
+                    </p>
+                    </div> 
+                    <div class="post-animal-info-animal-tag">
+                        <div class="animal-tag dog">  ${formatText(type)} </div>
+                        <div class="animal-tag sex"> ${formatText(sex)} </div>
+                        <div class="animal-tag age"> ${age} anos </div>
                     </div>
+                </div>
 
-                </article> 
+            </article> 
             `
 }
 
