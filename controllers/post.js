@@ -218,6 +218,9 @@ export function reportPost() {
 }
 
 export function createNewPost(resize) {
+    const createPostLoading = document.getElementById('createPostLoading');
+    showLoading(createPostLoading)
+
     let animalTypeDog = document.getElementById("checkAnimalTypeDog").firstElementChild.checked;
     let animalSexFemea = document.getElementById("checkAnimalSexFemea").firstElementChild.checked;
     let animalName = document.getElementById("animalName").firstElementChild.value;
@@ -266,6 +269,7 @@ export function createNewPost(resize) {
         data.then(data => {
 
             if (data['status'] == "SUCCESS") {
+                hideLoading()
 
                 let divPopUp = document.querySelector('.modal-content')
                 divPopUp.innerHTML = `
@@ -285,6 +289,8 @@ export function createNewPost(resize) {
                                 </a>
                             </div>`
             } else {
+                hideLoading()
+
 
                 let divPopUp = document.querySelector('.modal-content')
                 divPopUp.innerHTML = `

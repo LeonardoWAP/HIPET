@@ -164,7 +164,7 @@
         <button class="button-purple" 
                 id="buttonCreatePost" 
                 type="button" 
-                data-bs-target="#shareUserModal"
+                data-bs-target="#criatePost"
                 data-bs-toggle="modal" >
            Criar publicação
         </button>
@@ -176,12 +176,12 @@
     </footer>
 
     <div class="modal fade" 
-        id="shareUserModal" 
+        id="criatePost" 
         tabindex="-1" 
         aria-labelledby="exampleModalLabel" 
         aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
+        <div class="modal-dialog" >
+            <div class="modal-content" id="createPostLoading">
                 <div class="modal-header">
                     <h1 class="modal-title fs-5" 
                         id="exampleModalLabel">
@@ -192,7 +192,7 @@
                             aria-label="Close">
                     </button>
                 </div>
-                <div class="modal-body">
+                <div class="modal-body" >
                     
                 </div>
             </div>
