@@ -1175,10 +1175,6 @@ body{
     gap: 14px;
 }
 
-#edit-user-loading .loading{ 
-    left: 160px
-}
-
 #mudei-ideia{
     display: flex;
     width: 100%;
