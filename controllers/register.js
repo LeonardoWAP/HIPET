@@ -1,6 +1,8 @@
 
 import { createUser } from '../diplomatic/https_client.js'
 import { modalRegisteFailed } from '../utilities/utilities.js'
+import { showLoading, hideLoading, setImg } from '../utilities/utilities.js'
+
 
 export function setCorrectsInputs(){
 
@@ -20,6 +22,9 @@ export function setCorrectsInputs(){
 
 
 export function registerUser(){
+    const loading = document.getElementById("modal-register-user")
+    showLoading(loading)
+
     let user_name = document.getElementById("inputName").value;
     let user_nickName = document.getElementById("inputNickName").value.toLowerCase();
     let user_email = document.getElementById("inputEmail").value;
@@ -70,11 +75,13 @@ export function registerUser(){
             data.then(data =>{
 
                 if(data['status'] == "SUCCESS"){
+                    hideLoading()
                     localStorage.setItem('deslogado', 'sim'); 
                     window.location.href = "../login/register_created.html";
         
                 }else{
                 // tratativa de erro
+                    hideLoading()
                     console.log(data)
                         let divPopUp = document.querySelector('.modal-content')
                         divPopUp.innerHTML = modalRegisteFailed

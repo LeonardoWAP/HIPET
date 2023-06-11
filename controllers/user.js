@@ -1,11 +1,14 @@
 import { findPostById, findUserById, updateUser, findUserByNickname, deleteUserById } from '../diplomatic/https_client.js'
-import { buildPost, formatText, donationTag, logout, whatasAppTag, editUserTag, setImg } from '../utilities/utilities.js'
+import { buildPost, formatText, donationTag, logout, whatasAppTag, editUserTag, setImg, showLoading, hideLoading } from '../utilities/utilities.js'
 
 export function userEditForms(userId) {
+    const loading = document.getElementById('edit-user-loading')
+    showLoading(loading)
 
     let data = findUserById(userId);
 
     data.then(data => {
+        
         let formContainer = document.getElementById("register-form")
         let vakinhaInput = "<div> </div>"
         let cpfInput = "<div> </div>"
@@ -17,7 +20,7 @@ export function userEditForms(userId) {
         var cpf = data.user.document
         var vakinhaUrl = data.user.donation_link
         setUserImg(data.user.picture)
-
+        hideLoading()
 
         if (localStorage.getItem("user_type") == "ONG") {
             vakinhaInput = `<div class="form-floating  input-large-edit">
@@ -74,43 +77,99 @@ export function userEditForms(userId) {
 
 export function editUser() {
 
+    let divPopUp = document.querySelector('.modal-content')
+    divPopUp.innerHTML += ""
+
     var name = document.getElementById("name").value
     var email = document.getElementById("email").value
     var phoneNumber = document.getElementById("phoneNumber").value
     var password = document.getElementById("newPassword").value
     var repeatPassword = document.getElementById("reapetPassword").value
     var type = localStorage.getItem("user_type")
+    let newPassword = ""
+
+    switch (repeatPassword) {
+        case "":
+            newPassword = password
+            break;
+        case password:
+            newPassword = repeatPassword
+            break;
+        default:
+            newPassword = 'invalido'
+            null;
+      }
 
     let userRequest = {
         "type": type,
         "name": name,
         "phone_number": phoneNumber,
         "email": (email == localStorage.getItem('email')) ? null : email,
-        "password": (password == repeatPassword) ? repeatPassword : null
+        "password": newPassword
     }
 
     const fileInput = document.getElementById('fileInput');
     const file = fileInput.files[0];
 
-    if (file != undefined) {
-        const reader = new FileReader();
+    if (newPassword != 'invalido' ){
 
-        reader.readAsDataURL(file);
+        if (file != undefined ) {
+            const reader = new FileReader();
 
-        reader.onload = () => {
-            const base64Image = reader.result.split(',')[1];
-            userRequest.picture = base64Image
+            reader.readAsDataURL(file);
 
+            reader.onload = () => {
+                const base64Image = reader.result.split(',')[1];
+                userRequest.picture = base64Image
+
+                let data = updateUser(userRequest, localStorage.getItem('user-id'))
+
+                data.then(data => {
+
+                    if (data['status'] == "SUCCESS") {
+                        localStorage.setItem('email', data.user.email)
+                        localStorage.setItem('user_img', data.user.picture)
+
+                        let divPopUp = document.querySelector('.modal-content')
+                        divPopUp.innerHTML = `  <div class="modal-header">
+                                                    <h5 class="modal-title" id="popUpCadastroLabel">Usuario Editado com Sucesso</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Seu perfil foi editado, clique no botão abaixo para visualizá-lo :)
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <a href='user_perfil.html?userId=${localStorage.getItem('user-id')}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Aplicar</button>
+                                                    </a>
+                                                </div>`
+                    }else{
+                        let divPopUp = document.querySelector('.modal-content')
+                        divPopUp.innerHTML = `   <div class="modal-header">
+                        <h5 class="modal-title" id="popUpCadastroLabel">Erro ao criar o usuário</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Não foi possível editar o usuário, verifique as informações enviadas!
+                    </div>
+                    <div class="modal-footer">
+                        <a href='user_perfil.html?userId=${localStorage.getItem('user-id')}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Verificar</button>
+                        </a>
+                    </div>`
+
+                    }
+                })
+            }
+        } else {
             let data = updateUser(userRequest, localStorage.getItem('user-id'))
 
             data.then(data => {
-
+                console.log(data)
                 if (data['status'] == "SUCCESS") {
                     localStorage.setItem('email', data.user.email)
                     localStorage.setItem('user_img', data.user.picture)
 
                     let divPopUp = document.querySelector('.modal-content')
-                    divPopUp.innerHTML = `  <div class="modal-header">
+                    divPopUp.innerHTML = `<div class="modal-header">
                                                 <h5 class="modal-title" id="popUpCadastroLabel">Usuario Editado com Sucesso</h5>
                                                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                                             </div>
@@ -118,35 +177,37 @@ export function editUser() {
                                                 Seu perfil foi editado, clique no botão abaixo para visualizá-lo :)
                                             </div>
                                             <div class="modal-footer">
-                                                <a href='../screens/user/user_perfil.html?userId=${localStorage.getItem('user-id')}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Aplicar</button>
+                                                <a href='user_perfil.html?userId=${localStorage.getItem('user-id')}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Aplicar</button>
                                                 </a>
                                             </div>`
+                }else{
+                    let divPopUp = document.querySelector('.modal-content')
+                    divPopUp.innerHTML = `   <div class="modal-header">
+                    <h5 class="modal-title" id="popUpCadastroLabel">Erro ao criar o usuário</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    Não foi possível editar o usuário, verifique as informações enviadas!
+                </div>
+                <div class="modal-footer">
+                    <a href='user_perfil.html?userId=${localStorage.getItem('user-id')}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Verificar</button>
+                    </a>
+                </div>`
+
                 }
             })
+
         }
-    } else {
-        let data = updateUser(userRequest, localStorage.getItem('user-id'))
-
-        data.then(data => {
-
-            if (data['status'] == "SUCCESS") {
-                localStorage.setItem('email', data.user.email)
-                localStorage.setItem('user_img', data.user.picture)
-
-                let divPopUp = document.querySelector('.modal-content')
-                divPopUp.innerHTML = `  <div class="modal-header">
-                                                <h5 class="modal-title" id="popUpCadastroLabel">Usuario Editado com Sucesso</h5>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="modal-body">
-                                                Seu perfil foi editado, clique no botão abaixo para visualizá-lo :)
-                                            </div>
-                                            <div class="modal-footer">
-                                                <a href='user_perfil.html?userId=${localStorage.getItem('user-id')}' > <button type="button" class="modal-button-purple" data-bs-dismiss="modal">Visualizar</button>
-                                                </a>
-                                            </div>`
-            }
-        })
+    }else{
+        let divPopUp = document.querySelector('.modal-content')
+        divPopUp.innerHTML = `<div class="modal-header">
+                                    <h5 class="modal-title" id="popUpCadastroLabel">Senha inválida</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    As senhas digitadas não são compatíveis, por favor verifique se digitou corretamente!
+                                </div>
+                              `
 
     }
 
