@@ -100,9 +100,11 @@ export const deletePostButton = `<button
                                     </button>`
 
 function formatTextAbout(text){
-    const limite = Math.floor(text.length * 0.36);
-    const parte1 = text.substring(0, limite);
-    return parte1
+    // const limite = Math.floor(text.length * 0.36);
+    // const parte1 = text.substring(0, limite);
+    
+
+    return  text.substring(0, 80)
 }
 
 export function formatText(title){

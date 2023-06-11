@@ -192,6 +192,20 @@ body{
    
 }
 
+.form-floating>.form-control:focus~.form-input-description, .form-floating>.form-control:not(:placeholder-shown)~.form-input-description, .form-floating>.form-select~.form-input-description {
+    opacity: .65;
+    transform: scale(.85) translateY(-0.5rem) translateX(0.15rem);
+    width: 114% !important;
+}
+.form-input-description{    
+    height: 26px !important;
+    background: white !important;
+    opacity: 1 !important;
+    top: 7px !important;
+    
+    padding: -7px !important;
+    padding-top: 0 !important;
+}
 
 .post-animal-info{
     grid-column-start: 1;
