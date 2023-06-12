@@ -389,8 +389,8 @@ export function sharePostByWhatsApp() {
     const postId = urlParams.get('postId');
     const url = `https://leonardowap.github.io/HIPET/screens/post/post_details.html?postId=${postId}`;
 
-    var numeroTelefone = localStorage.getItem('whatsapp-number'); // Substitua pelo número de telefone desejado
-    var mensagem = "Vi esta sua mensagem no HiPet! " + url; // Substitua pela mensagem desejada
+    var numeroTelefone = localStorage.getItem('whatsapp-number'); 
+    var mensagem = "Vi sua publicação no HiPet! " + url; 
 
     var urlShare = "https://api.whatsapp.com/send?phone=+55" + numeroTelefone + "&text=" + encodeURIComponent(mensagem);
 
@@ -402,8 +402,8 @@ export function shareUserByWhatsApp() {
     const userId = urlParams.get('userId');
     const url = `https://leonardowap.github.io/HIPET/screens/user/user_perfil.html?userId=${userId}`;
 
-    var numeroTelefone = localStorage.getItem('whatsapp-number'); // Substitua pelo número de telefone desejado
-    var mensagem = "Vi seu pergil no HiPet! " + url; // Substitua pela mensagem desejada
+    var numeroTelefone = localStorage.getItem('whatsapp-number'); 
+    var mensagem = "Vi seu perfil no HiPet! " + url; 
 
     var urlShare = "https://api.whatsapp.com/send?phone=+55" + numeroTelefone + "&text=" + encodeURIComponent(mensagem);
 
