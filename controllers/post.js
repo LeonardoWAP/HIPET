@@ -405,7 +405,7 @@ export function shareUserByWhatsApp() {
     var numeroTelefone = localStorage.getItem('whatsapp-number'); // Substitua pelo número de telefone desejado
     var mensagem = "Vi seu pergil no HiPet! " + url; // Substitua pela mensagem desejada
 
-    var urlShare = "https://api.whatsapp.com/send?phone=+55" + numeroTelefone + "?text=" + encodeURIComponent(mensagem);
+    var urlShare = "https://api.whatsapp.com/send?phone=+55" + numeroTelefone + "&text=" + encodeURIComponent(mensagem);
 
     window.open(urlShare, "_blank");
 
