@@ -384,16 +384,31 @@ export function sharePost() {
     copyUrlButton.removeEventListener('click', copiarUrl);
 }
 
-export function mensagemByWhatsApp() {
+export function sharePostByWhatsApp() {
     const urlParams = new URLSearchParams(window.location.search);
-    const postId = urlParams.get('userId');
-    console.log(postId)
+    const postId = urlParams.get('postId');
     const url = `https://leonardowap.github.io/HIPET/screens/post/post_details.html?postId=${postId}`;
 
     var numeroTelefone = localStorage.getItem('whatsapp-number'); // Substitua pelo número de telefone desejado
-    var mensagem = "Envie esse link para quem quiser compartilhar esse perfil! " + url; // Substitua pela mensagem desejada
+    var mensagem = "Vi esta sua mensagem no HiPet! " + url; // Substitua pela mensagem desejada
 
-    var urlShare = "https://wa.me/" + numeroTelefone + "?text=" + encodeURIComponent(mensagem);
+    var urlShare = "https://api.whatsapp.com/send?phone=" + numeroTelefone + "&text=" + encodeURIComponent(mensagem);
 
     window.open(urlShare, "_blank");
+}
+
+export function shareUserByWhatsApp() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const userId = urlParams.get('userId');
+    const url = `https://leonardowap.github.io/HIPET/screens/user/user_perfil.html?userId=${userId}`;
+
+    var numeroTelefone = localStorage.getItem('whatsapp-number'); // Substitua pelo número de telefone desejado
+    var mensagem = "Vi seu pergil no HiPet! " + url; // Substitua pela mensagem desejada
+
+    var urlShare = "https://api.whatsapp.com/send?phone=" + numeroTelefone + "?text=" + encodeURIComponent(mensagem);
+
+    window.open(urlShare, "_blank");
+
+
+   
 }

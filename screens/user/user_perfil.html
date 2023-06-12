@@ -212,7 +212,7 @@
 
     <script type="module">
         import {verify_login} from "../../controllers/login.js"
-        import {getUserPosts, mensagemByWhatsApp} from "../../controllers/post.js"
+        import {getUserPosts, shareUserByWhatsApp} from "../../controllers/post.js"
         import {shareUser, setUserData, realizarLogout, setUserIconFooter} from "../../controllers/user.js"
        
         verify_login()
@@ -222,7 +222,7 @@
 
         document.querySelector("#copy-url-button").addEventListener('click', shareUser)
         document.querySelector("#logoutUser").addEventListener('click', realizarLogout)
-        document.querySelector("#whatsappMensagemOK").addEventListener('click', mensagemByWhatsApp)
+        document.querySelector("#whatsappMensagemOK").addEventListener('click', shareUserByWhatsApp)
 
     </script>
 
